@@ -33,7 +33,7 @@ Then
 | Stage | Date |
 | ------ | ------ |
 | Entered Open at | 0000-00-00 00:00:00 |
-| Entered To-Do at | 0000-00-00 00:00:00 |
+| Entered To Do at | 0000-00-00 00:00:00 |
 | Entered Doing at | 0000-00-00 00:00:00 |
-| Entered Done at | 0000-00-00 00:00:00 |
+| Entered Reviewing at | 0000-00-00 00:00:00 |
 | Entered Closed at | 0000-00-00 00:00:00 |
