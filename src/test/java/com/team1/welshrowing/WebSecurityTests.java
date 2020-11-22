@@ -21,7 +21,16 @@ public class WebSecurityTests {
     public void homepageShouldNotRequireAuthentication() throws Exception {
         this.mockMvc
                 .perform(get("/"))
-                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void resourcesShouldLoadWithoutAuthentication() throws Exception {
+        this.mockMvc
+                .perform(get("/css/main.css"))
+                .andExpect(status().isOk());
+        this.mockMvc
+                .perform(get("/assets/logo.png"))
                 .andExpect(status().isOk());
     }
 
