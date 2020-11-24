@@ -3,6 +3,7 @@ package com.team1.welshrowing.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -25,6 +26,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("user").password(passwordEncoder().encode("pass")).roles("USER")
                 .and()
                 .withUser("admin").password(passwordEncoder().encode("pass")).roles("ADMIN");
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws  Exception {
+        http
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll();
+
     }
 
     /**

@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/loginheader :: loginhead"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/loginheader :: loginheader"></header>
+
+<main class="container">
+    <form><label for="Username">Username</label><br>
+    <input type="text" id="Username" name = "Usernamefield"><br>
+        <label for="Password">Password</label><br>
+        <input type="text" id="Password" name="Passwordfield"><br>
+        <br>
+        <input type="submit" value="Submit" id="Submit" name="Submit"><br>
+        <br>
+    </form>
+
+    <a href ="http://localhost:8080/">Forgot Password</a><br>
+    <br>
+    <!--    https://www.w3schools.com/howto/howto_css_icon_buttons.asp-->
+    <a href ="http://localhost:8080/"> <button class="homebutton"><i class = "fa fa-home"></i></button></a>
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>
