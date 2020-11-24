@@ -7,12 +7,16 @@ import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.AthleteRepoJPA;
 import com.team1.welshrowing.repository.UserRepoJPA;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -26,7 +30,9 @@ public class UserController {
     @Autowired
     private ApplicantRepoJPA applicantRepo;
 
-
+    /**
+     * GETs the user sign-up form.
+     */
     @GetMapping("/register")
     public String RegisterForm(Model model) {
         UserForm userForm = new UserForm();
@@ -34,26 +40,49 @@ public class UserController {
         return "user-signup-form";
     }
 
+    /**
+     * POSTs and saves form details in the User's Repository
+     * Redirects to athlete details form
+     * Catches any errors and returns to the previous form
+     */
     @PostMapping("/register/process")
-    public String ProcessRegisterForm(User user){
-        userRepo.save(user);
-        return "redirect:/register/details";
-    }
+    public String ProcessRegisterForm(User user, BindingResult bindings){
 
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            return "user-signup-form";
+        } else {
+                userRepo.save(user);
+                return "redirect:/register/details";
+            }
+        }
+
+    /**
+     * GETs the athlete details form.
+     */
     @GetMapping("/register/details")
     public String RegisterDetails(Model model) {
         AthleteForm athleteForm = new AthleteForm();
         model.addAttribute("athlete", athleteForm);
         return "athlete-details-form";
-//        return "redirect:register/details";
     }
 
+    /**
+     * POSTs and saves form details in the Athlete's Repository
+     * Redirects to athlete dashboard
+     */
     @PostMapping("/register/process/details")
     public String ProcessAthleteForm(Athlete athlete) {
         athleteRepo.save(athlete);
         return "athlete-dashboard";
     }
 
+    /**
+     * GETs the application form.
+     */
     @GetMapping("/application")
     public String ApplicationForm(Model model) {
         ApplicantForm applicantForm = new ApplicantForm();
@@ -61,6 +90,10 @@ public class UserController {
         return "application-form";
     }
 
+    /**
+     * POSTs and saves form details in the Applicant's Repository
+     * Redirects to athlete dashboard
+     */
     @PostMapping("/application/process")
     public String ProcessApplicationForm(Applicant applicant) {
         applicantRepo.save(applicant);
