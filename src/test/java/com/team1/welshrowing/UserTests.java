@@ -2,6 +2,7 @@ package com.team1.welshrowing;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.team1.welshrowing.domain.Athlete;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.UserRepoJPA;
 import org.junit.jupiter.api.Test;
@@ -27,10 +28,11 @@ public class UserTests {
     @Test
     public void CreateUser1() {
         User newUser = new User();
-        newUser.setEmail("sotos-gate9@gmail.com");
-        newUser.setPassword("lalala123");
         newUser.setUser_name("Sotiris");
         newUser.setUser_type("Athlete");
+        newUser.setEmail("sotos-gate9@gmail.com");
+        newUser.setPassword("lalala123");
+
 
         userRepo.save(newUser);
 
@@ -45,10 +47,11 @@ public class UserTests {
     @Test
     public void CreateUser2() {
         User newUser = new User();
-        newUser.setEmail("pavlosK@gmail.com");
-        newUser.setPassword("password123!");
         newUser.setUser_name("Pavlos12");
         newUser.setUser_type("Athlete");
+        newUser.setEmail("pavlosK@gmail.com");
+        newUser.setPassword("password123!");
+
 
         userRepo.save(newUser);
 

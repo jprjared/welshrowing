@@ -1,9 +1,7 @@
 package com.team1.welshrowing;
 
 import com.team1.welshrowing.domain.Applicant;
-import com.team1.welshrowing.domain.Athlete;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
-import com.team1.welshrowing.repository.AthleteRepoJPA;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

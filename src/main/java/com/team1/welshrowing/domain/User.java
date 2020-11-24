@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -24,5 +25,12 @@ public class User {
 
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name = "athlete_id")
+    private Athlete athlete_id ;
+
+    @ManyToOne
+    @JoinColumn(name = "applicant_id")
+    private Applicant applicant_id ;
 
 }
