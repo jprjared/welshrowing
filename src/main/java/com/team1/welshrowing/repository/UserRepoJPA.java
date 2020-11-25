@@ -9,19 +9,19 @@ import java.util.Optional;
 @Repository("jpa")
 public class UserRepoJPA implements UserRepo {
 
-    private final UserJPA repository;
+        private final UserJPA repository;
 
     @Autowired
     public UserRepoJPA(UserJPA repository) {
-        this.repository = repository;
-    }
+            this.repository = repository;
+        }
 
-    @Override
-    public void saveUser(User user) {
-        repository.save(user);
-    }
+        @Override
+        public void saveUser(User user) {
+            repository.save(user);
+        }
 
-    @Override
+        @Override
     public Optional<User> findByUserName(String userName) {
         return repository.findByUserName(userName);
     }

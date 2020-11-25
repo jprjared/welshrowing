@@ -61,6 +61,7 @@ public class UserController {
             }
             return "user-signup-form";
         } else {
+                user.setRoles("ATHLETE");
                 userCreateService.addUser(user);
                 return "redirect:/register/details";
             }

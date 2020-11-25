@@ -1,65 +1,33 @@
 package com.team1.welshrowing;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import com.team1.welshrowing.domain.User;
-import com.team1.welshrowing.repository.UserRepo;
-import com.team1.welshrowing.service.UserCreateService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import com.team1.welshrowing.domain.User;
+import com.team1.welshrowing.service.UserCreateService;
+import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 
-
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(false)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class UserTests {
 
     @Autowired
     private UserCreateService userCreateService;
 
-//    Allows to use EntityManager in tests
     @Autowired
-    private TestEntityManager entityManager;
+    private UserReadService userReadService;
 
     @Test
-    public void CreateUser1() {
+    public void create_and_find_a_user_by_username() {
         User newUser = new User();
-        newUser.setUserName("Sotiris");
-        newUser.setUserType("Athlete");
-        newUser.setEmail("sotos-gate9@gmail.com");
-        newUser.setPassword("lalala123");
-
-
+        newUser.setUserName("Ryan");
+        newUser.setUserType("ATHLETE");
+        newUser.setEmail("ryan@ryan.com");
+        newUser.setPassword("pass");
         userCreateService.addUser(newUser);
-
-        User savedUser = userCreateService.addUser(newUser);
-
-        User existUser = entityManager.find(User.class, savedUser.getUser_id());
-
-      assertThat(existUser.getEmail()).isEqualTo(newUser.getEmail());
-
+        Assertions.assertEquals(userReadService.findByUserName("Ryan").get(), newUser);
     }
 
-    @Test
-    public void CreateUser2() {
-        User newUser = new User();
-        newUser.setUserName("Pavlos12");
-        newUser.setUserType("Athlete");
-        newUser.setEmail("pavlosK@gmail.com");
-        newUser.setPassword("password123!");
-
-
-        userRepo.save(newUser);
-
-        User savedUser = userRepo.save(newUser);
-
-        User existUser = entityManager.find(User.class, savedUser.getUser_id());
-
-        assertThat(existUser.getEmail()).isEqualTo(newUser.getEmail());
-
-    }
 }

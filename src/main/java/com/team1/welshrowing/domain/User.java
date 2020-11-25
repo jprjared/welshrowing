@@ -27,11 +27,6 @@ public class User {
     private String userName;
 
     /**
-     * The type of the user. It can be coach/athlete.
-     */
-    private String userType;
-
-    /**
      * The email of the user.
      */
     private String email;
@@ -44,7 +39,7 @@ public class User {
     /**
      * Is this user active.
      */
-    private boolean isActive;
+    private boolean isActive = true;
 
     /**
      * The roles of this user.
@@ -58,7 +53,7 @@ public class User {
      */
     @ManyToOne
     @JoinColumn(name = "athlete_id")
-    private Athlete athleteId ;
+    private Athlete athleteId;
 
     /**
      * Linking User Object and Applicant Object
@@ -67,6 +62,6 @@ public class User {
      */
     @ManyToOne
     @JoinColumn(name = "applicant_id")
-    private Applicant applicantId ;
+    private Applicant applicantId;
 
 }
