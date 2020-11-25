@@ -56,6 +56,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/",
+                        "/register",
+                        "/application",
                         "/css/**/*.css",
                         "/js/**/*.js",
                         "/assets/**"
