@@ -11,7 +11,7 @@ public class ApplicantForm {
 
     private Long applicant_id;
 
-    private String user_name;
+    private String userName;
 
     private String email;
 

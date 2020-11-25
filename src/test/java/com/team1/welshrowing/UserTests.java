@@ -2,9 +2,9 @@ package com.team1.welshrowing;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.team1.welshrowing.domain.Athlete;
 import com.team1.welshrowing.domain.User;
-import com.team1.welshrowing.repository.UserRepoJPA;
+import com.team1.welshrowing.repository.UserRepo;
+import com.team1.welshrowing.service.UserCreateService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,7 +19,7 @@ import org.springframework.test.annotation.Rollback;
 public class UserTests {
 
     @Autowired
-    private UserRepoJPA userRepo;
+    private UserCreateService userCreateService;
 
 //    Allows to use EntityManager in tests
     @Autowired
@@ -28,15 +28,15 @@ public class UserTests {
     @Test
     public void CreateUser1() {
         User newUser = new User();
-        newUser.setUser_name("Sotiris");
-        newUser.setUser_type("Athlete");
+        newUser.setUserName("Sotiris");
+        newUser.setUserType("Athlete");
         newUser.setEmail("sotos-gate9@gmail.com");
         newUser.setPassword("lalala123");
 
 
-        userRepo.save(newUser);
+        userCreateService.addUser(newUser);
 
-        User savedUser = userRepo.save(newUser);
+        User savedUser = userCreateService.addUser(newUser);
 
         User existUser = entityManager.find(User.class, savedUser.getUser_id());
 
@@ -47,8 +47,8 @@ public class UserTests {
     @Test
     public void CreateUser2() {
         User newUser = new User();
-        newUser.setUser_name("Pavlos12");
-        newUser.setUser_type("Athlete");
+        newUser.setUserName("Pavlos12");
+        newUser.setUserType("Athlete");
         newUser.setEmail("pavlosK@gmail.com");
         newUser.setPassword("password123!");
 

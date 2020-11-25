@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class UserForm {
 
     private Long user_id;
-    private String user_name;
+    private String userName;
     private String user_type;
     private String email;
     private String password;
