@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#" method="post" th:action="@{/application/process}" th:object="${applicant}">
+
+    <br>
+    <label th:for="user_name">Username:</label>
+    <input th:field="*{user_name}" type="text"></input>
+    <br>
+
+    <br>
+    <label th:for="email">Email:</label>
+    <input th:field="*{email}" type="email"></input>
+    <br>
+
+    <br>
+    <label th:for="all_other_info">Info:</label>
+    <input th:field="*{all_other_info}" type="text"></input>
+    <br>
+
+    <br>
+    <label th:for="application_situation">Application Situation:</label>
+    <input th:field="*{application_situation}" type="text"></input>
+    <br>
+
+    <br>
+    <label th:for="coach">Coach:</label>
+    <input th:field="*{coach}" type="text"></input>
+    <br>
+
+    <br>
+    <button id="register" name="register" type="submit">Register</button>
+    <br>
+</form>
+
+</body>
+</html>
