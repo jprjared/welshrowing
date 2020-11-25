@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-</head>
-<body>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>Sign Up:</h1>
+
 <form action="#" method="post" th:action="@{/register/process}" th:object="${user}">
 
     <br>
@@ -31,6 +36,9 @@
     <button id="register" name="register" type="submit">Register</button>
     <br>
 </form>
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
 
 </body>
 </html>
