@@ -10,6 +10,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * Code adapted from examples at https://www.websparrow.org/spring/spring-boot-spring-security-with-jpa-authentication-and-mysql [Accessed: 25 November 2020]
+ */
 public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;

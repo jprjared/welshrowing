@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * Code adapted from examples at https://www.websparrow.org/spring/spring-boot-spring-security-with-jpa-authentication-and-mysql [Accessed: 25 November 2020]
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
