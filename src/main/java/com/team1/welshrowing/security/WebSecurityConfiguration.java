@@ -1,5 +1,6 @@
 package com.team1.welshrowing.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,18 +15,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private static final String COACH = "COACH";
+    private static final String ATHLETE = "ATHLETE";
+
+    private final UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    public WebSecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     /**
-     * Adds in-memory test users for easy access
-     * Adapted from code examples at https://www.baeldung.com/spring-security-login [Accessed: 20 Nov 2020]
+     * Configures authentication
      * @param auth - An AuthenticationManagerBuilder object
      * @throws Exception
      */
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("pass")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("pass")).roles("ADMIN");
+        auth.userDetailsService(userDetailsService);
     }
 
     /**
@@ -38,30 +45,33 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll();
-    }
-
-    /**
-     * Configure web security requests
-     * Adapted from code examples at https://stackoverflow.com/a/53615055/12809235 [Accessed: 20 Nov 2020]
-     * @param web - A WebSecurity object
-     * @throws Exception
-     */
-    @Override
-    public void configure(final WebSecurity web) throws Exception {
-        web
-                .ignoring()
+                .antMatchers("/coach/**").hasRole(COACH)
+                .antMatchers("/athlete/**").hasRole(ATHLETE)
                 .antMatchers("/",
                         "/register",
                         "/application",
                         "/css/**/*.css",
                         "/js/**/*.js",
                         "/assets/**"
-                );
+                ).permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/",true)
+                .permitAll();
+    }
+
+    /**
+     * Bypass web authentication for H2 requests
+     * Adapted from code examples at https://stackoverflow.com/a/59560136/12809235 [Accessed: 25 November 2020]
+     * DEV ONLY! Remove in production
+     * @throws Exception
+     */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/h2-console/**");
     }
 
     @Bean

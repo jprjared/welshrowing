@@ -26,7 +26,7 @@ public class ApplicantTests {
     @Test
     public void CreateApplicant1() {
         Applicant newApplicant = new Applicant();
-        newApplicant.setUser_name("Sotiris");
+        newApplicant.setUserName("Sotiris");
         newApplicant.setEmail("jacob@gmail.com");
         newApplicant.setAll_other_info("No info");
         newApplicant.setApplication_situation("Pending");
