@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+</head>
+<body>
+
+    <div>
+        <h1>Please complete the details below:</h1>
+    </div>
+
+    <form action="#" method="post" th:action="@{/register/process/details}" th:object="${athlete}">
+
+        <br>
+            <label th:for="first_name">First Name:</label>
+            <input th:field="*{first_name}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="last_name">Last Name:</label>
+            <input th:field="*{last_name}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="contact_number">Contact Number::</label>
+            <input th:field="*{contact_number}" type="number"></input>
+        <br>
+
+        <br>
+            <label th:for="dateOfBirth">Date Of Birth:</label>
+            <input th:field="*{dateOfBirth}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="gender">Gender:</label>
+            <input th:field="*{gender}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="address">Address:</label>
+            <input th:field="*{address}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="town">Town:</label>
+            <input th:field="*{town}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="county">County:</label>
+            <input th:field="*{county}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="postcode">Postcode:</label>
+            <input th:field="*{postcode}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="country">Country:</label>
+            <input th:field="*{country}" type="text"></input>
+        <br>
+
+        <br>
+            <button id="register" name="register" type="submit">Register</button>
+        <br>
+    </form>
+
+</body>
+</html>
