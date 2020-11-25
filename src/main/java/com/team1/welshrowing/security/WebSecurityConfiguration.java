@@ -28,8 +28,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password(passwordEncoder().encode("pass")).roles("ADMIN");
     }
 
+    /**
+     * Configures HTTP requests
+     * Code adapted from examples at https://stackoverflow.com/a/41789834/12809235 [Accessed: 25 November 2020]
+     * @param http
+     * @throws Exception
+     */
     @Override
-    protected void configure(HttpSecurity http) throws  Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .anyRequest().authenticated()
@@ -37,7 +43,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .permitAll();
-
     }
 
     /**
