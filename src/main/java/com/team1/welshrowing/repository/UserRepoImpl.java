@@ -7,12 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository("jpa")
-public class UserRepoJPA implements UserRepo {
+public class UserRepoImpl implements UserRepo {
 
         private final UserJPA repository;
 
     @Autowired
-    public UserRepoJPA(UserJPA repository) {
+    public UserRepoImpl(UserJPA repository) {
             this.repository = repository;
         }
 
