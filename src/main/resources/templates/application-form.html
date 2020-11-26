@@ -1,42 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
 
-<form action="#" method="post" th:action="@{/application/process}" th:object="${applicant}">
+<header th:replace="fragments/header :: header"></header>
 
-    <br>
-    <label th:for="user_name">Username:</label>
-    <input th:field="*{user_name}" type="text"></input>
-    <br>
+<main class="container">
 
-    <br>
-    <label th:for="email">Email:</label>
-    <input th:field="*{email}" type="email"></input>
-    <br>
+    <h1>Application Form</h1>
+    <form action="#" method="post" th:action="@{/application/process}" th:object="${applicant}">
 
-    <br>
-    <label th:for="all_other_info">Info:</label>
-    <input th:field="*{all_other_info}" type="text"></input>
-    <br>
+        <br>
+            <label th:for="user_name">Username:</label>
+            <input th:field="*{user_name}" type="text"></input>
+        <br>
 
-    <br>
-    <label th:for="application_situation">Application Situation:</label>
-    <input th:field="*{application_situation}" type="text"></input>
-    <br>
+        <br>
+            <label th:for="email">Email:</label>
+            <input th:field="*{email}" type="email"></input>
+        <br>
 
-    <br>
-    <label th:for="coach">Coach:</label>
-    <input th:field="*{coach}" type="text"></input>
-    <br>
+        <br>
+            <label th:for="all_other_info">Info:</label>
+            <input th:field="*{all_other_info}" type="text"></input>
+        <br>
 
-    <br>
-    <button id="register" name="register" type="submit">Register</button>
-    <br>
+        <br>
+            <label th:for="application_situation">Application Situation:</label>
+            <input th:field="*{application_situation}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="coach">Coach:</label>
+            <input th:field="*{coach}" type="text"></input>
+        <br>
+
+        <br>
+            <button id="register" name="register" type="submit">Register</button>
+        <br>
+
 </form>
+</main>
+
+    <footer th:replace="fragments/footer :: footer" ></footer>
 
 </body>
 </html>

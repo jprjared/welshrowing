@@ -19,17 +19,12 @@ public class User {
     /**
      * A unique suffix that will identify the user.
      */
-    private Long user_id;
+    private Long userId;
 
     /**
      * The user name of the user.
      */
-    private String user_name;
-
-    /**
-     * The type of the user. It can be coach/athlete.
-     */
-    private String user_type;
+    private String userName;
 
     /**
      * The email of the user.
@@ -42,13 +37,23 @@ public class User {
     private String password;
 
     /**
+     * Is this user active.
+     */
+    private boolean isActive = true;
+
+    /**
+     * The roles of this user.
+     */
+    private String roles;
+
+    /**
      * Linking User Object with Athlete Object
      * Many to One Relationship
      * Joined with user_id = athlete_id.
      */
     @ManyToOne
     @JoinColumn(name = "athlete_id")
-    private Athlete athlete_id ;
+    private Athlete athleteId;
 
     /**
      * Linking User Object and Applicant Object
@@ -57,6 +62,6 @@ public class User {
      */
     @ManyToOne
     @JoinColumn(name = "applicant_id")
-    private Applicant applicant_id ;
+    private Applicant applicantId;
 
 }
