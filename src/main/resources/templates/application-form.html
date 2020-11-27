@@ -11,33 +11,33 @@
     <h1>Application Form</h1>
     <form action="#" method="post" th:action="@{/application/process}" th:object="${applicant}">
 
-        <br>
-            <label th:for="user_name">Username:</label>
-            <input th:field="*{user_name}" type="text"></input>
-        <br>
+        <div class="form-group">
+            <label th:for="userName">Username:</label>
+            <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter Username"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="email">Email:</label>
-            <input th:field="*{email}" type="email"></input>
-        <br>
+            <input th:field="*{email}" type="email" class="form-control" placeholder="Enter Email"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="all_other_info">Info:</label>
-            <input th:field="*{all_other_info}" type="text"></input>
-        <br>
+            <input th:field="*{all_other_info}" type="text" class="form-control" placeholder="Enter Info"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="application_situation">Application Situation:</label>
-            <input th:field="*{application_situation}" type="text"></input>
-        <br>
+            <input th:field="*{application_situation}" type="text" class="form-control" placeholder="Enter Application Situation"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="coach">Coach:</label>
-            <input th:field="*{coach}" type="text"></input>
-        <br>
+            <input th:field="*{coach}" type="text" class="form-control" placeholder="Enter Coach"></input>
+        </div>
 
         <br>
-            <button id="register" name="register" type="submit">Register</button>
+            <button id="register" name="register" type="submit" class="btn btn-primary">Register</button>
         <br>
 
 </form>
