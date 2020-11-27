@@ -9,10 +9,10 @@ import java.util.Optional;
 @Repository("jpa")
 public class UserRepoImpl implements UserRepo {
 
-        private final UserJPA repository;
+        private final UserRepoJPA repository;
 
     @Autowired
-    public UserRepoImpl(UserJPA repository) {
+    public UserRepoImpl(UserRepoJPA repository) {
             this.repository = repository;
         }
 
