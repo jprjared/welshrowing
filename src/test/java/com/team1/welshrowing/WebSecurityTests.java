@@ -2,16 +2,17 @@ package com.team1.welshrowing;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureWebMvc
-@WebMvcTest
+@SpringBootTest
+@AutoConfigureMockMvc
 public class WebSecurityTests {
 
     @Autowired
@@ -40,7 +41,39 @@ public class WebSecurityTests {
         this.mockMvc
                 .perform(get("/css/login.css"))
                 .andExpect(status().isOk());
-        
+
     }
+
+    @Test
+    public void dashboardRedirectsWhenNotLoggedIn() throws Exception {
+        this.mockMvc
+                .perform(get("/athlete/dashboard"))
+                .andExpect(status().is(302));
+    }
+
+    @Test
+    @WithMockUser(username="coach", password="password", roles="COACH")
+    public void dashboardRedirectsWhenLoggedInWithoutRequiredRole() throws Exception {
+        // Only athletes can access this endpoint, not coaches
+        this.mockMvc
+                .perform(get("/athlete/dashboard"))
+                .andExpect(status().is(403));
+    }
+
+    @Test
+    @WithUserDetails("athlete")
+    public void athleteDashboardIsOkWhenAccessedByAthlete() throws Exception {
+        this.mockMvc
+                .perform(get("/athlete/dashboard"))
+                .andExpect(status().isOk());
+    }
+
+//    @Test
+//    @WithUserDetails("coach")
+//    public void coachDashboardIsOkWhenAccessedByCoach() throws Exception {
+//        this.mockMvc
+//                .perform(get("/coach/dashboard"))
+//                .andExpect(status().isOk());
+//    }
 
 }
