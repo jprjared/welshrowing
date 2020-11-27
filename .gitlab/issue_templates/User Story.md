@@ -27,6 +27,7 @@ Then
 - [ ] All tests passed
 - [ ] Reviewed and approved by another team member
 - [ ] Merged into master branch
+- [ ] Signed off by customer
 
 **Tracking Data**
 

@@ -1,54 +1,86 @@
 package com.team1.welshrowing.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private final UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    public WebSecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     /**
-     * Adds in-memory test users for easy access
-     * Adapted from code examples at https://www.baeldung.com/spring-security-login [Accessed: 20 Nov 2020]
+     * Configures authentication
      * @param auth - An AuthenticationManagerBuilder object
      * @throws Exception
      */
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("pass")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("pass")).roles("ADMIN");
+        auth.userDetailsService(userDetailsService);
     }
 
     /**
-     * Configure web security requests
-     * Adapted from code examples at https://stackoverflow.com/a/53615055/12809235 [Accessed: 20 Nov 2020]
-     * @param web - A WebSecurity object
+     * Configures HTTP requests
+     * Code adapted from examples at https://stackoverflow.com/a/41789834/12809235 [Accessed: 25 November 2020]
+     * @param http
      * @throws Exception
      */
     @Override
-    public void configure(final WebSecurity web) throws Exception {
-        web
-                .ignoring()
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/coach/**").hasAuthority("COACH")
+                .antMatchers("/athlete/**").hasAuthority("ATHLETE")
                 .antMatchers("/",
                         "/register",
                         "/application",
                         "/css/**/*.css",
                         "/js/**/*.js",
                         "/assets/**"
-                );
+                ).permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .successHandler(simpleAuthenticationSuccessHandler())
+                .permitAll();
+    }
+
+    /**
+     * Bypass web authentication for H2 requests
+     * Adapted from code examples at https://stackoverflow.com/a/59560136/12809235 [Accessed: 25 November 2020]
+     * DEV ONLY! Remove in production
+     * @throws Exception
+     */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/h2-console/**");
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler simpleAuthenticationSuccessHandler(){
+        return new SimpleAuthenticationSuccessHandler();
     }
 
 }

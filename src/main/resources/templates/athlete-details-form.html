@@ -1,71 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Details</title>
-</head>
-<body>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
 
-    <div>
-        <h1>Please complete the details below:</h1>
-    </div>
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>Add Details</h1>
+    <br>
 
     <form action="#" method="post" th:action="@{/register/process/details}" th:object="${athlete}">
 
-        <br>
+        <div class="form-group">
             <label th:for="first_name">First Name:</label>
-            <input th:field="*{first_name}" type="text"></input>
-        <br>
+            <input th:field="*{first_name}" type="text" class="form-control" placeholder="Enter First Name"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="last_name">Last Name:</label>
-            <input th:field="*{last_name}" type="text"></input>
-        <br>
+            <input th:field="*{last_name}" type="text" class="form-control" placeholder="Enter Last Name"></input>
+        </div>
 
-        <br>
-            <label th:for="contact_number">Contact Number::</label>
-            <input th:field="*{contact_number}" type="number"></input>
-        <br>
+        <div class="form-group">
+            <label th:for="contact_number">Contact Number:</label>
+            <input th:field="*{contact_number}" type="number" class="form-control" placeholder="Enter Contact Number"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="dateOfBirth">Date Of Birth:</label>
-            <input th:field="*{dateOfBirth}" type="text"></input>
-        <br>
+            <input th:field="*{dateOfBirth}" type="text" class="form-control" placeholder="Enter Date Of Birth"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="gender">Gender:</label>
-            <input th:field="*{gender}" type="text"></input>
-        <br>
+            <input th:field="*{gender}" type="text" class="form-control" placeholder="Enter Gender"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="address">Address:</label>
-            <input th:field="*{address}" type="text"></input>
-        <br>
+            <input th:field="*{address}" type="text" class="form-control" placeholder="Enter Address"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="town">Town:</label>
-            <input th:field="*{town}" type="text"></input>
-        <br>
+            <input th:field="*{town}" type="text" class="form-control" placeholder="Enter Town"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="county">County:</label>
-            <input th:field="*{county}" type="text"></input>
-        <br>
+            <input th:field="*{county}" type="text" class="form-control" placeholder="Enter County"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="postcode">Postcode:</label>
-            <input th:field="*{postcode}" type="text"></input>
-        <br>
+            <input th:field="*{postcode}" type="text" class="form-control" placeholder="Enter Postcode"></input>
+        </div>
 
-        <br>
+        <div class="form-group">
             <label th:for="country">Country:</label>
-            <input th:field="*{country}" type="text"></input>
-        <br>
+            <input th:field="*{country}" type="text" class="form-control" placeholder="Enter Country"></input>
+        </div>
 
-        <br>
-            <button id="register" name="register" type="submit">Register</button>
+        <button id="register" name="register" type="submit" class="btn btn-primary">Register</button>
         <br>
     </form>
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
 
 </body>
 </html>

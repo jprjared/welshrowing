@@ -5,24 +5,21 @@ import com.team1.welshrowing.domain.Athlete;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.AthleteRepoJPA;
-import com.team1.welshrowing.repository.UserRepoJPA;
+import com.team1.welshrowing.service.UserCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private UserRepoJPA userRepo;
+    private UserCreateService userCreateService;
 
     @Autowired
     private AthleteRepoJPA athleteRepo;
@@ -41,6 +38,23 @@ public class UserController {
     }
 
     /**
+     * GETs the user log in form.
+     * @return the login page template.
+     */
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    /**
+     * GETs the athlete dashboard form.
+     */
+    @GetMapping("/athlete/dashboard")
+    public String athleteDashboard() {
+        return "athlete-dashboard";
+    }
+
+    /**
      * POSTs and saves form details in the User's Repository
      * Redirects to athlete details form
      * Catches any errors and returns to the previous form
@@ -55,7 +69,8 @@ public class UserController {
             }
             return "user-signup-form";
         } else {
-                userRepo.save(user);
+                user.setRoles("ATHLETE");
+                userCreateService.addUser(user);
                 return "redirect:/register/details";
             }
         }
@@ -77,7 +92,7 @@ public class UserController {
     @PostMapping("/register/process/details")
     public String ProcessAthleteForm(Athlete athlete) {
         athleteRepo.save(athlete);
-        return "athlete-dashboard";
+        return "redirect:/athlete/dashboard";
     }
 
     /**
@@ -97,11 +112,7 @@ public class UserController {
     @PostMapping("/application/process")
     public String ProcessApplicationForm(Applicant applicant) {
         applicantRepo.save(applicant);
-        return "athlete-dashboard";
+        return "redirect:/athlete/dashboard";
     }
-
-
-
-
 
 }

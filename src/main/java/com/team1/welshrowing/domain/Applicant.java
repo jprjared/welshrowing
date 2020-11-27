@@ -28,7 +28,7 @@ public class Applicant {
     /**
      * The user name of the applicant.
      */
-    private String user_name;
+    private String userName;
 
     /**
      * The email of the applicant.

@@ -22,7 +22,12 @@ public class WebSecurityTests {
         this.mockMvc
                 .perform(get("/"))
                 .andExpect(status().isOk());
+
+        this.mockMvc
+                .perform(get("/login"))
+                .andExpect(status().isOk());
     }
+
 
     @Test
     public void resourcesShouldLoadWithoutAuthentication() throws Exception {
@@ -32,6 +37,10 @@ public class WebSecurityTests {
         this.mockMvc
                 .perform(get("/assets/logo.png"))
                 .andExpect(status().isOk());
+        this.mockMvc
+                .perform(get("/css/login.css"))
+                .andExpect(status().isOk());
+        
     }
 
 }
