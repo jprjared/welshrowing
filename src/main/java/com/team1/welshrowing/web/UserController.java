@@ -47,6 +47,14 @@ public class UserController {
     }
 
     /**
+     * GETs the athlete dashboard form.
+     */
+    @GetMapping("/athlete/dashboard")
+    public String athleteDashboard() {
+        return "athlete-dashboard";
+    }
+
+    /**
      * POSTs and saves form details in the User's Repository
      * Redirects to athlete details form
      * Catches any errors and returns to the previous form
@@ -84,7 +92,7 @@ public class UserController {
     @PostMapping("/register/process/details")
     public String ProcessAthleteForm(Athlete athlete) {
         athleteRepo.save(athlete);
-        return "athlete-dashboard";
+        return "redirect:/athlete/dashboard";
     }
 
     /**
@@ -104,7 +112,7 @@ public class UserController {
     @PostMapping("/application/process")
     public String ProcessApplicationForm(Applicant applicant) {
         applicantRepo.save(applicant);
-        return "athlete-dashboard";
+        return "redirect:/athlete/dashboard";
     }
 
 }
