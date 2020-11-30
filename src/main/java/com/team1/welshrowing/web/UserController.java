@@ -100,7 +100,7 @@ public class UserController {
     @PostMapping("/application/process")
     public String ProcessApplicationForm(Applicant applicant) {
         applicantCreateService.addApplicant(applicant);
-        return "redirect:/athlete/dashboard";
+        return "redirect:/coach/dashboard";
     }
 
     /**
