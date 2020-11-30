@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+<h1>Accepted Applicants</h1>
+
+<table class="table table-striped">
+
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Username</td>
+        <td>Email</td>
+        <td>Info</td>
+        <td>Status</td>
+        <td>Coach</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="applicant : ${applicants}">
+        <td th:text="${applicant.applicant_id}"></td>
+        <td th:text="${applicant.userName}"></td>
+        <td th:text="${applicant.email}"></td>
+        <td th:text="${applicant.all_other_info}"></td>
+        <td th:text="${applicant.application_situation}"></td>
+        <td th:text="${applicant.coach}"></td>
+    </tr>
+    </tbody>
+</table>
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>
