@@ -23,7 +23,7 @@ public class UserTests {
     public void create_and_find_a_user_by_username() {
         User newUser = new User();
         newUser.setUserName("Ryan");
-        newUser.setRoles("ATHLETE");
+        newUser.setUserType("ATHLETE");
         newUser.setEmail("ryan@ryan.com");
         newUser.setPassword("pass");
         userCreateService.addUser(newUser);

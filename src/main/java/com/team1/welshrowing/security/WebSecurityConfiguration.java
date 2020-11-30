@@ -10,12 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    private static final String COACH = "COACH";
+    private static final String ATHLETE = "ATHLETE";
 
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -44,8 +45,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/coach/**").hasAuthority("COACH")
-                .antMatchers("/athlete/**").hasAuthority("ATHLETE")
+                .antMatchers("/coach/**").hasRole(COACH)
+                .antMatchers("/athlete/**").hasRole(ATHLETE)
                 .antMatchers("/",
                         "/register",
                         "/application",
@@ -56,7 +57,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .successHandler(simpleAuthenticationSuccessHandler())
+                .defaultSuccessUrl("/",true)
                 .permitAll();
     }
 
@@ -76,11 +77,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationSuccessHandler simpleAuthenticationSuccessHandler(){
-        return new SimpleAuthenticationSuccessHandler();
     }
 
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>Interview Form</h1>
+<!--    <form action="#" method="post" th:action="@{/application/process}" th:object="${interview}">-->
+
+        <br>
+            <label th:for="Name">Name:</label>
+            <input th:field="*{Name}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="elitesportdeff">What to you is the difference between taking part and competing in sport?What does High Performance/Elite Sport mean? </label>
+            <input th:field="*{elitesportdeff}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="Sportexp">What is your experience and feelings about sport to date? </label>
+            <input th:field="*{Sportexp}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="Aspirations">What are your aspirations? (in rowing and outside rowing) </label>
+            <input th:field="*{Aspirations}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="Whatcanyoubring">What can you bring to this high-performance training environment?</label>
+            <input th:field="*{Whatcanyoubring}" type="text"></input>
+        <br>
+
+        <br>
+            <button id="Submit" name="Submit" type="submit">Register</button>
+        <br>
+ </main>
+
+    <footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>

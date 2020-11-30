@@ -52,7 +52,7 @@ public class User {
      * Joined with user_id = athlete_id.
      */
     @ManyToOne
-    @JoinColumn(name = "athleteId")
+    @JoinColumn(name = "athlete_id")
     private Athlete athleteId;
 
     /**
@@ -61,7 +61,7 @@ public class User {
      * Joined with user_id = applicant_id.
      */
     @ManyToOne
-    @JoinColumn(name = "applicantId")
+    @JoinColumn(name = "applicant_id")
     private Applicant applicantId;
 
 }

@@ -14,6 +14,8 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
@@ -44,14 +46,6 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-
-    /**
-     * GETs the athlete dashboard form.
-     */
-    @GetMapping("/athlete/dashboard")
-    public String athleteDashboard() {
-        return "athlete-dashboard";
     }
 
     /**
@@ -92,7 +86,7 @@ public class UserController {
     @PostMapping("/register/process/details")
     public String ProcessAthleteForm(Athlete athlete) {
         athleteRepo.save(athlete);
-        return "redirect:/athlete/dashboard";
+        return "athlete-dashboard";
     }
 
     /**
@@ -105,6 +99,15 @@ public class UserController {
         return "application-form";
     }
 
+//Think this works
+    @RequestMapping ("/getstatus")
+    public ModelAndView Applicationstatus(@RequestParam Long application_status) {
+        ModelAndView mv= new ModelAndView("test");
+        Applicant applicant = applicantRepo.findById(application_status).orElse(null);
+        mv.addObject(applicant);
+        return mv;
+    }
+
     /**
      * POSTs and saves form details in the Applicant's Repository
      * Redirects to athlete dashboard
@@ -112,7 +115,8 @@ public class UserController {
     @PostMapping("/application/process")
     public String ProcessApplicationForm(Applicant applicant) {
         applicantRepo.save(applicant);
-        return "redirect:/athlete/dashboard";
+        return "athlete-dashboard";
     }
+
 
 }
