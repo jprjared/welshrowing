@@ -79,35 +79,15 @@ public class UserController {
         } else {
                 user.setRoles("ATHLETE");
                 userCreateService.addUser(user);
-                return "redirect:/register/details";
+                return "redirect:/register/application";
             }
         }
 
     /**
      * GETs the athlete details form.
      */
-    @GetMapping("/register/details")
-    public String RegisterDetails(Model model) {
-        AthleteForm athleteForm = new AthleteForm();
-        model.addAttribute("athlete", athleteForm);
-        return "athlete-details-form";
-    }
-
-    /**
-     * POSTs and saves form details in the Athlete's Repository
-     * Redirects to athlete dashboard
-     */
-    @PostMapping("/register/process/details")
-    public String ProcessAthleteForm(Athlete athlete) {
-        athleteRepo.save(athlete);
-        return "redirect:/athlete/dashboard";
-    }
-
-    /**
-     * GETs the application form.
-     */
-    @GetMapping("/application")
-    public String ApplicationForm(Model model) {
+    @GetMapping("/register/application")
+    public String RegisterApplication(Model model) {
         ApplicantForm applicantForm = new ApplicantForm();
         model.addAttribute("applicant", applicantForm);
         return "application-form";
@@ -127,7 +107,7 @@ public class UserController {
      * GETs the accepted application list
      */
     @GetMapping("/application/status")
-    public String AcceptedApplicants(String application_situation, Model model) {
+    public String AcceptedApplicants(Model model) {
         model.addAttribute("applicants", applicantReadService.findByStatus("Accepted"));
         return "applicant-accepted-list";
     }
