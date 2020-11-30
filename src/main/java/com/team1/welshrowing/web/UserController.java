@@ -80,9 +80,9 @@ public class UserController {
      */
     @GetMapping("/register/details")
     public String RegisterDetails(Model model) {
-        AthleteForm athleteForm = new AthleteForm();
-        model.addAttribute("athlete", athleteForm);
-        return "athlete-details-form";
+        ApplicantForm applicantForm = new ApplicantForm();
+        model.addAttribute("applicant", applicantForm);
+        return "application-form";
     }
 
     /**

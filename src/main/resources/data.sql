@@ -14,4 +14,5 @@
 -- to initial_test_results (testing_date, tested, comments, results, user_id, user_name) values ('01/01/2020', 'no', '', 'pending', 4, 'Rowan Girl');
 -- to initial_test_results (testing_date, tested, comments, results, user_id, user_name) values ('05/05/2020', 'yes', 'Not tall enough', 'unsuccessful', 6, 'Freddie Failed');
 INSERT INTO USER VALUES(1, 'test@test.com', TRUE, '$2a$10$gFGOvUUE/20tvXtwpL0v2OFupGbv4wwFEijCpOFZB9yts27QdIpFi', 'ATHLETE', 'test', null, null);
+-- INSERT INTO USER VALUES(2, 'applicant@applicant.com', TRUE, 'password', '')
 

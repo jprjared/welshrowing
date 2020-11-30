@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -35,18 +36,23 @@ public class Applicant {
      */
     private String email;
 
-    /**
-     * The information of the applicant.
-     */
-    private String all_other_info;
+//    /**
+//     * The information of the applicant.
+//     */
+//    private String all_other_info;
+//
+//    /**
+//     * The situation of the application of the applicant.
+//     */
+//    private String application_situation;
+//
+//    /**
+//     * The coach of the applicant.
+//     */
+//    private String coach;
 
-    /**
-     * The situation of the application of the applicant.
-     */
-    private String application_situation;
 
-    /**
-     * The coach of the applicant.
-     */
-    private String coach;
+    private Date date;
+
+    private int height;
 }
