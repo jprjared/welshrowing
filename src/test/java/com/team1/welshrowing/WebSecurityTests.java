@@ -68,6 +68,30 @@ public class WebSecurityTests {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @WithUserDetails("athlete")
+    public void signUpFormIsOkWhenAccessedByAthlete() throws Exception {
+        this.mockMvc
+                .perform(get("/register"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithUserDetails("athlete")
+    public void applicationFormIsOkWhenAccessedByAthlete() throws Exception {
+        this.mockMvc
+                .perform(get("/register/application"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(username="coach", password="password", roles="COACH")
+    public void applicationStatusIsNotOkWhenAccessedByCoach() throws Exception {
+        this.mockMvc
+                .perform(get("/application/status"))
+                .andExpect(status().isOk());
+    }
+
 //    @Test
 //    @WithUserDetails("coach")
 //    public void coachDashboardIsOkWhenAccessedByCoach() throws Exception {
