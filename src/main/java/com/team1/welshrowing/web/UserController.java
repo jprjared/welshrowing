@@ -2,9 +2,11 @@ package com.team1.welshrowing.web;
 
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.Athlete;
+import com.team1.welshrowing.domain.Interview;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.AthleteRepoJPA;
+import com.team1.welshrowing.repository.InterviewRepoJPA;
 import com.team1.welshrowing.service.UserCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @Controller
 public class UserController {
 
@@ -28,6 +32,9 @@ public class UserController {
 
     @Autowired
     private ApplicantRepoJPA applicantRepo;
+
+    @Autowired
+    private InterviewRepoJPA interviewRepo;
 
     /**
      * GETs the user sign-up form.
@@ -89,6 +96,23 @@ public class UserController {
         return "athlete-dashboard";
     }
 
+
+    /**
+     * GETs the interview form.
+     */
+    @GetMapping("/interview")
+    public String InterviewForm(Model model) {
+        InterviewForm interviewForm = new InterviewForm();
+        model.addAttribute("interview", interviewForm);
+        return "interview-form";
+    }
+
+    @PostMapping("/interview/process")
+    public String ProcessInterviewForm(Interview interview) {
+        interviewRepo.save(interview);
+        return "athlete-dashboard";
+    }
+
     /**
      * GETs the application form.
      */
@@ -97,15 +121,6 @@ public class UserController {
         ApplicantForm applicantForm = new ApplicantForm();
         model.addAttribute("applicant", applicantForm);
         return "application-form";
-    }
-
-//Think this works
-    @RequestMapping ("/getstatus")
-    public ModelAndView Applicationstatus(@RequestParam Long application_status) {
-        ModelAndView mv= new ModelAndView("test");
-        Applicant applicant = applicantRepo.findById(application_status).orElse(null);
-        mv.addObject(applicant);
-        return mv;
     }
 
     /**

@@ -9,11 +9,11 @@
 <main class="container">
 
     <h1>Interview Form</h1>
-<!--    <form action="#" method="post" th:action="@{/application/process}" th:object="${interview}">-->
+    <form action="#" method="post" th:action="@{/interview/process}" th:object="${interview}">
 
         <br>
             <label th:for="Name">Name:</label>
-            <input th:field="*{Name}" type="text"></input>
+            <input th:field="*{name}" type="text"></input>
         <br>
 
         <br>
@@ -23,17 +23,62 @@
 
         <br>
             <label th:for="Sportexp">What is your experience and feelings about sport to date? </label>
-            <input th:field="*{Sportexp}" type="text"></input>
+            <input th:field="*{sportexp}" type="text"></input>
         <br>
 
         <br>
             <label th:for="Aspirations">What are your aspirations? (in rowing and outside rowing) </label>
-            <input th:field="*{Aspirations}" type="text"></input>
+            <input th:field="*{aspirations}" type="text"></input>
         <br>
 
         <br>
             <label th:for="Whatcanyoubring">What can you bring to this high-performance training environment?</label>
-            <input th:field="*{Whatcanyoubring}" type="text"></input>
+            <input th:field="*{whatcanyoubring}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="CoachRole">What is the role of the coaches to you?</label>
+            <input th:field="*{coachRole}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="Possiblebarriers">What, if any, are potential barriers to your compliance and success on a programme like this?</label>
+            <input th:field="*{possiblebarriers}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Processoroutcome">What motivates you when training?</label>
+        <input th:field="*{processoroutcome}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Intrinsicorextrinsic">What motivates you when training?</label>
+        <input th:field="*{intrinsicorextrinsic}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Processoroutcomecomp">What motivates you when competing?</label>
+        <input th:field="*{processoroutcomecomp}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Intrinsicorextrinsiccomp">What motivates you when competing?</label>
+        <input th:field="*{intrinsicorextrinsiccomp}" type="number"></input>
+        <br>
+
+        <br>
+            <label th:for="Opportunitymeaning">What does this opportunity mean to you?</label>
+            <input th:field="*{opportunitymeaning}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Rolemodels">Do you have any role models? Why them?</label>
+        <input th:field="*{rolemodels}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Yourstory">Your story</label>
+        <input th:field="*{yourstory}" type="text"></input>
         <br>
 
         <br>

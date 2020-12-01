@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 //All below are personality traits from 1 to 10
 
-public class InterviewForm2 {
+public class PersonalityInterviewForm {
     private String Name;
 
     private Integer Risktaking;

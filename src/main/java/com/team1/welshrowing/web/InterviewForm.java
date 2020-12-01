@@ -12,7 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 @NoArgsConstructor
 
 
-public class InterviewForm1 {
+public class InterviewForm {
     private String Name;
 
 //    What to you is the difference between taking part and competing in sport?What does High Performance/Elite Sport mean?
