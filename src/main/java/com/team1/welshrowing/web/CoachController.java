@@ -1,7 +1,9 @@
 package com.team1.welshrowing.web;
 
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.service.ApplicantReadService;
+import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,9 @@ public class CoachController {
     @Autowired
     private ApplicantReadService applicantReadService;
 
+    @Autowired
+    private UserReadService userReadService;
+
     /**
      * GETs the coach dashboard
      */
@@ -40,8 +45,11 @@ public class CoachController {
     public String getApplicantDetails(@PathVariable Long id, Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
-        if (applicant.isPresent()) {
+        Optional<User> user = userReadService.findById(id);
+
+        if (applicant.isPresent() && user.isPresent()) {
             model.addAttribute("applicant", applicant.get());
+            model.addAttribute("user", user.get());
             return "coach/view-details";
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
