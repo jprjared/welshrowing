@@ -9,6 +9,44 @@
 <main class="container">
 
     <h1>Applicant Details</h1>
+    <br>
+
+    <div class="form-group">
+
+        <label class="text-muted"><small>Name:</small></label>
+        <p th:text="${applicant.firstName + ' ' + applicant.lastName}" class="font-weight-bold"></p>
+
+        <label class="text-muted"><small>Address:</small></label>
+        <p th:text="${applicant.address}"></p>
+
+        <label class="text-muted"><small>Postcode:</small></label>
+        <p th:text="${applicant.postcode}"></p>
+
+        <label class="text-muted"><small>Date of Birth:</small></label>
+        <p th:text="${applicant.dob}"></p>
+
+        <label class="text-muted"><small>Gender:</small></label>
+        <p th:text="${applicant.gender}"></p>
+
+        <label class="text-muted"><small>Phone Number:</small></label>
+        <p th:text="${applicant.phoneNumber}"></p>
+
+        <label class="text-muted"><small>Height:</small></label>
+        <p th:text="${applicant.height}"></p>
+
+        <label class="text-muted"><small>College/University:</small></label>
+        <p th:text="${applicant.college_university}"></p>
+
+        <label class="text-muted"><small>Passport Holder</small></label>
+        <p th:text="${applicant.passportHolder}"></p>
+
+        <label class="text-muted"><small>Has been previously tested?</small></label>
+        <p th:text="${applicant.isPreviouslyTested}"></p>
+
+        <label class="text-muted"><small>Where did you hear about us?</small></label>
+        <p th:text="${applicant.whereDidHear}"></p>
+
+    </div>
 
 </main>
 
