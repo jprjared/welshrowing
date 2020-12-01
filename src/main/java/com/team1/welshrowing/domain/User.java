@@ -46,22 +46,4 @@ public class User {
      */
     private String roles;
 
-    /**
-     * Linking User Object with Athlete Object
-     * Many to One Relationship
-     * Joined with user_id = athlete_id.
-     */
-    @ManyToOne
-    @JoinColumn(name = "athleteId")
-    private Athlete athleteId;
-
-    /**
-     * Linking User Object and Applicant Object
-     * Many to One Relationship
-     * Joined with user_id = applicant_id.
-     */
-    @ManyToOne
-    @JoinColumn(name = "applicantId")
-    private Applicant applicantId;
-
 }
