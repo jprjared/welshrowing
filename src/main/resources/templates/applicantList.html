@@ -6,25 +6,33 @@
 
 <header th:replace="fragments/header :: header"></header>
 
-<main class="container">
+<main class="table">
 
     <h1>Application form results - Applicant list</h1>
 
     <table>
         <thead>
         <tr>
-            <th>Applicant Name</th>
+            <th>Applicant First Name</th>
+            <th>Applicant Last Name</th>
             <th>Applicant Email</th>
             <th>Applicant Age</th>
+            <th>Applicant Height</th>
             <th>Comments</th>
+<!--            <th>Application Date</th>-->
+            <th>Result</th>
+
         </tr>
         </thead>
         <tbody>
-          <tr th:each="applicant : ${applicant}">
-              <td th:text="${applicant.getUserName()}">Applicant Name</td>
-        <!--      <td th:text="${applicant.getEmail()}">Applicant Email</td>
-              <td th:text="${applicant.getAll_other_info()}">Applicant Age </td>
-              <td ><input id ="comments" type="text"/> </td> -->
+          <tr th:each="applicant : ${applicants}">
+              <td th:text="${applicant.first_name}">Applicant First Name</td>
+              <td th:text="${applicant.last_name}">Applicant Last Name</td>
+              <td th:text="${applicant.email}">Applicant Email </td>
+              <td th:text="${applicant.dob}">Applicant Age </td>
+              <td th:text="${applicant.height}">Applicant Height </td>
+              <td ><input id ="comments" type="text"/> Comments </td>
+              <td ><input id ="result" type="text"/> Result </td>
           </tr>
         </tbody>
     </table>

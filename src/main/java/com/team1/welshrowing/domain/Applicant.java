@@ -35,8 +35,21 @@ public class Applicant {
      * The email of the applicant.
      */
     private String email;
+    private String first_name;
+    private String last_name;
+    private String phone_number;
+    private String address;
+    private String postcode;
+    private String college_uni;
+    private Date dob;
+    private int height;
+    private String gender;
+    private String parentgurdian_email;
+    private String passport_holder;
+    private String previouslytested;
+    private String wheredidhear;
 
-//    /**
+    //    /**
 //     * The information of the applicant.
 //     */
 //    private String all_other_info;
@@ -51,8 +64,4 @@ public class Applicant {
 //     */
 //    private String coach;
 
-
-    private Date date;
-
-    private int height;
 }

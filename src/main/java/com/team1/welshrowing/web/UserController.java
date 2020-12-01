@@ -80,8 +80,8 @@ public class UserController {
      */
     @GetMapping("/register/details")
     public String RegisterDetails(Model model) {
-        ApplicantForm applicantForm = new ApplicantForm();
-        model.addAttribute("applicant", applicantForm);
+        Applicant applicant = new Applicant();
+        model.addAttribute("applicants", applicant);
         return "application-form";
     }
 

@@ -17,7 +17,8 @@ public class CoachController {
     @GetMapping("/allApplicants")
     public String getApplicant(Model model){
 
-        model.addAttribute("applicant", applicantRepo.findAll());
+        model.addAttribute("applicants", applicantRepo.findAll());
+        System.out.println(applicantRepo.findAll());
         return "applicantList";
     }
 
