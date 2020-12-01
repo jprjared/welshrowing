@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Repository
 public class ApplicantRepoImpl implements ApplicantRepo {
 
@@ -22,8 +21,12 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
+    public Optional<Applicant> findById(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
     public List<Applicant> ApplicantFindByStatus(String aStatus) {
         return repository.findByStatus(aStatus);
     }
 }
-

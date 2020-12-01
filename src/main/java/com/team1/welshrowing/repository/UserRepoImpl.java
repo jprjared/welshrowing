@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository("jpa")
+@Repository
 public class UserRepoImpl implements UserRepo {
 
         private final UserRepoJPA repository;
