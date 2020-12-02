@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>Add Coach</h1>
+    <br>
+
+    <form action="#" method="post" th:action="@{/coach/add-coach}" th:object="${user}">
+
+        <div class="form-group">
+            <label th:for="userName">Username:</label>
+            <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter Username" />
+        </div>
+
+        <div class="form-group">
+            <label th:for="email">Email:</label>
+            <input th:field="*{email}" type="email" class="form-control" placeholder="Enter Email" />
+        </div>
+
+        <div>
+            <button id="add" name="add" type="submit" class="btn btn-primary">Add Coach</button>
+        </div>
+
+    </form>
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>
