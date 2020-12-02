@@ -76,7 +76,14 @@ public class CoachController {
     @PostMapping("/coach/add-coach")
     public String postAddCoach(User user) {
 
+        // Generate a random password
+        Password pass = Password.createPassword();
+        pass.setMinLength(8);
+        pass.setMaxLength(10);
+
+        user.setPassword(pass.generate());
         user.setRoles("COACH");
+
         userCreateService.addUser(user);
         return "coach/add-coach";
     }
