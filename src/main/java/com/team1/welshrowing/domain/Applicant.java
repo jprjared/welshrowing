@@ -49,6 +49,7 @@ public class Applicant {
     private String passport_holder;
     private Boolean previouslytested = false;
     private String wheredidhear;
+    private String application_situation = "Pending";
 //    private String firstName;
 
     /**
