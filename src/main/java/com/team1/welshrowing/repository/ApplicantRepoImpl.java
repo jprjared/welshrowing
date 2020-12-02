@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Repository
@@ -19,6 +18,16 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     @Override
     public void saveApplicant(Applicant applicant) {
         repository.save(applicant);
+    }
+
+    @Override
+    public void updateApplicant(Applicant applicant) {
+        repository.save(applicant);
+    }
+
+    @Override
+    public List<Applicant> ApplicantUpdateByStatus(String oldStatus, String newStatus) {
+        return repository.updateStatus(oldStatus, newStatus);
     }
 
     @Override
