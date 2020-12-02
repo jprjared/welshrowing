@@ -48,7 +48,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/athlete/**").hasAuthority("ATHLETE")
                 .antMatchers("/",
                         "/register",
-                        "/application",
                         "/css/**/*.css",
                         "/js/**/*.js",
                         "/assets/**"
