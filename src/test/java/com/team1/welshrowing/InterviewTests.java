@@ -55,31 +55,4 @@ public class InterviewTests {
 
     }
 
-    @Test
-    public void Createinterviewresults2() {
-        Interview newInterview = new Interview();
-        newInterview.setName("Dave");
-        newInterview.setElitesportdeff("A sport that is in the olympics");
-        newInterview.setSportexp("Have only been rowing for a year");
-        newInterview.setAspirations("Welsh Champ");
-        newInterview.setWhatcanyoubring("A good attitude");
-        newInterview.setCoachRole("Coach");
-        newInterview.setPossiblebarriers("I feel like im too young");
-        newInterview.setProcessoroutcome(3);
-        newInterview.setIntrinsicorextrinsic(123);
-        newInterview.setProcessoroutcomecomp(1);
-        newInterview.setIntrinsicorextrinsiccomp(124);
-        newInterview.setOpportunitymeaning("Means a great deal");
-        newInterview.setRolemodels("Sir Steve Redgrave because he`s the best");
-        newInterview.setYourstory("Was born in South Wales moved to North wales ..... ");
-
-        interviewRepo.save(newInterview);
-
-        Interview savedInterview = interviewRepo.save(newInterview);
-
-        Interview existingInterview = entityManager.find(Interview.class, savedInterview.getInterviewId());
-
-        assertThat(existingInterview.getInterviewId()).isEqualTo(newInterview.getInterviewId());
-
-    }
 }
