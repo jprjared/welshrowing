@@ -27,24 +27,19 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <div sec:authorize="isAnonymous()">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                </div>
-                <div sec:authorize="isAuthenticated()">
-                    <li class="nav-item">
-                        <!--/* Adapted from code examples at https://stackoverflow.com/a/35907502/12809235 [Accessed: 27 November 2020] */-->
-                        <form action="/logout" method="post" id="logout">
-                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                            <!--/* Adapted from https://snipplr.com/view/5911/submit-a-form-with-an-anchor-tag-link [Accessed: 27 November 2020] */-->
-                            <a class="nav-link" href="#" onclick="document.getElementById('logout').submit(); return false;">Logout</a>
-                        </form>
-                    </li>
-                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/application">Application</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/interview/1">Interview</a>
+                </li>
+
             </ul>
 
         </div>
