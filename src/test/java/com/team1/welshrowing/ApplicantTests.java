@@ -10,12 +10,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.hamcrest.Matchers.*;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+
 @SpringBootTest
+@AutoConfigureMockMvc
 public class ApplicantTests {
 
     @Autowired
@@ -24,11 +35,30 @@ public class ApplicantTests {
     @Autowired
     private ApplicantReadService applicantReadService;
 
+    @Autowired
+    private MockMvc mockMvc;
+
     @Test
-    public void create_an_applicant_and_find_them() {
+    @WithUserDetails("coach")
+    public void create_an_applicant_and_find_them() throws Exception {
+
+        Long aGivenId = 1L;
+        String aGivenName = "Ryan";
+
         Applicant theApplicant = new Applicant();
-        theApplicant.setApplicantId((long) 1);
+        theApplicant.setApplicantId(aGivenId);
+        theApplicant.setFirstName(aGivenName);
         applicantCreateService.addApplicant(theApplicant);
-        Assertions.assertEquals(theApplicant.getApplicantId(), applicantReadService.findById((long) 1).get().getApplicantId());
+
+        // Check that the applicant exists and IDs match
+        Assertions.assertEquals(theApplicant.getApplicantId(), applicantReadService.findById(aGivenId).get().getApplicantId());
+
+        // Check applicant is displayed on the page
+        this.mockMvc
+                .perform(get("/coach/applicant/" + aGivenId))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(aGivenName)));
+
     }
+
 }

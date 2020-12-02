@@ -85,19 +85,11 @@ public class WebSecurityTests {
     }
 
     @Test
-    @WithMockUser(username="coach", password="password", roles="COACH")
-    public void applicationStatusIsNotOkWhenAccessedByCoach() throws Exception {
+    @WithUserDetails("coach")
+    public void coachDashboardIsOkWhenAccessedByCoach() throws Exception {
         this.mockMvc
-                .perform(get("/application/status"))
+                .perform(get("/coach/dashboard"))
                 .andExpect(status().isOk());
     }
-
-//    @Test
-//    @WithUserDetails("coach")
-//    public void coachDashboardIsOkWhenAccessedByCoach() throws Exception {
-//        this.mockMvc
-//                .perform(get("/coach/dashboard"))
-//                .andExpect(status().isOk());
-//    }
 
 }
