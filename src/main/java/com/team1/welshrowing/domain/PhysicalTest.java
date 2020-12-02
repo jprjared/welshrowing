@@ -46,9 +46,9 @@ public class PhysicalTest {
 
     private String Universityaddress;
 
-    private Integer Mobilephonenumber;
+    private String Mobilephonenumber;
 
-    private Integer Homephonenumber;
+    private String Homephonenumber;
 
 //    School/Club/University
     private String Schoolorcluboruniversity;
@@ -61,7 +61,7 @@ public class PhysicalTest {
 
     private String Relationshiptoathlete;
 
-    private Integer Contactphone;
+    private String Contactphone;
 
     private String Emailofguardian;
 
