@@ -40,7 +40,7 @@ public class PhysicalTest {
 
     private String DOB;
 
-    private Integer Gender;
+    private String Gender;
 
     private String Email;
 

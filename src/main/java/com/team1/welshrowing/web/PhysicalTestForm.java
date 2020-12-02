@@ -34,7 +34,7 @@ public class PhysicalTestForm {
 
     private Date DOB;
 
-    private Integer Gender;
+    private String Gender;
 
     private Long Email;
 
