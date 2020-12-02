@@ -27,7 +27,7 @@ public class PhysicalTest {
 
     private String Coachtesting;
 
-    private Date Dateoftest;
+    private String Dateoftest;
 
 
 
@@ -36,22 +36,22 @@ public class PhysicalTest {
 
     private String Nameofathlete;
 
-    private Date DOB;
+    private String DOB;
 
     private Integer Gender;
 
-    private Long Email;
+    private String Email;
 
-    private Long Homeaddress;
+    private String Homeaddress;
 
-    private Long Universityaddress;
+    private String Universityaddress;
 
     private Integer Mobilephonenumber;
 
     private Integer Homephonenumber;
 
 //    School/Club/University
-    private Long Schoolorcluboruniversity;
+    private String Schoolorcluboruniversity;
 
 
 
@@ -63,7 +63,7 @@ public class PhysicalTest {
 
     private Integer Contactphone;
 
-    private Long Emailofguardian;
+    private String Emailofguardian;
 
 
 

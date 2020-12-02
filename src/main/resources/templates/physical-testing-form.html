@@ -1,0 +1,212 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>Personality Interview Form</h1>
+    <form action="#" method="post" th:action="@{/physical-test/process}" th:object="${physicaltest}">
+
+        <br>
+            <label th:for="Coachtesting">Coachtesting:</label>
+            <input th:field="*{coachtesting}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="Dateoftest">Date of test : </label>
+            <input th:field="*{dateoftest}" type="date"></input>
+        <br>
+
+        <br>
+            <label th:for="Nameofathlete"> Name of athlete : </label>
+            <input th:field="*{nameofathlete}" type="text"></input>
+        <br>
+
+        <br>
+            <label th:for="DOB">Date of Birth of the athlete :  </label>
+            <input th:field="*{DOB}" type="date"></input>
+        <br>
+
+        <br>
+            <label th:for="Gender">Gender of the athlete</label>
+            <input th:field="*{gender}" type="number"></input>
+        <br>
+
+        <br>
+            <label th:for="Email">Email of the athlete : </label>
+            <input th:field="*{email}" type="email"></input>
+        <br>
+
+        <br>
+            <label th:for="Homeaddress">Homeaddress of the athlete : </label>
+            <input th:field="*{homeaddress}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Universityaddress">Universityaddress of the athlete : </label>
+        <input th:field="*{universityaddress}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Mobilephonenumber">Mobilephonenumber of the athlete : </label>
+        <input th:field="*{mobilephonenumber}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Homephonenumber">Homephonenumber of the athlete : </label>
+        <input th:field="*{homephonenumber}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Schoolorcluboruniversity">School/Club/University</label>
+        <input th:field="*{schoolorcluboruniversity}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Nameofparent">Name of parent :</label>
+        <input th:field="*{nameofparent}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Relationshiptoathlete">Relationship to the athlete : </label>
+        <input th:field="*{relationshiptoathlete}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Nameofathlete"> Name of athlete : </label>
+        <input th:field="*{nameofathlete}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Contactphone">Contact phone number :  </label>
+        <input th:field="*{contactphone}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Gender">Gender of the athlete</label>
+        <input th:field="*{gender}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Emailofguardian">Email of the guardian : </label>
+        <input th:field="*{emailofguardian}" type="email"></input>
+        <br>
+
+
+        <br>
+        <label th:for="Standingheight">Standing height of the athlete : </label>
+        <input th:field="*{standingheight}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Weight">Weight of the athlete : </label>
+        <input th:field="*{weight}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Armspan">Armspan of the athlete : </label>
+        <input th:field="*{armspan}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Injuries">Any injuries that will effect the testing?</label>
+        <input th:field="*{injuries}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Legpress">Best Legpress for 3 reps :</label>
+        <input th:field="*{legpress}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Armpress">Best Armpress for 3 reps : </label>
+        <input th:field="*{armpress}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Armpull"> Best Armpull for 3 reps : </label>
+        <input th:field="*{armpull}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Armpullmax">Best Armpullmax for 3 reps :  </label>
+        <input th:field="*{armpullmax}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Score">Athletes Score</label>
+        <input th:field="*{score}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Observations">Coach Observations for the athlete : </label>
+        <input th:field="*{observations}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Basicscore">Basic score for Core : </label>
+        <input th:field="*{basicscore}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Notesonscore">Notes on the basic score for Core : </label>
+        <input th:field="*{notesonscore}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="Flexibility">Flexibility score : </label>
+        <input th:field="*{flexibility}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="Notesonflexibility">Notes on the flexibility score : </label>
+        <input th:field="*{notesonflexibility}" type="text"></input>
+        <br>
+
+        <br>
+<!--        Check wording of question-->
+        <label th:for="Previoussports">Training History / Previous Sports </label>
+        <input th:field="*{previoussports}" type="text"></input>
+        <br>
+
+        <br>
+        <label th:for="nummonthstraining">Number of months training last year :</label>
+        <input th:field="*{nummonthstraining}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="numofsessionperweek">Number of training session per week including competitions : </label>
+        <input th:field="*{numofsessionperweek}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="numofendurancesessionse"> Number of endurance sessions per week : </label>
+        <input th:field="*{numofendurancesessions}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="numofstrengthsessions">Number of strength sessions per week :  </label>
+        <input th:field="*{numofstrengthsessions}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="numofyearstraining">Numbers of years training at this level</label>
+        <input th:field="*{numofyearstraining}" type="number"></input>
+        <br>
+
+        <br>
+        <label th:for="NextStage">Next Stage for the athlete : </label>
+        <input th:field="*{nextStage}" type="text"></input>
+        <br>
+            <button id="Submit" name="Submit" type="submit">Register</button>
+        <br>
+ </main>
+
+    <footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>

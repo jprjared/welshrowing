@@ -1,10 +1,7 @@
 package com.team1.welshrowing.web;
 
 import com.team1.welshrowing.domain.*;
-import com.team1.welshrowing.repository.ApplicantRepoJPA;
-import com.team1.welshrowing.repository.AthleteRepoJPA;
-import com.team1.welshrowing.repository.InterviewRepoJPA;
-import com.team1.welshrowing.repository.PersonalityInterviewRepoJPA;
+import com.team1.welshrowing.repository.*;
 import com.team1.welshrowing.service.UserCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +33,9 @@ public class UserController {
 
     @Autowired
     private PersonalityInterviewRepoJPA personalityinterviewRepo;
+
+    @Autowired
+    private PhysicalTestRepoJPA physicalTestRepo;
 
     /**
      * GETs the user sign-up form.
@@ -108,6 +108,10 @@ public class UserController {
         return "interview-form";
     }
 
+    /**
+     * POSTs and saves form details in the interview repository
+     * Redirects to athlete dashboard
+     */
     @PostMapping("/interview/process")
     public String ProcessInterviewForm(Interview interview) {
         interviewRepo.save(interview);
@@ -115,7 +119,7 @@ public class UserController {
     }
 
     /**
-     * GETs the interview form.
+     * GETs the personality interview form.
      */
     @GetMapping("/personality-interview")
     public String PersonalityInterviewForm(Model model) {
@@ -124,9 +128,33 @@ public class UserController {
         return "personality-interview-form";
     }
 
+    /**
+     * POSTs and saves form details in the personality interview repository
+     * Redirects to athlete dashboard
+     */
     @PostMapping("/personality-interview/process")
     public String ProcessPersonalityInterviewForm(PersonalityInterview personalityInterview) {
         personalityinterviewRepo.save(personalityInterview);
+        return "athlete-dashboard";
+    }
+
+    /**
+     * GETs the physical test form.
+     */
+    @GetMapping("/physical-test")
+    public String PhysicalTestingForm(Model model) {
+        PhysicalTestForm physicalTestForm = new PhysicalTestForm();
+        model.addAttribute("physicaltest", physicalTestForm);
+        return "physical-testing-form";
+    }
+
+    /**
+     * POSTs and saves form details in the physical test repository
+     * Redirects to athlete dashboard
+     */
+    @PostMapping("/physical-test/process")
+    public String ProcessPhysicalTestingForm(PhysicalTest physicalTest) {
+        physicalTestRepo.save(physicalTest);
         return "athlete-dashboard";
     }
 
