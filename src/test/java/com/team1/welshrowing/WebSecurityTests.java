@@ -92,12 +92,12 @@ public class WebSecurityTests {
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    @WithUserDetails("coach")
-//    public void coachDashboardIsOkWhenAccessedByCoach() throws Exception {
-//        this.mockMvc
-//                .perform(get("/coach/dashboard"))
-//                .andExpect(status().isOk());
-//    }
+    @Test
+    @WithUserDetails("coach")
+    public void coachDashboardIsOkWhenAccessedByCoach() throws Exception {
+        this.mockMvc
+                .perform(get("/coach/dashboard"))
+                .andExpect(status().isOk());
+    }
 
 }
