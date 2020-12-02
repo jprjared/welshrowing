@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -21,13 +22,19 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
-    public void updateApplicant(Applicant applicant) {
-        repository.save(applicant);
+    public void updateApplicantStatus(Applicant applicant, String status) {
+        Applicant applicantToUpdate = repository.getOne(applicant.getApplicantId());
+        applicantToUpdate.setApplication_situation(status);
+        repository.save(applicantToUpdate);
     }
 
     @Override
-    public List<Applicant> ApplicantUpdateByStatus(String oldStatus, String newStatus) {
-        return repository.updateStatus(oldStatus, newStatus);
+    public void ApplicantUpdateByStatus(String newStatus, String oldStatus, Long applicantID) {
+        repository.updateStatus(newStatus, oldStatus, applicantID);
+    }
+
+    public Optional<Applicant> findById(Long id) {
+        return repository.findById(id);
     }
 
     @Override
@@ -35,4 +42,5 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         return repository.findByStatus(aStatus);
     }
 }
+
 

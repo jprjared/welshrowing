@@ -18,11 +18,13 @@ public class ApplicantUpdateService {
         this.repository = repository;
     }
 
-    public void updateApplicant(Applicant applicant) {
-        repository.updateApplicant(applicant);
+    public void updateApplicantStatus(Applicant applicant, String status) {
+        repository.updateApplicantStatus(applicant, status);
     }
 
-    public List<Applicant> updateByStatus(String oldStatus, String newStatus) {
-        return repository.ApplicantUpdateByStatus(oldStatus, newStatus);
+    public void updateByStatus(String newStatus, String oldStatus, Long applicantID) {
+        repository.ApplicantUpdateByStatus(newStatus, oldStatus, applicantID);
     }
+
+
 }
