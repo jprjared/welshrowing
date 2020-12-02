@@ -1,12 +1,10 @@
 package com.team1.welshrowing.web;
 
-import com.team1.welshrowing.domain.Applicant;
-import com.team1.welshrowing.domain.Athlete;
-import com.team1.welshrowing.domain.Interview;
-import com.team1.welshrowing.domain.User;
+import com.team1.welshrowing.domain.*;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.AthleteRepoJPA;
 import com.team1.welshrowing.repository.InterviewRepoJPA;
+import com.team1.welshrowing.repository.PersonalityInterviewRepoJPA;
 import com.team1.welshrowing.service.UserCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +33,9 @@ public class UserController {
 
     @Autowired
     private InterviewRepoJPA interviewRepo;
+
+    @Autowired
+    private PersonalityInterviewRepoJPA personalityinterviewRepo;
 
     /**
      * GETs the user sign-up form.
@@ -110,6 +111,22 @@ public class UserController {
     @PostMapping("/interview/process")
     public String ProcessInterviewForm(Interview interview) {
         interviewRepo.save(interview);
+        return "athlete-dashboard";
+    }
+
+    /**
+     * GETs the interview form.
+     */
+    @GetMapping("/personality-interview")
+    public String PersonalityInterviewForm(Model model) {
+        PersonalityInterviewForm personalityInterviewForm = new PersonalityInterviewForm();
+        model.addAttribute("personalityinterview", personalityInterviewForm);
+        return "personality-interview-form";
+    }
+
+    @PostMapping("/personality-interview/process")
+    public String ProcessPersonalityInterviewForm(PersonalityInterview personalityInterview) {
+        personalityinterviewRepo.save(personalityInterview);
         return "athlete-dashboard";
     }
 
