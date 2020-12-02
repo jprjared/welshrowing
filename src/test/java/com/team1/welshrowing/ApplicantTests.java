@@ -23,31 +23,31 @@ public class ApplicantTests {
     @Autowired
     private TestEntityManager entityManager;
 
-    @Test
-    public void CreateApplicant1() {
-        Applicant newApplicant = new Applicant();
-        newApplicant.setUserName("Sotiris123");
-        newApplicant.setFirstName("Sotiris");
-        newApplicant.setLastName("Yiallourides");
-        newApplicant.setPhoneNumber("99355349");
-        newApplicant.setAddress("Agiou Genadiou");
-        newApplicant.setPostcode("cf 10 3fr");
-        newApplicant.setCollege_university("Cardiff University");
-        newApplicant.setDob("03/09/1932");
-        newApplicant.setHeight(1.23);
-        newApplicant.setGender("Male");
-        newApplicant.setParentEmail("dwadf@gmail.com");
-        newApplicant.setPassportHolder("No");
-        newApplicant.setWhereDidHear("No where");
-        newApplicant.setApplication_situation("Accepted");
-        newApplicant.setCoach("Emily");
-
-        applicantRepo.save(newApplicant);
-
-        Applicant savedApplicant = applicantRepo.save(newApplicant);
-
-        Applicant existApplicant = entityManager.find(Applicant.class, savedApplicant.getApplicantId());
-
-        assertThat(existApplicant.getApplicantId()).isEqualTo(newApplicant.getApplicantId());
-    }
+//    @Test
+//    public void CreateApplicant1() {
+//        Applicant newApplicant = new Applicant();
+//        newApplicant.setUserName("Sotiris123");
+//        newApplicant.setFirstName("Sotiris");
+//        newApplicant.setLastName("Yiallourides");
+//        newApplicant.setPhoneNumber("99355349");
+//        newApplicant.setAddress("Agiou Genadiou");
+//        newApplicant.setPostcode("cf 10 3fr");
+//        newApplicant.setCollege_university("Cardiff University");
+//        newApplicant.setDob("03/09/1932");
+//        newApplicant.setHeight(1.23);
+//        newApplicant.setGender("Male");
+//        newApplicant.setParentEmail("dwadf@gmail.com");
+//        newApplicant.setPassportHolder("No");
+//        newApplicant.setWhereDidHear("No where");
+//        newApplicant.setApplication_situation("Accepted");
+//        newApplicant.setCoach("Emily");
+//
+//        applicantRepo.save(newApplicant);
+//
+//        Applicant savedApplicant = applicantRepo.save(newApplicant);
+//
+//        Applicant existApplicant = entityManager.find(Applicant.class, savedApplicant.getApplicantId());
+//
+//        assertThat(existApplicant.getApplicantId()).isEqualTo(newApplicant.getApplicantId());
+//    }
 }

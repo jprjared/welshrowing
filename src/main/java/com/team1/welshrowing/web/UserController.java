@@ -6,15 +6,14 @@ import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.AthleteRepoJPA;
 import com.team1.welshrowing.service.ApplicantCreateService;
 import com.team1.welshrowing.service.ApplicantReadService;
+import com.team1.welshrowing.service.ApplicantUpdateService;
 import com.team1.welshrowing.service.UserCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -31,7 +30,11 @@ public class UserController {
     private ApplicantReadService applicantReadService;
 
     @Autowired
+    private ApplicantUpdateService applicantUpdateService;
+
+    @Autowired
     private AthleteRepoJPA athleteRepo;
+
 
     /**
      * GETs the user sign-up form.
@@ -45,6 +48,7 @@ public class UserController {
 
     /**
      * GETs the user log in form.
+     *
      * @return the login page template.
      */
     @GetMapping("/login")
@@ -66,7 +70,7 @@ public class UserController {
      * Catches any errors and returns to the previous form
      */
     @PostMapping("/register/process")
-    public String ProcessRegisterForm(User user, BindingResult bindings){
+    public String ProcessRegisterForm(User user, BindingResult bindings) {
 
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
@@ -75,11 +79,11 @@ public class UserController {
             }
             return "user-signup-form";
         } else {
-                user.setRoles("ATHLETE");
-                userCreateService.addUser(user);
-                return "redirect:/register/application";
-            }
+            user.setRoles("ATHLETE");
+            userCreateService.addUser(user);
+            return "redirect:/register/application";
         }
+    }
 
 
     /**
@@ -97,7 +101,6 @@ public class UserController {
      */
 //    @GetMapping("/application")
 //    public String ApplicationForm(Model model) {
-
     @GetMapping("/register/application")
     public String RegisterApplication(Model model) {
 
@@ -124,16 +127,5 @@ public class UserController {
         model.addAttribute("applicants", applicantReadService.findByStatus("Accepted"));
         return "applicant-accepted-list";
     }
-
-//    /**
-//     * GETs the athlete details form.
-//     */
-//<<<<<<< HEAD
-//    @GetMapping("/register/details")
-//    public String RegisterDetails(Model model) {
-//        Applicant applicant = new Applicant();
-//        model.addAttribute("applicants", applicant);
-//        return "application-form";
-//    }
 
 }

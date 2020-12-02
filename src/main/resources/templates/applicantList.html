@@ -21,6 +21,7 @@
             <th>Comments</th>
 <!--            <th>Application Date</th>-->
             <th>Result</th>
+            <th>Actions</th>
 
         </tr>
         </thead>
@@ -33,13 +34,19 @@
               <td th:text="${applicant.height}">Applicant Height </td>
               <td ><input id ="comments" type="text"/> Comments </td>
               <td ><input id ="result" type="text"/> Result </td>
+              <td>
+                  <form action="#" method="post" th:action="@{/allApplicants/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                  <button class="btn btn-success">Accept</button>
+                  </form>
+                  <form action="#" method="post" th:action="@{/allApplicants/reject/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                  <button class="btn btn-danger">Reject</button>
+                  </form>
+              </td>
           </tr>
         </tbody>
     </table>
-
-
-
-
-
-
 </main>
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>
