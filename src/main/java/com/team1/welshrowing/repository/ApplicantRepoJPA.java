@@ -18,4 +18,7 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
      */
     @Query("FROM #{#entityName} WHERE application_situation= :application_situation")
     List<Applicant> findByStatus (@Param("application_situation") String aStatus);
+
+    @Query("UPDATE #{#entityName} SET application_situation= :application_situation WHERE application_situation= :application_situation")
+    List<Applicant> updateStatus(@Param("application_situation") String newStatus, @Param("application_situation") String oldStatus);
 }
