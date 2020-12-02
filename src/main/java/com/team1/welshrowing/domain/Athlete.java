@@ -76,4 +76,9 @@ public class Athlete {
      */
     private String country;
 
+//    public String getFirstName(){
+//
+//        return first_name;
+//    }
+
 }
