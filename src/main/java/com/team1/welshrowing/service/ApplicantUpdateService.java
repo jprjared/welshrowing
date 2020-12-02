@@ -9,18 +9,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ApplicantReadService {
+public class ApplicantUpdateService {
 
     private final ApplicantRepo repository;
 
     @Autowired
-    public ApplicantReadService(ApplicantRepo repository) {
+    public ApplicantUpdateService(ApplicantRepo repository) {
         this.repository = repository;
     }
 
-    public List<Applicant> findByStatus(String aStatus) {
-        return repository.ApplicantFindByStatus(aStatus);
+    public void updateApplicantStatus(Applicant applicant, String status) {
+        repository.updateApplicantStatus(applicant, status);
     }
 
-    public Optional<Applicant> findById(Long id) { return repository.findById(id); }
+    public void updateByStatus(String newStatus, String oldStatus, Long applicantID) {
+        repository.ApplicantUpdateByStatus(newStatus, oldStatus, applicantID);
+    }
+
+
 }

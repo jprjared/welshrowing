@@ -21,6 +21,17 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
+    public void updateApplicantStatus(Applicant applicant, String status) {
+        Applicant applicantToUpdate = repository.getOne(applicant.getApplicantId());
+        applicantToUpdate.setApplication_situation(status);
+        repository.save(applicantToUpdate);
+    }
+
+    @Override
+    public void ApplicantUpdateByStatus(String newStatus, String oldStatus, Long applicantID) {
+        repository.updateStatus(newStatus, oldStatus, applicantID);
+    }
+
     public Optional<Applicant> findById(Long id) {
         return repository.findById(id);
     }
@@ -30,3 +41,5 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         return repository.findByStatus(aStatus);
     }
 }
+
+

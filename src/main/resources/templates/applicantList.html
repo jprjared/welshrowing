@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="table">
+
+    <h1>Application form list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Applicant First Name</th>
+            <th>Applicant Last Name</th>
+            <th>Applicant Email</th>
+            <th>Applicant Age</th>
+            <th>Applicant Height</th>
+            <th>Comments</th>
+<!--            <th>Application Date</th>-->
+            <th>Result</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="applicant : ${applicants}">
+              <td th:text="${applicant.first_name}">Applicant First Name</td>
+              <td th:text="${applicant.last_name}">Applicant Last Name</td>
+              <td th:text="${applicant.email}">Applicant Email </td>
+              <td th:text="${applicant.dob}">Applicant Age </td>
+              <td th:text="${applicant.height}">Applicant Height </td>
+              <td ><input id ="comments" type="text"/> Comments </td>
+              <td ><input id ="result" type="text"/> Result </td>
+              <td>
+                  <form action="#" method="post" th:action="@{/allApplicants/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                  <button class="btn btn-success">Accept</button>
+                  </form>
+                  <form action="#" method="post" th:action="@{/allApplicants/reject/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                  <button class="btn btn-danger">Reject</button>
+                  </form>
+              </td>
+          </tr>
+        </tbody>
+    </table>
+</main>
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>
