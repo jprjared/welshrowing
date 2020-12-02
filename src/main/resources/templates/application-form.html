@@ -12,6 +12,11 @@
     <form action="#" method="post" th:action="@{/application/process}" th:object="${applicants}">
 
         <div class="form-group">
+            <label th:for="email">Email:</label>
+            <input th:field="*{email}" type="text" class="form-control" placeholder="Enter Email"></input>
+        </div>
+
+        <div class="form-group">
             <label th:for="first_name">First Name:</label>
             <input th:field="*{first_name}" type="text" class="form-control" placeholder="Enter FirstName"></input>
         </div>
@@ -50,7 +55,7 @@
 
         <div class="form-group">
             <label th:for="height">Height:</label>
-            <input th:field="*{height}" type="height(cm)" class="form-control" placeholder="Enter Height"></input>
+            <input th:field="*{height}" type="text" class="form-control" placeholder="Enter Height"></input>
         </div>
         <div class="form-group">
             <label th:for="gender">Gender:</label>

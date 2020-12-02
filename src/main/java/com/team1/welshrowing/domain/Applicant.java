@@ -3,6 +3,7 @@ package com.team1.welshrowing.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class Applicant {
     private String postcode;
     private String college_uni;
     private String dob;
-    private int height;
+    private String height;
     private String gender;
     private String parentgurdian_email;
     private String passport_holder;

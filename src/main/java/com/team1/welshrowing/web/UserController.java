@@ -33,8 +33,6 @@ public class UserController {
     @Autowired
     private AthleteRepoJPA athleteRepo;
 
-
-
     /**
      * GETs the user sign-up form.
      */
@@ -83,16 +81,6 @@ public class UserController {
             }
         }
 
-//    /**
-//     * GETs the athlete details form.
-//     */
-//<<<<<<< HEAD
-//    @GetMapping("/register/details")
-//    public String RegisterDetails(Model model) {
-//        Applicant applicant = new Applicant();
-//        model.addAttribute("applicants", applicant);
-//        return "application-form";
-//    }
 
     /**
      * POSTs and saves form details in the Athlete's Repository
@@ -109,10 +97,10 @@ public class UserController {
      */
 //    @GetMapping("/application")
 //    public String ApplicationForm(Model model) {
-////=======
+
     @GetMapping("/register/application")
     public String RegisterApplication(Model model) {
-//>>>>>>> master
+
         Applicant applicant = new Applicant();
         model.addAttribute("applicants", applicant);
         return "application-form";
@@ -136,4 +124,16 @@ public class UserController {
         model.addAttribute("applicants", applicantReadService.findByStatus("Accepted"));
         return "applicant-accepted-list";
     }
+
+//    /**
+//     * GETs the athlete details form.
+//     */
+//<<<<<<< HEAD
+//    @GetMapping("/register/details")
+//    public String RegisterDetails(Model model) {
+//        Applicant applicant = new Applicant();
+//        model.addAttribute("applicants", applicant);
+//        return "application-form";
+//    }
+
 }

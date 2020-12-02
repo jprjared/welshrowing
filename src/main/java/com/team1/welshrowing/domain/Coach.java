@@ -10,17 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Coach {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-
 
 
 }
