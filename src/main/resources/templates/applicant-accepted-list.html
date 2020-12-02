@@ -37,19 +37,19 @@
     <tr th:each="applicant : ${applicants}">
         <td th:text="${applicant.applicantId}"></td>
         <td th:text="${applicant.userName}"></td>
-        <td th:text="${applicant.firstName}"></td>
-        <td th:text="${applicant.lastName}"></td>
-        <td th:text="${applicant.phoneNumber}"></td>
+        <td th:text="${applicant.first_name}"></td>
+        <td th:text="${applicant.last_name}"></td>
+        <td th:text="${applicant.phone_number}"></td>
         <td th:text="${applicant.address}"></td>
         <td th:text="${applicant.postcode}"></td>
-        <td th:text="${applicant.college_university}"></td>
+        <td th:text="${applicant.college_uni}"></td>
         <td th:text="${applicant.dob}"></td>
         <td th:text="${applicant.height}"></td>
         <td th:text="${applicant.gender}"></td>
-        <td th:text="${applicant.parentEmail}"></td>
-        <td th:text="${applicant.passportHolder}"></td>
-        <td th:text="${applicant.isPreviouslyTested}"></td>
-        <td th:text="${applicant.whereDidHear}"></td>
+        <td th:text="${applicant.parentgurdian_email}"></td>
+        <td th:text="${applicant.passport_holder}"></td>
+        <td th:text="${applicant.previouslytested}"></td>
+        <td th:text="${applicant.wheredidhear}"></td>
         <td th:text="${applicant.application_situation}"></td>
         <td th:text="${applicant.coach}"></td>
     </tr>
