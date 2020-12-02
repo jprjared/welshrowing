@@ -13,6 +13,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 
 
 public class InterviewForm {
+    private Long applicantId;
+
     private String Name;
 
 //    What to you is the difference between taking part and competing in sport?What does High Performance/Elite Sport mean?

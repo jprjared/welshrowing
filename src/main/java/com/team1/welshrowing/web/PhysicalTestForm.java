@@ -15,6 +15,8 @@ import java.util.Date;
 public class PhysicalTestForm {
     private Integer TestId;
 
+    private Long applicantId;
+
     //    private Long userId;
 
     //    private Long coachId;

@@ -21,6 +21,8 @@ public class PhysicalTest {
 
     private Integer TestId;
 
+    private Long applicantId;
+
     //    private Long userId;
 
     //    private Long coachId;

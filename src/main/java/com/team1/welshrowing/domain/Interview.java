@@ -19,7 +19,7 @@ public class Interview {
 
     private Long InterviewId;
 
-//    private Long userId;
+    private Long applicantId;
 
     private String Name;
 

@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -101,9 +98,10 @@ public class UserController {
     /**
      * GETs the interview form.
      */
-    @GetMapping("/interview")
-    public String InterviewForm(Model model) {
+    @GetMapping("/interview/{id}")
+    public String InterviewForm(@PathVariable Long id, Model model) {
         InterviewForm interviewForm = new InterviewForm();
+        interviewForm.setApplicantId(id);
         model.addAttribute("interview", interviewForm);
         return "interview-form";
     }
@@ -121,9 +119,10 @@ public class UserController {
     /**
      * GETs the personality interview form.
      */
-    @GetMapping("/personality-interview")
-    public String PersonalityInterviewForm(Model model) {
+    @GetMapping("/personality-interview/{id}")
+    public String PersonalityInterviewForm(@PathVariable Long id, Model model) {
         PersonalityInterviewForm personalityInterviewForm = new PersonalityInterviewForm();
+        personalityInterviewForm.setApplicantId(id);
         model.addAttribute("personalityinterview", personalityInterviewForm);
         return "personality-interview-form";
     }
@@ -141,9 +140,10 @@ public class UserController {
     /**
      * GETs the physical test form.
      */
-    @GetMapping("/physical-test")
-    public String PhysicalTestingForm(Model model) {
+    @GetMapping("/physical-test/{id}")
+    public String PhysicalTestingForm(@PathVariable Long id, Model model) {
         PhysicalTestForm physicalTestForm = new PhysicalTestForm();
+        physicalTestForm.setApplicantId(id);
         model.addAttribute("physicaltest", physicalTestForm);
         return "physical-testing-form";
     }

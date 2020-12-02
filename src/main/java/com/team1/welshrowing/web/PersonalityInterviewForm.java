@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 public class PersonalityInterviewForm {
     private String Name;
 
+    private Long applicantId;
+
     private Integer Risktaking;
 
     private Integer Bravery;

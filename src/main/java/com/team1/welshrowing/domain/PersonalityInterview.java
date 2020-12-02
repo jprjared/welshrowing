@@ -19,6 +19,8 @@ public class PersonalityInterview {
 
     private Integer InterviewId;
 
+    private Long applicantId;
+
     //    private Long userId;
 
     private String Name;
