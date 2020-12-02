@@ -1,7 +1,6 @@
 package com.team1.welshrowing.repository;
 
 import com.team1.welshrowing.domain.Applicant;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,4 +15,3 @@ public interface ApplicantRepo {
 
     public Optional<Applicant> findById(Long Id);
 }
-

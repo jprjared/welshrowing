@@ -13,9 +13,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Controller
 public class UserController {
@@ -70,7 +78,7 @@ public class UserController {
      * Catches any errors and returns to the previous form
      */
     @PostMapping("/register/process")
-    public String ProcessRegisterForm(User user, BindingResult bindings) {
+    public String ProcessRegisterForm(HttpServletRequest request, User user, BindingResult bindings){
 
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
@@ -79,12 +87,22 @@ public class UserController {
             }
             return "user-signup-form";
         } else {
+
+            String pass = user.getPassword();
+
             user.setRoles("ATHLETE");
             userCreateService.addUser(user);
+
+            // Adapted from code examples at https://www.baeldung.com/spring-security-auto-login-user-after-registration [Accessed: 1 December 2020]
+            try {
+                request.login(user.getUserName(), pass);
+            } catch (ServletException e) {
+                throw new ResponseStatusException(INTERNAL_SERVER_ERROR, "Login was not possible");
+            }
+
             return "redirect:/register/application";
         }
     }
-
 
     /**
      * POSTs and saves form details in the Athlete's Repository
@@ -114,9 +132,10 @@ public class UserController {
      * Redirects to athlete dashboard
      */
     @PostMapping("/application/process")
-    public String ProcessApplicationForm(Applicant applicant) {
+    public String ProcessApplicationForm(Applicant applicant, User user) {
+        applicant.setUser(user);
         applicantCreateService.addApplicant(applicant);
-        return "redirect:/coach/dashboard";
+        return "redirect:/athlete/dashboard";
     }
 
     /**

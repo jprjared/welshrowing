@@ -21,4 +21,8 @@ public class UserReadService {
         return repository.findByUserName(userName);
     }
 
+    public Optional<User> findById(Long id) {
+        return repository.findById(id);
+    }
+
 }

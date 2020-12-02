@@ -5,11 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Data
 @AllArgsConstructor
@@ -112,4 +115,15 @@ public class Applicant {
      */
 //    private String whereDidHear;
 
+    /**
+     * The coach of the applicant.
+     */
+    private String coach;
+    /**
+     * Linking User Object with User Object
+     * One to One Relationship
+     */
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "userId")
+    private User user;
 }
