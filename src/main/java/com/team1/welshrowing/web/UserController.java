@@ -161,7 +161,7 @@ public class UserController {
     @PostMapping("/interview/process")
     public String ProcessInterviewForm(Interview interview) {
         interviewRepo.save(interview);
-        return "athlete-dashboard";
+        return "redirect:/personality-interview/" + interview.getApplicantId();
     }
 
     /**
