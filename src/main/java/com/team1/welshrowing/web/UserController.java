@@ -7,8 +7,6 @@ import com.team1.welshrowing.repository.AthleteRepoJPA;
 import com.team1.welshrowing.service.ApplicantCreateService;
 import com.team1.welshrowing.service.ApplicantReadService;
 import com.team1.welshrowing.service.ApplicantUpdateService;
-import com.team1.welshrowing.domain.*;
-import com.team1.welshrowing.repository.*;
 import com.team1.welshrowing.service.UserCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.ServletException;
@@ -25,7 +24,6 @@ import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -46,15 +44,6 @@ public class UserController {
     private AthleteRepoJPA athleteRepo;
 
 
-    @Autowired
-    private InterviewRepoJPA interviewRepo;
-
-    @Autowired
-    private PersonalityInterviewRepoJPA personalityinterviewRepo;
-
-    @Autowired
-    private PhysicalTestRepoJPA physicalTestRepo;
-
     /**
      * GETs the user sign-up form.
      */
@@ -73,6 +62,14 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    /**
+     * GETs the athlete dashboard form.
+     */
+    @GetMapping("/athlete/dashboard")
+    public String athleteDashboard() {
+        return "athlete-dashboard";
     }
 
     /**
@@ -114,71 +111,7 @@ public class UserController {
     @PostMapping("/register/process/details")
     public String ProcessAthleteForm(Athlete athlete) {
         athleteRepo.save(athlete);
-        return "athlete-dashboard";
-    }
-
-
-    /**
-     * GETs the interview form.
-     */
-    @GetMapping("/interview/{id}")
-    public String InterviewForm(@PathVariable Long id, Model model) {
-        InterviewForm interviewForm = new InterviewForm();
-        interviewForm.setApplicantId(id);
-        model.addAttribute("interview", interviewForm);
-        return "interview-form";
-    }
-
-    /**
-     * POSTs and saves form details in the interview repository
-     * Redirects to athlete dashboard
-     */
-    @PostMapping("/interview/process")
-    public String ProcessInterviewForm(Interview interview) {
-        interviewRepo.save(interview);
-        return "athlete-dashboard";
-    }
-
-    /**
-     * GETs the personality interview form.
-     */
-    @GetMapping("/personality-interview/{id}")
-    public String PersonalityInterviewForm(@PathVariable Long id, Model model) {
-        PersonalityInterviewForm personalityInterviewForm = new PersonalityInterviewForm();
-        personalityInterviewForm.setApplicantId(id);
-        model.addAttribute("personalityinterview", personalityInterviewForm);
-        return "personality-interview-form";
-    }
-
-    /**
-     * POSTs and saves form details in the personality interview repository
-     * Redirects to athlete dashboard
-     */
-    @PostMapping("/personality-interview/process")
-    public String ProcessPersonalityInterviewForm(PersonalityInterview personalityInterview) {
-        personalityinterviewRepo.save(personalityInterview);
-        return "athlete-dashboard";
-    }
-
-    /**
-     * GETs the physical test form.
-     */
-    @GetMapping("/physical-test/{id}")
-    public String PhysicalTestingForm(@PathVariable Long id, Model model) {
-        PhysicalTestForm physicalTestForm = new PhysicalTestForm();
-        physicalTestForm.setApplicantId(id);
-        model.addAttribute("physicaltest", physicalTestForm);
-        return "physical-testing-form";
-    }
-
-    /**
-     * POSTs and saves form details in the physical test repository
-     * Redirects to athlete dashboard
-     */
-    @PostMapping("/physical-test/process")
-    public String ProcessPhysicalTestingForm(PhysicalTest physicalTest) {
-        physicalTestRepo.save(physicalTest);
-        return "athlete-dashboard";
+        return "redirect:/athlete/dashboard";
     }
 
     /**
