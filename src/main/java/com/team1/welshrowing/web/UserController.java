@@ -182,7 +182,7 @@ public class UserController {
     @PostMapping("/personality-interview/process")
     public String ProcessPersonalityInterviewForm(PersonalityInterview personalityInterview) {
         personalityinterviewRepo.save(personalityInterview);
-        return "athlete-dashboard";
+        return "coach/dashboard";
     }
 
     /**
@@ -203,6 +203,6 @@ public class UserController {
     @PostMapping("/physical-test/process")
     public String ProcessPhysicalTestingForm(PhysicalTest physicalTest) {
         physicalTestRepo.save(physicalTest);
-        return "athlete-dashboard";
+        return "coach/dashboard";
     }
 }
