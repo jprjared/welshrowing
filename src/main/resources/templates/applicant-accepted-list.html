@@ -43,8 +43,7 @@
         <td th:text="${applicant.height}"></td>
         <td th:text="${applicant.gender}"></td>
         <td th:text="${applicant.isPreviouslyTested}"></td>
-        <td th:text="${applicant.whereDidHear}"></td>
-        <td><a th:href="@{/interview/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}" class="btn btn-primary">Interview</a> <a th:href="@{/testing/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}" class="btn btn-primary">Testing</a></td>
+        <td><a th:href="@{/interview/{id}(id=${applicant.applicantId})}" class="btn btn-primary">Interview</a> <a th:href="@{/physical-test/{id}(id=${applicant.applicantId})}" class="btn btn-secondary">Testing</a></td>
     </tr>
     </tbody>
 </table>
