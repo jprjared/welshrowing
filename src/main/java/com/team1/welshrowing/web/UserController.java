@@ -6,9 +6,9 @@ import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.AthleteRepoJPA;
 import com.team1.welshrowing.service.ApplicantCreateService;
 import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.ApplicantUpdateService;
 import com.team1.welshrowing.service.UserCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,10 +38,8 @@ public class UserController {
     private ApplicantReadService applicantReadService;
 
     @Autowired
-    private ApplicantUpdateService applicantUpdateService;
-
-    @Autowired
     private AthleteRepoJPA athleteRepo;
+
 
 
     /**
@@ -56,7 +54,6 @@ public class UserController {
 
     /**
      * GETs the user log in form.
-     *
      * @return the login page template.
      */
     @GetMapping("/login")
@@ -95,8 +92,10 @@ public class UserController {
 
             // Adapted from code examples at https://www.baeldung.com/spring-security-auto-login-user-after-registration [Accessed: 1 December 2020]
             try {
+                SecurityContextHolder.getContext().setAuthentication(null);
                 request.login(user.getUserName(), pass);
             } catch (ServletException e) {
+                System.out.println(e);
                 throw new ResponseStatusException(INTERNAL_SERVER_ERROR, "Login was not possible");
             }
 
@@ -105,25 +104,11 @@ public class UserController {
     }
 
     /**
-     * POSTs and saves form details in the Athlete's Repository
-     * Redirects to athlete dashboard
+     * GETs the athlete details form.
      */
-    @PostMapping("/register/process/details")
-    public String ProcessAthleteForm(Athlete athlete) {
-        athleteRepo.save(athlete);
-        return "redirect:/athlete/dashboard";
-    }
-
-    /**
-     * GETs the application form.
-     */
-//    @GetMapping("/application")
-//    public String ApplicationForm(Model model) {
     @GetMapping("/register/application")
     public String RegisterApplication(Model model) {
-
-        Applicant applicant = new Applicant();
-        model.addAttribute("applicants", applicant);
+        model.addAttribute("applicant", new Applicant());
         return "application-form";
     }
 
@@ -146,5 +131,4 @@ public class UserController {
         model.addAttribute("applicants", applicantReadService.findByStatus("Accepted"));
         return "applicant-accepted-list";
     }
-
 }

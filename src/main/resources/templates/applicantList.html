@@ -6,18 +6,19 @@
 
 <header th:replace="fragments/header :: header"></header>
 
-<main class="table">
+<main class="table container">
 
-    <h1>Application form list</h1>
+    <h1>All Applicants</h1>
+    <br>
 
-    <table>
+    <table width="100%">
         <thead>
         <tr>
-            <th>Applicant First Name</th>
-            <th>Applicant Last Name</th>
-            <th>Applicant Email</th>
-            <th>Applicant Age</th>
-            <th>Applicant Height</th>
+            <td>Id</td>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>DOB</th>
+            <th>Height</th>
             <th>Comments</th>
 <!--            <th>Application Date</th>-->
             <th>Result</th>
@@ -27,13 +28,13 @@
         </thead>
         <tbody>
           <tr th:each="applicant : ${applicants}">
-              <td th:text="${applicant.first_name}">Applicant First Name</td>
-              <td th:text="${applicant.last_name}">Applicant Last Name</td>
-              <td th:text="${applicant.email}">Applicant Email </td>
-              <td th:text="${applicant.dob}">Applicant Age </td>
-              <td th:text="${applicant.height}">Applicant Height </td>
-              <td ><input id ="comments" type="text"/> Comments </td>
-              <td ><input id ="result" type="text"/> Result </td>
+              <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a></td>
+              <td th:text="${applicant.firstName}">First Name</td>
+              <td th:text="${applicant.lastName}">Last Name</td>
+              <td th:text="${applicant.dob}">DOB</td>
+              <td th:text="${applicant.height}">Height</td>
+              <td></td>
+              <td th:text="${applicant.application_situation}">Result</td>
               <td>
                   <form action="#" method="post" th:action="@{/allApplicants/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-success">Accept</button>

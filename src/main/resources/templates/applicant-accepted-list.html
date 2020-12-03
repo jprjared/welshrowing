@@ -6,15 +6,16 @@
 
 <header th:replace="fragments/header :: header"></header>
 
-<main class="table">
-<h1>Accepted Applicants</h1>
+<main class="table container large">
 
-<table class="table table-striped">
+<h1>Accepted Applicants</h1>
+    <br>
+
+<table class="table table-striped" width="100%">
 
     <thead>
     <tr>
-        <td>Id</td>
-        <td>Username</td>
+        <td>ID</td>
         <td>First Name</td>
         <td>Last Name</td>
         <td>Phone Number</td>
@@ -33,21 +34,20 @@
 
     <tbody>
     <tr th:each="applicant : ${applicants}">
-        <td th:text="${applicant.applicantId}"></td>
-        <td th:text="${applicant.userName}"></td>
-        <td th:text="${applicant.first_name}"></td>
-        <td th:text="${applicant.last_name}"></td>
-        <td th:text="${applicant.phone_number}"></td>
+        <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a></td>
+        <td th:text="${applicant.firstName}"></td>
+        <td th:text="${applicant.lastName}"></td>
+        <td th:text="${applicant.phoneNumber}"></td>
         <td th:text="${applicant.address}"></td>
         <td th:text="${applicant.postcode}"></td>
-        <td th:text="${applicant.college_uni}"></td>
+        <td th:text="${applicant.collegeOrUniversityName}"></td>
         <td th:text="${applicant.dob}"></td>
         <td th:text="${applicant.height}"></td>
         <td th:text="${applicant.gender}"></td>
-        <td th:text="${applicant.parentgurdian_email}"></td>
-        <td th:text="${applicant.passport_holder}"></td>
-        <td th:text="${applicant.previouslytested}"></td>
-        <td th:text="${applicant.wheredidhear}"></td>
+        <td th:text="${applicant.parentEmail}"></td>
+        <td th:text="${applicant.passportHolder}"></td>
+        <td th:text="${applicant.isPreviouslyTested}"></td>
+        <td th:text="${applicant.whereDidHear}"></td>
     </tr>
     </tbody>
 </table>

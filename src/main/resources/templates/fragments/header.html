@@ -36,6 +36,13 @@
                     </li>
                 </div>
                 <div sec:authorize="isAuthenticated()">
+                    <!--/* Adapted from code examples at https://stackoverflow.com/a/35149920/12809235 [Accessed: 3 December 2020] */-->
+                    <li class="nav-item" sec:authorize="hasAuthority('ATHLETE')">
+                        <a class="nav-link" href="/athlete/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('COACH')">
+                        <a class="nav-link" href="/coach/dashboard">Dashboard</a>
+                    </li>
                     <li class="nav-item">
                         <!--/* Adapted from code examples at https://stackoverflow.com/a/35907502/12809235 [Accessed: 27 November 2020] */-->
                         <form action="/logout" method="post" id="logout">
