@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,13 +52,13 @@ public class ApplicantRepoImpl implements ApplicantRepo {
 
     @Override
     public void sendEmailStatus(Applicant applicant, String email) {
-        Applicant applicantToSend = repository.getOne(applicant.getApplicantId());
 
-        String firstName = applicantToSend.getFirstName();
-        String lastName = applicantToSend.getLastName();
+
+        String firstName = applicant.getFirstName();
+        String lastName = applicant.getLastName();
         String emailFrom = "itsYourCoach1@gmail.com";
         String emailTo = email;
-        String status = applicantToSend.getApplication_situation();
+        String status = applicant.getApplication_situation();
         String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status;
         String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status;
         String mailSubject = " Welsh Rowing - Application Status";
@@ -68,7 +69,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         message.setTo(emailTo);
         message.setSubject(mailSubject);
 
-        if (applicantToSend.getApplication_situation()=="Accepted") {
+        if (applicant.getApplication_situation()=="Accepted") {
             message.setText(accepted);
 
         } else {
