@@ -119,7 +119,7 @@ public class CoachController {
 
         if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
-//            model.addAttribute("user", applicant.get().getUser());
+            model.addAttribute("user", applicant.get().getUser());
 
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
             applicantEmailService.sendApplicantEmailStatus(applicant.get(), applicant.get().getUser().getEmail());
@@ -138,7 +138,7 @@ public class CoachController {
 
         if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
-//            model.addAttribute("user", applicant.get().getUser().getEmail());
+            model.addAttribute("user", applicant.get().getUser().getEmail());
 
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
             applicantEmailService.sendApplicantEmailStatus(applicant.get(), applicant.get().getUser().getEmail());
