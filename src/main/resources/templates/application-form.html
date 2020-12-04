@@ -13,10 +13,6 @@
 
     <form action="#" method="post" th:action="@{/application/process}" th:object="${applicant}">
 
-        <div class="form-group">
-            <label th:for="userName">Username:</label>
-            <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter Username"></input>
-        </div>
 
         <div class="form-group">
             <label th:for="firstName">First name:</label>
