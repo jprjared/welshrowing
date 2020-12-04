@@ -113,14 +113,22 @@ public class CoachController {
     }
 
     @PostMapping("/allApplicants/accept/{id}")
-    public String AcceptAnApplicant(@PathVariable Long id) {
+    public String AcceptAnApplicant(@PathVariable Long id, Model model) {
+
         Optional<Applicant> applicant = applicantReadService.findById(id);
-        Optional<User> user = userReadService.findById(id);
 
-        applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
-        applicantEmailService.sendApplicantEmailStatus(applicant.get(), user.get().getEmail());
+        if (applicant.isPresent()) {
+            model.addAttribute("applicant", applicant.get());
+//            model.addAttribute("user", applicant.get().getUser());
 
-        return "redirect:/allApplicants";
+            applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+            applicantEmailService.sendApplicantEmailStatus(applicant.get(), applicant.get().getUser().getEmail());
+
+            return "redirect:/allApplicants";
+        } else {
+
+            throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
+        }
     }
 
     @PostMapping("/allApplicants/reject/{id}")
@@ -130,7 +138,7 @@ public class CoachController {
 
         if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
-            model.addAttribute("user", applicant.get().getUser());
+//            model.addAttribute("user", applicant.get().getUser().getEmail());
 
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
             applicantEmailService.sendApplicantEmailStatus(applicant.get(), applicant.get().getUser().getEmail());
