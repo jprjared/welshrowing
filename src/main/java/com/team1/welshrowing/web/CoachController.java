@@ -5,11 +5,10 @@ import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
-import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.ApplicantUpdateService;
-import com.team1.welshrowing.service.UserCreateService;
-import com.team1.welshrowing.service.UserReadService;
+import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.MissingResourceException;
 import java.util.Optional;
 
@@ -32,6 +32,9 @@ public class CoachController {
 
     @Autowired
     private ApplicantReadService applicantReadService;
+
+    @Autowired
+    private ApplicantEmailService applicantEmailService;
 
     @Autowired
     private UserReadService userReadService;
@@ -112,15 +115,31 @@ public class CoachController {
     @PostMapping("/allApplicants/accept/{id}")
     public String AcceptAnApplicant(@PathVariable Long id) {
         Optional<Applicant> applicant = applicantReadService.findById(id);
+        Optional<User> user = userReadService.findById(id);
+
         applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+        applicantEmailService.sendApplicantEmailStatus(applicant.get(), user.get().getEmail());
+
         return "redirect:/allApplicants";
     }
 
     @PostMapping("/allApplicants/reject/{id}")
-    public String RejectAnApplicant(@PathVariable Long id) {
+    public String RejectAnApplicant(@PathVariable Long id,Model model) {
+
         Optional<Applicant> applicant = applicantReadService.findById(id);
-        applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
-        return "redirect:/allApplicants";
+
+        if (applicant.isPresent()) {
+            model.addAttribute("applicant", applicant.get());
+            model.addAttribute("user", applicant.get().getUser());
+
+            applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
+            applicantEmailService.sendApplicantEmailStatus(applicant.get(), applicant.get().getUser().getEmail());
+
+            return "redirect:/allApplicants";
+        } else {
+
+            throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
+        }
     }
 
 }
