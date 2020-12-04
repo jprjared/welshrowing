@@ -1,7 +1,11 @@
 package com.team1.welshrowing.repository;
 
+import ch.qos.logback.core.joran.conditional.ThenAction;
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +17,15 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     private final ApplicantRepoJPA repository;
 
     @Autowired
+    private JavaMailSender mailSender;
+
+    @Autowired
     public ApplicantRepoImpl(ApplicantRepoJPA repository) { this.repository = repository; }
+
+    public Optional<Applicant> findById(Long id) {
+        return repository.findById(id);
+    }
+
 
     @Override
     public void saveApplicant(Applicant applicant) {
@@ -32,13 +44,39 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         repository.updateStatus(newStatus, oldStatus, applicantID);
     }
 
-    public Optional<Applicant> findById(Long id) {
-        return repository.findById(id);
-    }
-
     @Override
     public List<Applicant> ApplicantFindByStatus(String aStatus) {
         return repository.findByStatus(aStatus);
+    }
+
+    @Override
+    public void sendEmailStatus(Applicant applicant, String email) {
+        Applicant applicantToSend = repository.getOne(applicant.getApplicantId());
+
+        String firstName = applicantToSend.getFirstName();
+        String lastName = applicantToSend.getLastName();
+        String emailFrom = "itsYourCoach1@gmail.com";
+        String emailTo = email;
+        String status = applicantToSend.getApplication_situation();
+        String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status;
+        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status;
+        String mailSubject = " Welsh Rowing - Application Status";
+
+        //Create an email message
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(emailFrom);
+        message.setTo(emailTo);
+        message.setSubject(mailSubject);
+
+        if (applicantToSend.getApplication_situation()=="Accepted") {
+            message.setText(accepted);
+
+        } else {
+            message.setText(rejected);
+        }
+
+        //Send mail
+        mailSender.send(message);
     }
 }
 
