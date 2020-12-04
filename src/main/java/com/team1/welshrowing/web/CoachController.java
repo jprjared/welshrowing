@@ -60,11 +60,10 @@ public class CoachController {
     public String getApplicantDetails(@PathVariable Long id, Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
-        Optional<User> user = userReadService.findById(id);
 
-        if (applicant.isPresent() && user.isPresent()) {
+        if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
-            model.addAttribute("user", user.get());
+            model.addAttribute("user", applicant.get().getUser());
             return "coach/view-details";
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
