@@ -1,4 +1,13 @@
-//package com.team1.welshrowing.web;
-//
-//public class ApplicantController {
-//}
+package com.team1.welshrowing.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class ApplicantController {
+
+    @GetMapping("/applicant/dashboard")
+    public String applicantDashboard() {
+        return "applicant-dashboard";
+    }
+}

@@ -131,7 +131,7 @@ public class UserController {
     public String ProcessApplicationForm(Applicant applicant, User user) {
         applicant.setUser(user);
         applicantCreateService.addApplicant(applicant);
-        return "redirect:/athlete/dashboard";
+        return "redirect:/applicant/dashboard";
     }
 
     /**
