@@ -26,7 +26,6 @@ public class PersonalityInterviewTests {
     @Test
     public void Createpersonalityinterviewresults1() {
         PersonalityInterview newpersonalityInterview = new PersonalityInterview();
-        newpersonalityInterview.setName("Jac");
         newpersonalityInterview.setRisktaking(2);
         newpersonalityInterview.setBravery(3);
         newpersonalityInterview.setResilience(4);
