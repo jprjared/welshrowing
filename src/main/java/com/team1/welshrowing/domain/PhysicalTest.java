@@ -44,9 +44,11 @@ public class PhysicalTest {
 
     private String Homeaddress;
 
-    private String Postcode;
+    private String Homepostcode;
 
     private String Universityaddress;
+
+    private String Universitypostcode;
 
     private String Mobilephonenumber;
 
@@ -118,12 +120,12 @@ public class PhysicalTest {
 //    Core and flexibility
 
 //    The athletes basic flexibility score drop down box to choose from red amber green
-    private Integer Basicscore;
+    private String Basicscore;
 
     private String Notesonscore;
 
 //    Choose from red amber of green
-    private Integer Flexibility;
+    private String Flexibility;
 
     private String Notesonflexibility;
 
@@ -134,19 +136,19 @@ public class PhysicalTest {
     private String Previoussports;
 
 //    Number of months training last year
-    private Integer nummonthstraining;
+    private String nummonthstraining;
 
 //    Number of training session per week including competitions
-    private Integer numofsessionperweek;
+    private String numofsessionperweek;
 
 //    Number of endurance sessions per week
-    private Integer numofendurancesessions;
+    private String numofendurancesessions;
 
 //    Number of strength sessions per week
-    private Integer numofstrengthsessions;
+    private String numofstrengthsessions;
 
 //    Numbers of years training at this level
-    private Integer numofyearstraining;
+    private String numofyearstraining;
 
 
 //    Follow up

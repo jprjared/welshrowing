@@ -36,7 +36,7 @@
 
         <div class="form-group">
             <label th:for="Nameofathlete"> Name of athlete : </label>
-            <input th:field="*{nameofathlete}" class="form-control" type="text" required></input>
+            <input th:field="*{nameofathlete}" class="form-control" type="text" required pattern="[[a-zA-Z\s]+"></input>
         </div>
         <br>
 
@@ -71,32 +71,46 @@
         <br>
 
         <div class="form-group">
-            <label th:for="Postcode">PostCode of the athlete : </label>
-            <input th:field="*{postcode}" class="form-control" type="text" required></input>
+            <label th:for="Postcode">Home Post Code of the athlete : </label>
+            <!--            patter from https://codepen.io/sarahA/pen/ezzZzw/-->
+            <input th:field="*{homepostcode}" class="form-control" type="text" required
+                   pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"></input>
         </div>
         <br>
 
         <div class="form-group">
-        <label th:for="Universityaddress">Universityaddress of the athlete : </label>
-        <input th:field="*{universityaddress}" class="form-control" type="text" required></input>
+        <label th:for="Universityaddress">University address of the athlete (if applicable) : </label>
+        <input th:field="*{universityaddress}" class="form-control" type="text"></input>
         </div>
         <br>
 
         <div class="form-group">
-        <label th:for="Mobilephonenumber">Mobilephonenumber of the athlete : </label>
-        <input th:field="*{mobilephonenumber}" class="form-control" type="number" required></input>
+            <label th:for="Postcode">University Post Code of the athlete (if applicable) : </label>
+<!--            patter from https://codepen.io/sarahA/pen/ezzZzw/-->
+            <input th:field="*{universitypostcode}" class="form-control" type="text"
+                   pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"></input>
         </div>
         <br>
 
         <div class="form-group">
-        <label th:for="Homephonenumber">Homephonenumber of the athlete : </label>
-        <input th:field="*{homephonenumber}" class="form-control" type="number" required></input>
+        <label th:for="Mobilephonenumber">Mobile phone number of the athlete : </label>
+        <input th:field="*{mobilephonenumber}" class="form-control" type="tel" required pattern="[0][789][0-9]{9}"> </input>
+        </div>
+        <br>
+
+        <div class="form-group">
+        <label th:for="Homephonenumber">Home phone number of the athlete : </label>
+        <input th:field="*{homephonenumber}" class="form-control" type="tel" required pattern=".{9,}"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Schoolorcluboruniversity">School/Club/University</label>
-        <input th:field="*{schoolorcluboruniversity}" class="form-control" type="text" required></input>
+        <select th:field="*{schoolorcluboruniversity}" class="form-control" type="text" required>
+            <option value="School">School</option>
+            <option value="Club">Club</option>
+            <option value="University">University</option>
+        </select>
         </div>
         <br>
 
@@ -104,25 +118,23 @@
         <br>
         <div class="form-group">
         <label th:for="Nameofparent">Name of parent :</label>
-        <input th:field="*{nameofparent}" class="form-control" type="text" required></input>
+        <input th:field="*{nameofparent}" class="form-control" type="text" required pattern="[[a-zA-Z\s]+"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Relationshiptoathlete">Relationship to the athlete : </label>
-        <input th:field="*{relationshiptoathlete}" class="form-control" type="text" required></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-        <label th:for="Nameofathlete"> Name of athlete : </label>
-        <input th:field="*{nameofathlete}" class="form-control" type="text" required></input>
+        <select th:field="*{relationshiptoathlete}" class="form-control" type="text" required>
+            <option value="Parent">Parent</option>
+            <option value="Guardian">Guardian</option>
+            <option value="Other">Other</option>
+        </select>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Contactphone">Contact phone number :  </label>
-        <input th:field="*{contactphone}" class="form-control" type="number" required></input>
+        <input th:field="*{contactphone}" class="form-control" type="number" required pattern="[0][789][0-9]{9}"></input>
         </div>
         <br>
 
@@ -137,19 +149,19 @@
         <br>
         <div class="form-group">
         <label th:for="Standingheight">Standing height of the athlete (in cm) : </label>
-        <input th:field="*{standingheight}" class="form-control" type="number" required></input>
+        <input th:field="*{standingheight}" class="form-control" type="number" required min="152" max="250"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Weight">Weight of the athlete (in kg): </label>
-        <input th:field="*{weight}" class="form-control" type="number" required></input>
+        <input th:field="*{weight}" class="form-control" type="number" required min="30" max="200"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Armspan">Armspan of the athlete (in cm) : </label>
-        <input th:field="*{armspan}" class="form-control" type="number" required></input>
+        <input th:field="*{armspan}" class="form-control" type="number" required min="152" max="250"></input>
         </div>
         <br>
 
@@ -157,31 +169,31 @@
         <br>
         <div class="form-group">
         <label th:for="Injuries">Any injuries that will effect the testing?</label>
-        <input th:field="*{injuries}" class="form-control" type="text" required></input>
+        <input th:field="*{injuries}" class="form-control" type="text" required pattern="[A-Za-z]+"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Legpress">Best Legpress for 3 reps :</label>
-        <input th:field="*{legpress}" class="form-control" type="number" required></input>
+        <input th:field="*{legpress}" class="form-control" type="number" required min="50" max="300"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Armpress">Best Armpress for 3 reps : </label>
-        <input th:field="*{armpress}" class="form-control" type="number" required></input>
+        <input th:field="*{armpress}" class="form-control" type="number" required min="20" max="150"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Armpull"> Best Armpull for 3 reps : </label>
-        <input th:field="*{armpull}" class="form-control" type="number" required></input>
+        <input th:field="*{armpull}" class="form-control" type="number" required min="20" max="150"></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="Armpullmax">Best Armpullmax for 3 reps :  </label>
-        <input th:field="*{armpullmax}" class="form-control" type="number" required></input>
+        <input th:field="*{armpullmax}" class="form-control" type="number" required min="20" max="150"></input>
         </div>
         <br>
 
@@ -195,7 +207,10 @@
 
         <div class="form-group">
         <label th:for="Observations">Coach Observations for the athlete : </label>
-        <input th:field="*{observations}" class="form-control" type="text" required></input>
+        <select th:field="*{observations}" class="form-control" type="text" required >
+            <option value="Pushed themselves">Pushed Themselves</option>
+            <option value="Gave Up">Gave Up</option>
+        </select>
         </div>
         <br>
 
@@ -203,7 +218,11 @@
         <br>
         <div class="form-group">
         <label th:for="Basicscore">Basic score for Core : </label>
-        <input th:field="*{basicscore}" class="form-control" type="number" required></input>
+        <select th:field="*{basicscore}" class="form-control" type="text" required>
+            <option value="Green">Green</option>
+            <option value="Amber">Amber</option>
+            <option value="Red">Red</option>
+        </select>
         </div>
         <br>
 
@@ -214,8 +233,12 @@
         <br>
 
         <div class="form-group">
-        <label th:for="Flexibility">Flexibility score : </label>
-        <input th:field="*{flexibility}" class="form-control" type="number" required></input>
+        <label th:for="Flexibility">Flexibility score (from 1 to 100) : </label>
+        <select th:field="*{flexibility}" class="form-control" type="text"required>
+             <option value="Green">Green</option>
+             <option value="Amber">Amber</option>
+             <option value="Red">Red</option>
+            </select>
         </div>
         <br>
 
@@ -230,44 +253,81 @@
         <div class="form-group">
 <!--        Check wording of question-->
         <label th:for="Previoussports">Training History / Previous Sports </label>
-        <input th:field="*{previoussports}" class="form-control" type="text" required></input>
+        <input th:field="*{previoussports}" class="form-control" type="text" required ></input>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="nummonthstraining">Number of months training last year :</label>
-        <input th:field="*{nummonthstraining}" class="form-control" type="number" required></input>
+        <select th:field="*{nummonthstraining}" class="form-control" type="text" required>
+            <option value="0-3">0-3</option>
+            <option value="3-5">3-5</option>
+            <option value="5-8">5-8</option>
+            <option value="8-10">8-10</option>
+            <option value="10-12">10-12</option>
+        </select>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="numofsessionperweek">Number of training session per week including competitions : </label>
-        <input th:field="*{numofsessionperweek}" class="form-control" type="number" required></input>
+        <select th:field="*{numofsessionperweek}" class="form-control" type="text" required>
+            <option value="0-3">0-3</option>
+            <option value="3-5">3-5</option>
+            <option value="5-8">5-8</option>
+            <option value="8-10">8-10</option>
+            <option value="10-12">10-12</option>
+            <option value="12+">12+</option>
+            </select>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="numofendurancesessionse"> Number of endurance sessions per week : </label>
-        <input th:field="*{numofendurancesessions}" class="form-control" type="number" required></input>
+        <select th:field="*{numofendurancesessions}" class="form-control" type="text" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4+">4+</option>
+        </select>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="numofstrengthsessions">Number of strength sessions per week :  </label>
-        <input th:field="*{numofstrengthsessions}" class="form-control" type="number" required></input>
+        <select th:field="*{numofstrengthsessions}" class="form-control" type="text" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4+">4+</option>
+            </select>
         </div>
         <br>
 
         <div class="form-group">
         <label th:for="numofyearstraining">Numbers of years training at this level</label>
-        <input th:field="*{numofyearstraining}" class="form-control" type="number" required></input>
+        <select th:field="*{numofyearstraining}" class="form-control" type="text" required>
+            <option value="0-1">0-1</option>
+            <option value="1-2">1-2</option>
+            <option value="2+">2+</option>
+        </select>
         </div>
         <br>
 
         <h3>Follow up</h3>
         <div class="form-group">
         <label th:for="NextStage">Next Stage for the athlete : </label>
-        <input th:field="*{nextStage}" class="form-control" type="text" required></input>
+        <select th:field="*{nextStage}" class="form-control" type="text" required>
+            <option value="Letter of thanks - Join a local club">Letter of thanks - Join a local club</option>
+            <option value="Borderline results. Invitation to Re-test. Train externally.">Borderline results. Invitation to Re-test. Train externally.</option>
+            <option value="Borderline results. Invitation to Re-test. Train internally.">Borderline results. Invitation to Re-test. Train internally.</option>
+            <option value="Not START. Train alongside squad.">Not START. Train alongside squad.</option>
+            <option value="START.">START.</option>
+            <option value="Introduction programme/between clubs">Introduction programme/between clubs</option>
+            <option value="8 weeks">8 weeks</option>
+        </select>
         </div>
         <br>
             <button id="Submit" class="btn btn-primary" name="Submit" type="submit">Register</button>
