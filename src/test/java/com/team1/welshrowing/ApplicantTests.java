@@ -79,7 +79,7 @@ public class ApplicantTests {
         User theUser = new User();
         theApplicant.setApplicantId(aGivenId);
         theUser.setEmail(aGivenEmail);
-
+        applicantCreateService.addApplicant(theApplicant);
 
         // Check that the applicant exists and email matches with User table
         Assertions.assertEquals(aGivenEmail,applicantReadService.findById(aGivenId).get().getUser().getEmail());
@@ -89,8 +89,6 @@ public class ApplicantTests {
                 .andDo(print())
                 .andExpect(status().is(403));
 
+        Assertions.assertEquals("Accepted",applicantReadService.findById(aGivenId).get().getApplication_situation());
     }
-
-
-
 }
