@@ -121,13 +121,11 @@ public class CoachController {
 
         if (applicant.isPresent()) {
 
-            String emailFrom = "itsYourCoach1@gmail.com";
-
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
-            applicantEmailService.sendApplicantEmailStatus(applicant.get(), "itsYourCoach1@gmail.com");
+            applicantEmailService.sendApplicantEmailStatus(applicant.get());
 
             return "redirect:/allApplicants";
         } else {
@@ -142,11 +140,12 @@ public class CoachController {
         Optional<Applicant> applicant = applicantReadService.findById(id);
 
         if (applicant.isPresent()) {
+
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
-            applicantEmailService.sendApplicantEmailStatus(applicant.get(), "itsYourCoach1@gmail.com");
+            applicantEmailService.sendApplicantEmailStatus(applicant.get());
 
             return "redirect:/allApplicants";
         } else {

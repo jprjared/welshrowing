@@ -18,5 +18,5 @@ public interface ApplicantRepo {
 
     Optional<Applicant> findById(Long Id);
 
-    void sendEmailStatus(Applicant applicant, String emailFrom);
+    void sendEmailStatus(Applicant applicant);
 }

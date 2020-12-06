@@ -50,19 +50,18 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
-    public void sendEmailStatus(Applicant applicant, String emailFrom) {
+    public void sendEmailStatus(Applicant applicant) {
 
         String firstName = applicant.getFirstName();
         String lastName = applicant.getLastName();
         String emailTo = applicant.getUser().getEmail();
         String status = applicant.getApplication_situation();
-        String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status;
-        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status;
+        String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase();
+        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase();
         String mailSubject = " Welsh Rowing - Application Status";
 
         //Create an email message
         SimpleMailMessage message = new SimpleMailMessage();
-//        message.setFrom(emailFrom);
         message.setTo(emailTo);
         message.setSubject(mailSubject);
 

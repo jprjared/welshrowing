@@ -19,9 +19,8 @@ public class ApplicantEmailService {
     /**
      * Informs applicant about the status of the application, by sending an email
      * @param applicant - gets info from the applicant
-     * @param emailFrom - who sends the email
      */
-    public void sendApplicantEmailStatus(Applicant applicant, String emailFrom) {
-        repository.sendEmailStatus(applicant,emailFrom);
+    public void sendApplicantEmailStatus(Applicant applicant) {
+        repository.sendEmailStatus(applicant);
     }
 }
