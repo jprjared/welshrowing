@@ -54,7 +54,49 @@
     <br>
 
     <h3>Interview Results</h3>
-    <p>Placeholder text...</p>
+    <br>
+
+    <div th:if="${interview == null}">
+        <p class="text-muted">
+            This applicant has not completed their interview yet.
+        </p>
+    </div>
+    <div th:if="${interview != null}">
+
+        <label class="text-muted"><small>What to you is the difference between taking part and competing in sport? What does High Performance/Elite Sport mean?</small></label>
+        <p th:text="${interview.elitesportdeff}"></p>
+
+        <label class="text-muted"><small>What is your experience and feelings about sport to date?</small></label>
+        <p th:text="${interview.sportexp}"></p>
+
+        <label class="text-muted"><small>What are your aspirations? (in rowing and outside rowing)</small></label>
+        <p th:text="${interview.aspirations}"></p>
+
+        <label class="text-muted"><small>What can you bring to this high-performance training environment?</small></label>
+        <p th:text="${interview.whatcanyoubring}"></p>
+
+        <label class="text-muted"><small>What is the role of the coaches to you?</small></label>
+        <p th:text="${interview.coachRole}"></p>
+
+        <label class="text-muted"><small>What, if any, are potential barriers to your compliance and success on a programme like this?</small></label>
+        <p th:text="${interview.possiblebarriers}"></p>
+
+        <label class="text-muted"><small>What motivates you when training (from 1 to 10 where 10 is Outcome and 1 is Process)?</small></label>
+        <p th:text="${interview.processoroutcome}"></p>
+
+        <label class="text-muted"><small>What motivates you when training (from 1 to 10 where 10 is Extrinsic and 1 is Intrinsic)?</small></label>
+        <p th:text="${interview.intrinsicorextrinsic}"></p>
+
+        <label class="text-muted"><small>What does this opportunity mean to you?</small></label>
+        <p th:text="${interview.opportunitymeaning}"></p>
+
+        <label class="text-muted"><small>Do you have any role models? Why them?</small></label>
+        <p th:text="${interview.rolemodels}"></p>
+
+        <label class="text-muted"><small>Your story</small></label>
+        <p th:text="${interview.yourstory}"></p>
+
+</div>
 
     <br>
 

@@ -3,10 +3,12 @@ package com.team1.welshrowing.web;
 import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.Interview;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.service.ApplicantReadService;
 import com.team1.welshrowing.service.ApplicantUpdateService;
+import com.team1.welshrowing.service.InterviewReadService;
 import com.team1.welshrowing.service.UserCreateService;
 import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,9 @@ public class CoachController {
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
 
+    @Autowired
+    private InterviewReadService interviewReadService;
+
     /**
      * GETs the coach dashboard
      */
@@ -64,6 +69,11 @@ public class CoachController {
         if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser());
+
+            // Find interview and physical testing forms
+            Optional<Interview> interview = interviewReadService.findByApplicantId(applicant.get().getApplicantId());
+            interview.ifPresent(value -> model.addAttribute("interview", value));
+
             return "coach/view-details";
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
