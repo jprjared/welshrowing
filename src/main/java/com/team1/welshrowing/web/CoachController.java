@@ -111,7 +111,7 @@ public class CoachController {
         return "applicantList";
     }
 
-    @PostMapping("/allApplicants/accept/{id}")
+    @PostMapping("coach/applicant/accept/{id}")
     public String AcceptAnApplicant(@PathVariable Long id, Model model) {
 
 
@@ -136,7 +136,7 @@ public class CoachController {
         }
     }
 
-    @PostMapping("/allApplicants/reject/{id}")
+    @PostMapping("/coach/applicant/reject/{id}")
     public String RejectAnApplicant(@PathVariable Long id,Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);

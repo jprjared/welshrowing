@@ -36,10 +36,10 @@
               <td></td>
               <td th:text="${applicant.application_situation}">Result</td>
               <td>
-                  <form action="#" method="post" th:action="@{/allApplicants/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                  <form action="#" method="post" th:action="@{/coach/applicant/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-success">Accept</button>
                   </form>
-                  <form action="#" method="post" th:action="@{/allApplicants/reject/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                  <form action="#" method="post" th:action="@{/coach/applicant/reject/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-danger">Reject</button>
                   </form>
               </td>
