@@ -11,7 +11,24 @@
     <h1>Applicant Details</h1>
     <br>
 
-    <div class="form-group">
+    <ul class="font-weight-bold">
+        <li>
+            <a href="#details">Details</a>
+        </li>
+        <li>
+            <a href="#interview">Interview Responses</a>
+        </li>
+        <li>
+            <a href="#personality-interview">Personality Interview Responses</a>
+        </li>
+        <li>
+            <a href="#personality-interview">Physical Testing Responses</a>
+        </li>
+    </ul>
+
+    <br>
+
+    <div class="form-group" id="details">
 
         <label class="text-muted"><small>Name:</small></label>
         <p th:text="${applicant.firstName + ' ' + applicant.lastName}" class="font-weight-bold"></p>
@@ -53,16 +70,16 @@
 
     <br>
 
-    <h3>Interview Results</h3>
-    <br>
+    <h3 id="interview">Interview Responses</h3>
 
     <div th:if="${interview == null}">
-        <p class="text-muted">
+        <p class="text-muted mt-3">
             This applicant has not completed their interview yet.
         </p>
     </div>
     <div th:if="${interview != null}">
 
+        <br>
         <label class="text-muted"><small>What to you is the difference between taking part and competing in sport? What does High Performance/Elite Sport mean?</small></label>
         <p th:text="${interview.elitesportdeff}"></p>
 
@@ -96,12 +113,142 @@
         <label class="text-muted"><small>Your story</small></label>
         <p th:text="${interview.yourstory}"></p>
 
-</div>
+    </div>
 
     <br>
 
-    <h3>Testing Results</h3>
-    <p>Placeholder text...</p>
+    <h3 id="personality-interview">Personality Interview Responses</h3>
+
+    <div th:if="${personalityInterview == null}">
+        <p class="text-muted mt-3">
+            This applicant has not completed their personality interview yet.
+        </p>
+    </div>
+    <div th:if="${personalityInterview != null}">
+
+        <br>
+        <label class="text-muted"><small>Risk-taking</small></label>
+        <p th:text="${personalityInterview.risktaking}"></p>
+
+        <label class="text-muted"><small>Bravery</small></label>
+        <p th:text="${personalityInterview.bravery}"></p>
+
+        <label class="text-muted"><small>Resilience</small></label>
+        <p th:text="${personalityInterview.resilience}"></p>
+
+        <label class="text-muted"><small>Hardworking</small></label>
+        <p th:text="${personalityInterview.hardworking}"></p>
+
+        <label class="text-muted"><small>Confidence</small></label>
+        <p th:text="${personalityInterview.confidence}"></p>
+
+        <label class="text-muted"><small>Open-mindedness</small></label>
+        <p th:text="${personalityInterview.openMindedness}"></p>
+
+        <label class="text-muted"><small>On/off Switch</small></label>
+        <p th:text="${personalityInterview.onoffswitch}"></p>
+
+        <label class="text-muted"><small>Lightheartedness</small></label>
+        <p th:text="${personalityInterview.lightheartedness}"></p>
+
+        <label class="text-muted"><small>Self-discipline</small></label>
+        <p th:text="${personalityInterview.selfdiscipline}"></p>
+
+        <label class="text-muted"><small>Ability to work with others</small></label>
+        <p th:text="${personalityInterview.abilitytoworkwithothers}"></p>
+
+        <label class="text-muted"><small>Competitiveness</small></label>
+        <p th:text="${personalityInterview.competitiveness}"></p>
+
+    </div>
+
+    <br>
+
+    <h3 id="testing">Testing Responses</h3>
+
+    <div th:if="${physicalTest == null}">
+        <p class="text-muted mt-3">
+            This applicant has not completed their physical testing yet.
+        </p>
+    </div>
+    <div th:if="${physicalTest != null}">
+
+        <br>
+
+        <h5 class="mb-4">Anthropometry</h5>
+
+        <label class="text-muted"><small>Standing height of the athlete (in cm)</small></label>
+        <p th:text="${physicalTest.standingheight}"></p>
+
+        <label class="text-muted"><small>Weight of the athlete (in kg)</small></label>
+        <p th:text="${physicalTest.weight}"></p>
+
+        <label class="text-muted"><small>Armspan of the athlete (in cm)</small></label>
+        <p th:text="${physicalTest.armspan}"></p>
+
+        <h5 class="mb-4">Concept | Dyno</h5>
+
+        <label class="text-muted"><small>Any injuries that will effect the testing?</small></label>
+        <p th:text="${physicalTest.injuries}"></p>
+
+        <label class="text-muted"><small>Best Legpress for 3 reps</small></label>
+        <p th:text="${physicalTest.legpress}"></p>
+
+        <label class="text-muted"><small>Best Armpress for 3 reps</small></label>
+        <p th:text="${physicalTest.armpress}"></p>
+
+        <label class="text-muted"><small>Best Armpull for 3 reps</small></label>
+        <p th:text="${physicalTest.armpull}"></p>
+
+        <label class="text-muted"><small>Best Armpullmax for 3 reps</small></label>
+        <p th:text="${physicalTest.armpullmax}"></p>
+
+        <h5 class="mb-4">Schwinn</h5>
+
+        <label class="text-muted"><small>Athletes Score (from 1 to 100)</small></label>
+        <p th:text="${physicalTest.score}"></p>
+
+        <label class="text-muted"><small>Coach Observations for the athlete</small></label>
+        <p th:text="${physicalTest.observations}"></p>
+
+        <h5 class="mb-4">Core and Flexibility</h5>
+
+        <label class="text-muted"><small>Basic score for Core</small></label>
+        <p th:text="${physicalTest.basicscore}"></p>
+
+        <label class="text-muted"><small>Notes on the basic score for Core</small></label>
+        <p th:text="${physicalTest.notesonscore}"></p>
+
+        <label class="text-muted"><small>Flexibility score</small></label>
+        <p th:text="${physicalTest.flexibility}"></p>
+
+        <label class="text-muted"><small>Notes on the flexibility score</small></label>
+        <p th:text="${physicalTest.notesonflexibility}"></p>
+
+        <h5 class="mb-4">Training History</h5>
+
+        <label class="text-muted"><small>Training History / Previous Sports</small></label>
+        <p th:text="${physicalTest.previoussports}"></p>
+
+        <label class="text-muted"><small>Number of months training last year</small></label>
+        <p th:text="${physicalTest.nummonthstraining}"></p>
+
+        <label class="text-muted"><small>Number of training session per week including competitions</small></label>
+        <p th:text="${physicalTest.numofsessionperweek}"></p>
+
+        <label class="text-muted"><small>Number of endurance sessions per week</small></label>
+        <p th:text="${physicalTest.numofendurancesessions}"></p>
+
+        <label class="text-muted"><small>Number of strength sessions per week</small></label>
+        <p th:text="${physicalTest.numofstrengthsessions}"></p>
+
+        <label class="text-muted"><small>Numbers of years training at this level</small></label>
+        <p th:text="${physicalTest.numofyearstraining}"></p>
+
+        <label class="text-muted"><small>Next Stage for the athlete</small></label>
+        <p th:text="${physicalTest.nextStage}"></p>
+
+    </div>
 
 </main>
 
