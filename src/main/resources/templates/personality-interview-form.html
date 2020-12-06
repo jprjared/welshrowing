@@ -26,8 +26,15 @@
             <label th:for="Risktaking">Risktaking</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{risktaking}" type="range" min="0" max="100" value="50" class="slider" id="Value">
-            <p> Value: <span id="SelectedValue"></span> </p>
+            <p class="displayvalue"> Value: <span id="SelectedValue"></span> </p>
         </div>
+
+        <script>
+            $(".slider").on('input', function(event) {
+                $(event.target).closest("displayvalue").html(event.value());
+            });
+        </script>
+        
         <br>
 
         <br>
@@ -103,17 +110,6 @@
         <br>
             <button id="Submit" class="btn btn-primary" name="Submit" type="submit">Register</button>
         <br>
-
-
-        <script>
-            var slider = document.getElementById("Value");
-            var output = document.getElementById("SelectedValue");
-            output.innerHTML = slider.value;
-
-            slider.oninput = function() {
-                output.innerHTML = this.value;
-            }
-        </script>
 
  </main>
 
