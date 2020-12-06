@@ -1,7 +1,9 @@
 package com.team1.welshrowing;
 
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.Interview;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
+import com.team1.welshrowing.repository.InterviewRepoJPA;
 import com.team1.welshrowing.service.ApplicantCreateService;
 import com.team1.welshrowing.service.ApplicantReadService;
 import org.junit.jupiter.api.Assertions;
@@ -38,6 +40,9 @@ public class ApplicantTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private InterviewRepoJPA interviewRepo;
+
     @Test
     @WithUserDetails("coach")
     public void create_an_applicant_and_find_them() throws Exception {
@@ -58,6 +63,18 @@ public class ApplicantTests {
                 .perform(get("/coach/applicant/" + aGivenId))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(aGivenName)));
+
+        Interview interview = new Interview();
+        interview.setApplicantId(aGivenId);
+        interview.setAspirations("To pass all tests successfully");
+
+        interviewRepo.save(interview);
+
+        // Check interview results are displayed
+        this.mockMvc
+                .perform(get("/coach/applicant/" + aGivenId))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("To pass all tests successfully")));
 
     }
 

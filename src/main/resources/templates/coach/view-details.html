@@ -34,7 +34,7 @@
         <p th:text="${applicant.firstName + ' ' + applicant.lastName}" class="font-weight-bold"></p>
 
         <label class="text-muted"><small>Email:</small></label>
-        <p th:text="${user.email}"></p>
+        <p th:if="${user != null}" th:text="${user.email}"></p>
 
         <label class="text-muted"><small>Address:</small></label>
         <p th:text="${applicant.address}"></p>
