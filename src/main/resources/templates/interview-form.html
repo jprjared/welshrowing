@@ -63,29 +63,33 @@
 
         <br>
         <div class="form-group">
-        <label th:for="Processoroutcome">What motivates you when training (from 1 to 10 where 10 is Outcome and 1 is Process)?</label>
-        <input th:field="*{processoroutcome}" class="form-control" type="number" min="1" max="10"></input>
+        <label th:for="Processoroutcome">What motivates you when training (from 0 to 10 where 10 is Outcome and 1 is Process)?</label>
+            <pre>Process                                                                                Outcomes</pre>
+            <input th:field="*{processoroutcome}" type="range" min="0" max="10" value="5" class="slider"></input>
         </div>
         <br>
 
         <br>
         <div class="form-group">
-        <label th:for="Intrinsicorextrinsic">What motivates you when training (from 1 to 10 where 10 is Extrinsic and 1 is Intrinsic)?</label>
-        <input th:field="*{intrinsicorextrinsic}" class="form-control" type="number" min="1" max="10"></input>
+        <label th:for="Intrinsicorextrinsic">What motivates you when training (from 0 to 10 where 10 is Extrinsic and 1 is Intrinsic)?</label>
+            <pre>Intrinsic                                                                             Extrinsic</pre>
+            <input th:field="*{intrinsicorextrinsic}" type="range" min="0" max="10" value="5" class="slider"></input>
         </div>
         <br>
 
         <br>
         <div class="form-group">
-        <label th:for="Processoroutcomecomp">What motivates you when competing (from 1 to 10 where 10 is Outcome and 1 is Process) ?</label>
-        <input th:field="*{processoroutcomecomp}" class="form-control" type="number" min="1" max="10"></input>
+        <label th:for="Processoroutcomecomp">What motivates you when competing (from 0 to 10 where 10 is Outcome and 1 is Process) ?</label>
+            <pre>Process                                                                                Outcomes</pre>
+            <input th:field="*{processoroutcomecomp}" type="range" min="0" max="10" value="5" class="slider"></input>
         </div>
         <br>
 
         <br>
         <div class="form-group">
-        <label th:for="Intrinsicorextrinsiccomp">What motivates you when competing (from 1 to 10 where 10 is Extrinsic and 1 is Intrinsic) ?</label>
-        <input th:field="*{intrinsicorextrinsiccomp}" class="form-control" type="number" min="1" max="10"></input>
+        <label th:for="Intrinsicorextrinsiccomp">What motivates you when competing (from 0 to 10 where 10 is Extrinsic and 1 is Intrinsic) ?</label>
+            <pre>Intrinsic                                                                             Extrinsic</pre>
+            <input th:field="*{intrinsicorextrinsiccomp}" type="range" min="0" max="10" value="5" class="slider"></input>
         </div>
         <br>
 

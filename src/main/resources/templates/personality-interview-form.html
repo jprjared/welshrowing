@@ -21,90 +21,100 @@
             <input th:field="*{name}" class="form-control" type="text"></input>
         </div>
         <br>
-
-        <br>
-        <h4>All the Questions Below are on a scale between 1 and 10 of how much you posses each attribute</h4><br>
-        <h4>1 = low     and     10 = high</h4>
-        <br>
+<!--        Sliders adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_rangeslider-->
         <div class="form-group">
             <label th:for="Risktaking">Risktaking</label>
-            <input th:field="*{risktaking}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{risktaking}" type="range" min="0" max="100" value="50" class="slider" id="Value">
+            <p> Value: <span id="SelectedValue"></span> </p>
         </div>
         <br>
 
         <br>
         <div class="form-group">
-            <label th:for="Bravery"> Bravery </label>
-            <input th:field="*{bravery}" class="form-control" type="number" min="1" max="10"></input>
+            <label th:for="Bravery">Bravery</label>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{bravery}" type="range" min="0" max="100" value="50" class="slider">
         </div>
-        <br>
 
         <br>
         <div class="form-group">
             <label th:for="Resilience">Resilience </label>
-            <input th:field="*{resilience}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{resilience}" type="range" min="0" max="100" value="50" class="slider">
         </div>
-        <br>
 
         <br>
         <div class="form-group">
             <label th:for="Hardworking">Hardworking</label>
-            <input th:field="*{hardworking}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{hardworking}" type="range" min="0" max="100" value="50" class="slider">
         </div>
-        <br>
 
         <br>
         <div class="form-group">
             <label th:for="Confidence">Confidence</label>
-            <input th:field="*{confidence}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{confidence}" type="range" min="0" max="100" value="50" class="slider"></input>
         </div>
-        <br>
 
         <br>
         <div class="form-group">
             <label th:for="OpenMindedness">OpenMindedness</label>
-            <input th:field="*{openMindedness}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{openMindedness}" type="range" min="0" max="100" value="50" class="slider"></input>
         </div>
-        <br>
 
         <br>
         <div class="form-group">
-        <label th:for="Onoffswitch">Onoffswitch</label>
-        <input th:field="*{onoffswitch}" class="form-control" type="number" min="1" max="10"></input>
+            <label th:for="Onoffswitch">Onoffswitch</label>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{onoffswitch}" type="range" min="0" max="100" value="50" class="slider"></input>
         </div>
-        <br>
 
         <br>
         <div class="form-group">
         <label th:for="Lightheartedness">Lightheartedness</label>
-        <input th:field="*{lightheartedness}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{lightheartedness}" type="range" min="0" max="100" value="50" class="slider"></input>
         </div>
-        <br>
 
         <br>
         <div class="form-group">
         <label th:for="Selfdiscipline">Selfdiscipline</label>
-        <input th:field="*{selfdiscipline}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{selfdiscipline}" type="range" min="0" max="100" value="50" class="slider"></input>
         </div>
-        <br>
 
         <br>
         <div class="form-group">
         <label th:for="Abilitytoworkwithothers">Abilitytoworkwithothers</label>
-        <input th:field="*{abilitytoworkwithothers}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{abilitytoworkwithothers}" type="range" min="0" max="100" value="50" class="slider"></input>
         </div>
-        <br>
 
         <br>
         <div class="form-group">
             <label th:for="Competitiveness">Competitiveness</label>
-            <input th:field="*{competitiveness}" class="form-control" type="number" min="1" max="10"></input>
+            <pre>Low                                                                                        High</pre>
+            <input th:field="*{competitiveness}" type="range" min="0" max="100" value="50" class="slider"></input>
         </div>
-        <br>
 
         <br>
             <button id="Submit" class="btn btn-primary" name="Submit" type="submit">Register</button>
         <br>
+
+
+        <script>
+            var slider = document.getElementById("Value");
+            var output = document.getElementById("SelectedValue");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+        </script>
+
  </main>
 
     <footer th:replace="fragments/footer :: footer" ></footer>
