@@ -16,6 +16,11 @@ public class ApplicantEmailService {
         this.repository = repository;
     }
 
+    /**
+     * Informs applicant about the status of the application, by sending an email
+     * @param applicant - gets info from the applicant
+     * @param emailFrom - who sends the email
+     */
     public void sendApplicantEmailStatus(Applicant applicant, String emailFrom) {
         repository.sendEmailStatus(applicant,emailFrom);
     }
