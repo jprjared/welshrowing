@@ -44,6 +44,8 @@ public class PhysicalTest {
 
     private String Homeaddress;
 
+    private String Postcode;
+
     private String Universityaddress;
 
     private String Mobilephonenumber;
