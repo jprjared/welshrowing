@@ -29,72 +29,14 @@
         <br>
 
         <div class="form-group">
-            <label th:for="Dateoftest">Date of test : </label>
-            <input th:field="*{dateoftest}" class="form-control" type="date" required></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label th:for="Nameofathlete"> Name of athlete : </label>
+            <label th:for="Name">Name of Athlete Testing :</label>
             <input th:field="*{nameofathlete}" class="form-control" type="text" required pattern="[[a-zA-Z\s]+"></input>
         </div>
         <br>
 
         <div class="form-group">
-            <label th:for="DOB">Date of Birth of the athlete :  </label>
-            <input th:field="*{DOB}" class="form-control" type="date" required></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label th:for="Gender">Gender of the athlete</label>
-            <Select th:field="*{gender}" class="form-control">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-                <option value="Prefernottosay">Prefer Not To Say</option>
-            </Select>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label th:for="Email">Email of the athlete : </label>
-<!--            pattern taken from https://www.w3schools.com/tags/att_input_pattern.asp-->
-            <input th:field="*{email}" class="form-control" type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label th:for="Homeaddress">Homeaddress of the athlete : </label>
-            <input th:field="*{homeaddress}" class="form-control" type="text" required></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label th:for="Postcode">Home Post Code of the athlete : </label>
-            <!--            patter from https://codepen.io/sarahA/pen/ezzZzw/-->
-            <input th:field="*{homepostcode}" class="form-control" type="text" required
-                   pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-        <label th:for="Universityaddress">University address of the athlete (if applicable) : </label>
-        <input th:field="*{universityaddress}" class="form-control" type="text"></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label th:for="Postcode">University Post Code of the athlete (if applicable) : </label>
-<!--            patter from https://codepen.io/sarahA/pen/ezzZzw/-->
-            <input th:field="*{universitypostcode}" class="form-control" type="text"
-                   pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"></input>
-        </div>
-        <br>
-
-        <div class="form-group">
-        <label th:for="Mobilephonenumber">Mobile phone number of the athlete : </label>
-        <input th:field="*{mobilephonenumber}" class="form-control" type="tel" required pattern="[0][789][0-9]{9}"> </input>
+            <label th:for="Dateoftest">Date of test : </label>
+            <input th:field="*{dateoftest}" class="form-control" type="date" required></input>
         </div>
         <br>
 

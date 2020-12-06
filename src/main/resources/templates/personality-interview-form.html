@@ -26,15 +26,9 @@
             <label th:for="Risktaking">Risktaking</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{risktaking}" type="range" min="0" max="100" value="50" class="slider" id="Value">
-            <p class="displayvalue"> Value: <span id="SelectedValue"></span> </p>
+            <p class="displayvalue" > Value: <span class="SelectedValue">50</span> </p>
         </div>
 
-        <script>
-            $(".slider").on('input', function(event) {
-                $(event.target).closest("displayvalue").html(event.value());
-            });
-        </script>
-        
         <br>
 
         <br>
@@ -42,6 +36,7 @@
             <label th:for="Bravery">Bravery</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{bravery}" type="range" min="0" max="100" value="50" class="slider">
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -49,6 +44,7 @@
             <label th:for="Resilience">Resilience </label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{resilience}" type="range" min="0" max="100" value="50" class="slider">
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -56,6 +52,7 @@
             <label th:for="Hardworking">Hardworking</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{hardworking}" type="range" min="0" max="100" value="50" class="slider">
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -63,6 +60,7 @@
             <label th:for="Confidence">Confidence</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{confidence}" type="range" min="0" max="100" value="50" class="slider"></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -70,6 +68,7 @@
             <label th:for="OpenMindedness">OpenMindedness</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{openMindedness}" type="range" min="0" max="100" value="50" class="slider"></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -77,6 +76,7 @@
             <label th:for="Onoffswitch">Onoffswitch</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{onoffswitch}" type="range" min="0" max="100" value="50" class="slider"></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -84,6 +84,7 @@
         <label th:for="Lightheartedness">Lightheartedness</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{lightheartedness}" type="range" min="0" max="100" value="50" class="slider"></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -91,6 +92,7 @@
         <label th:for="Selfdiscipline">Selfdiscipline</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{selfdiscipline}" type="range" min="0" max="100" value="50" class="slider"></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -98,6 +100,7 @@
         <label th:for="Abilitytoworkwithothers">Abilitytoworkwithothers</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{abilitytoworkwithothers}" type="range" min="0" max="100" value="50" class="slider"></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
@@ -105,11 +108,13 @@
             <label th:for="Competitiveness">Competitiveness</label>
             <pre>Low                                                                                        High</pre>
             <input th:field="*{competitiveness}" type="range" min="0" max="100" value="50" class="slider"></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
             <button id="Submit" class="btn btn-primary" name="Submit" type="submit">Register</button>
         <br>
+
 
  </main>
 
