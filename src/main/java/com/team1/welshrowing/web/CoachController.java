@@ -114,14 +114,20 @@ public class CoachController {
     @PostMapping("/allApplicants/accept/{id}")
     public String AcceptAnApplicant(@PathVariable Long id, Model model) {
 
+
         Optional<Applicant> applicant = applicantReadService.findById(id);
 
+
+
         if (applicant.isPresent()) {
+
+            String emailFrom = "itsYourCoach1@gmail.com";
+
             model.addAttribute("applicant", applicant.get());
-            model.addAttribute("user", applicant.get().getUser());
+            model.addAttribute("user", applicant.get().getUser().getEmail());
 
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
-            applicantEmailService.sendApplicantEmailStatus(applicant.get(), applicant.get().getUser().getEmail());
+            applicantEmailService.sendApplicantEmailStatus(applicant.get(), "itsYourCoach1@gmail.com");
 
             return "redirect:/allApplicants";
         } else {
@@ -140,7 +146,7 @@ public class CoachController {
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
-            applicantEmailService.sendApplicantEmailStatus(applicant.get(), applicant.get().getUser().getEmail());
+            applicantEmailService.sendApplicantEmailStatus(applicant.get(), "itsYourCoach1@gmail.com");
 
             return "redirect:/allApplicants";
         } else {

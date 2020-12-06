@@ -27,7 +27,6 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         return repository.findById(id);
     }
 
-
     @Override
     public void saveApplicant(Applicant applicant) {
         repository.save(applicant);
@@ -51,13 +50,11 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
-    public void sendEmailStatus(Applicant applicant, String email) {
-
+    public void sendEmailStatus(Applicant applicant, String emailFrom) {
 
         String firstName = applicant.getFirstName();
         String lastName = applicant.getLastName();
-        String emailFrom = "itsYourCoach1@gmail.com";
-        String emailTo = email;
+        String emailTo = applicant.getUser().getEmail();
         String status = applicant.getApplication_situation();
         String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status;
         String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status;
@@ -65,7 +62,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
 
         //Create an email message
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(emailFrom);
+//        message.setFrom(emailFrom);
         message.setTo(emailTo);
         message.setSubject(mailSubject);
 

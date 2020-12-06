@@ -16,7 +16,7 @@ public class ApplicantEmailService {
         this.repository = repository;
     }
 
-    public void sendApplicantEmailStatus(Applicant applicant, String email) {
-        repository.sendEmailStatus(applicant,email);
+    public void sendApplicantEmailStatus(Applicant applicant, String emailFrom) {
+        repository.sendEmailStatus(applicant,emailFrom);
     }
 }
