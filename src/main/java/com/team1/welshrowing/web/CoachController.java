@@ -3,6 +3,9 @@ package com.team1.welshrowing.web;
 import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.Interview;
+import com.team1.welshrowing.domain.PersonalityInterview;
+import com.team1.welshrowing.domain.PhysicalTest;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.service.*;
@@ -45,6 +48,15 @@ public class CoachController {
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
 
+    @Autowired
+    private InterviewReadService interviewReadService;
+
+    @Autowired
+    private PersonalityInterviewReadService personalityInterviewReadService;
+
+    @Autowired
+    private PhysicalTestReadService physicalTestReadService;
+
     /**
      * GETs the coach dashboard
      */
@@ -67,6 +79,17 @@ public class CoachController {
         if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser());
+
+            // Find interview and physical testing forms
+            Optional<Interview> interview = interviewReadService.findByApplicantId(applicant.get().getApplicantId());
+            interview.ifPresent(value -> model.addAttribute("interview", value));
+
+            Optional<PersonalityInterview> personalityInterview = personalityInterviewReadService.findByApplicantId(applicant.get().getApplicantId());
+            personalityInterview.ifPresent(value -> model.addAttribute("personalityInterview", value));
+
+            Optional<PhysicalTest> physicalTest = physicalTestReadService.findByApplicantId(applicant.get().getApplicantId());
+            physicalTest.ifPresent(value -> model.addAttribute("physicalTest", value));
+
             return "coach/view-details";
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");

@@ -7,16 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ApplicantRepo {
-
     void saveApplicant(Applicant applicant);
-
     void updateApplicantStatus(Applicant applicant, String status);
-
-    void ApplicantUpdateByStatus(String newStatus, String oldStatus, Long applicantID);
-
+    void ApplicantUpdateByStatus(String newStatus,String oldStatus, Long applicantID);
     List<Applicant> ApplicantFindByStatus(String application_situation);
-
     Optional<Applicant> findById(Long Id);
-
     void sendEmailStatus(Applicant applicant);
 }
