@@ -10,4 +10,6 @@ public interface UserRepo {
     void saveUser(User user);
     Optional<User> findByUserName(String userName);
     Optional<User> findById(Long id);
+
+    Boolean isValidEmailAndUsername(User user, String email, String username);
 }

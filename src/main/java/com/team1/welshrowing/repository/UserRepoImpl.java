@@ -35,4 +35,17 @@ public class UserRepoImpl implements UserRepo {
         return repository.findById(id);
     }
 
+    @Override
+    public Boolean isValidEmailAndUsername(User user, String email, String username) {
+        User userToCheck = repository.getOne(user.getUserId());
+        Integer ifExists = repository.countUserIdWithEmailOrUsername(user.getEmail(), user.getUserName());
+
+
+        if (ifExists != 0) {
+            JOptionPane.showMessageDialog(null,"IT EXISTS","ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
