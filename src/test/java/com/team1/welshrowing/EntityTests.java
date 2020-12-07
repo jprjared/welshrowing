@@ -26,7 +26,6 @@ public class EntityTests {
     @Test
     public void CreateApplicant1() {
         Applicant newApplicant = new Applicant();
-        newApplicant.setUserName("Sotiris123");
         newApplicant.setFirstName("Sotiris");
         newApplicant.setLastName("Yiallourides");
         newApplicant.setPhoneNumber("99355349");

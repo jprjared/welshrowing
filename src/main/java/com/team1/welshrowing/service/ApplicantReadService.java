@@ -23,4 +23,5 @@ public class ApplicantReadService {
     }
 
     public Optional<Applicant> findById(Long id) { return repository.findById(id); }
+
 }
