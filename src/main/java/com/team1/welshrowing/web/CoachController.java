@@ -3,7 +3,9 @@ package com.team1.welshrowing.web;
 import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.ApplicationForm;
 import com.team1.welshrowing.domain.User;
+import com.team1.welshrowing.repository.ApplicantFormRepoJPA;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.service.ApplicantReadService;
 import com.team1.welshrowing.service.ApplicantUpdateService;
@@ -12,14 +14,9 @@ import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.MissingResourceException;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -41,6 +38,9 @@ public class CoachController {
 
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
+
+    @Autowired
+    private ApplicantFormRepoJPA applicantFormRepo;
 
     /**
      * GETs the coach dashboard
@@ -105,7 +105,6 @@ public class CoachController {
     public String getApplicant(Model model){
 
         model.addAttribute("applicants", applicantRepo.findAll());
-        System.out.println(applicantRepo.findAll());
         return "applicantList";
     }
 
@@ -113,6 +112,8 @@ public class CoachController {
     public String AcceptAnApplicant(@PathVariable Long id) {
         Optional<Applicant> applicant = applicantReadService.findById(id);
         applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+
+
         return "redirect:/allApplicants";
     }
 
@@ -122,5 +123,14 @@ public class CoachController {
         applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
         return "redirect:/allApplicants";
     }
+
+//    @GetMapping("/allApplicants/applicationForm")
+//    public String SubmitApplicationForm(Model model) {
+//        model.addAttribute("applicationform", applicantFormRepo.findAll());
+//
+//        Optional<Applicant> applicant = applicantReadService.findById(id);
+//        applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+//        return "redirect:/allApplicants";
+//    }
 
 }
