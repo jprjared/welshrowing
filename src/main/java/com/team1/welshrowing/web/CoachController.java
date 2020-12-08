@@ -4,18 +4,22 @@ import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.ApplicationForm;
+import com.team1.welshrowing.domain.Interview;
+import com.team1.welshrowing.domain.PersonalityInterview;
+import com.team1.welshrowing.domain.PhysicalTest;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantFormRepoJPA;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
-import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.ApplicantUpdateService;
-import com.team1.welshrowing.service.UserCreateService;
-import com.team1.welshrowing.service.UserReadService;
+import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import javax.servlet.http.HttpServletRequest;
+import java.util.MissingResourceException;
 
 import java.util.Optional;
 
@@ -31,6 +35,9 @@ public class CoachController {
     private ApplicantReadService applicantReadService;
 
     @Autowired
+    private ApplicantEmailService applicantEmailService;
+
+    @Autowired
     private UserReadService userReadService;
     
     @Autowired
@@ -41,6 +48,15 @@ public class CoachController {
 
     @Autowired
     private ApplicantFormRepoJPA applicantFormRepo;
+
+    @Autowired
+    private InterviewReadService interviewReadService;
+
+    @Autowired
+    private PersonalityInterviewReadService personalityInterviewReadService;
+
+    @Autowired
+    private PhysicalTestReadService physicalTestReadService;
 
     /**
      * GETs the coach dashboard
@@ -60,11 +76,21 @@ public class CoachController {
     public String getApplicantDetails(@PathVariable Long id, Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
-        Optional<User> user = userReadService.findById(id);
 
-        if (applicant.isPresent() && user.isPresent()) {
+        if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
-            model.addAttribute("user", user.get());
+            model.addAttribute("user", applicant.get().getUser());
+
+            // Find interview and physical testing forms
+            Optional<Interview> interview = interviewReadService.findByApplicantId(applicant.get().getApplicantId());
+            interview.ifPresent(value -> model.addAttribute("interview", value));
+
+            Optional<PersonalityInterview> personalityInterview = personalityInterviewReadService.findByApplicantId(applicant.get().getApplicantId());
+            personalityInterview.ifPresent(value -> model.addAttribute("personalityInterview", value));
+
+            Optional<PhysicalTest> physicalTest = physicalTestReadService.findByApplicantId(applicant.get().getApplicantId());
+            physicalTest.ifPresent(value -> model.addAttribute("physicalTest", value));
+
             return "coach/view-details";
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
@@ -108,21 +134,49 @@ public class CoachController {
         return "applicantList";
     }
 
-    @PostMapping("/allApplicants/accept/{id}")
-    public String AcceptAnApplicant(@PathVariable Long id) {
+    @PostMapping("coach/applicant/accept/{id}")
+    public String AcceptAnApplicant(@PathVariable Long id, Model model) {
+
         Optional<Applicant> applicant = applicantReadService.findById(id);
         applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+//        return "redirect:/allApplicants";
+        {
 
+            if (applicant.isPresent()) {
 
-        return "redirect:/allApplicants";
+                model.addAttribute("applicant", applicant.get());
+                model.addAttribute("user", applicant.get().getUser().getEmail());
+
+                applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+                applicantEmailService.sendApplicantEmailStatus(applicant.get());
+
+                return "redirect:/allApplicants";
+            } else {
+
+                throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
+            }
+        }
     }
 
-    @PostMapping("/allApplicants/reject/{id}")
-    public String RejectAnApplicant(@PathVariable Long id) {
-        Optional<Applicant> applicant = applicantReadService.findById(id);
-        applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
-        return "redirect:/allApplicants";
-    }
+        @PostMapping("/coach/applicant/reject/{id}")
+        public String RejectAnApplicant (@PathVariable Long id, Model model){
+
+            Optional<Applicant> applicant = applicantReadService.findById(id);
+
+            if (applicant.isPresent()) {
+
+                model.addAttribute("applicant", applicant.get());
+                model.addAttribute("user", applicant.get().getUser().getEmail());
+
+                applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
+                applicantEmailService.sendApplicantEmailStatus(applicant.get());
+
+                return "redirect:/allApplicants";
+            } else {
+
+                throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
+            }
+        }
 
 //    @GetMapping("/allApplicants/applicationForm")
 //    public String SubmitApplicationForm(Model model) {
@@ -132,5 +186,4 @@ public class CoachController {
 //        applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
 //        return "redirect:/allApplicants";
 //    }
-
-}
+    }

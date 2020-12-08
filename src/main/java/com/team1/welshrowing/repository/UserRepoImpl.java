@@ -23,7 +23,7 @@ public class UserRepoImpl implements UserRepo {
 
     @Override
     public Optional<User> findByUserName(String userName) {
-        return repository.findByUserName(userName);
+        return repository.findByUserNameIgnoreCase(userName);
     }
 
     @Override
