@@ -21,8 +21,6 @@ public class Interview {
 
     private Long applicantId;
 
-    private String Name;
-
     private String elitesportdeff;
 
     private String Sportexp;
