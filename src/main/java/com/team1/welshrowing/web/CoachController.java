@@ -178,12 +178,18 @@ public class CoachController {
             }
         }
 
+
+//      @PostMapping("/allApplicants/save-coomes")
+
 //    @GetMapping("/allApplicants/applicationForm")
-//    public String SubmitApplicationForm(Model model) {
+//    public String getApplicationForm(Model model) {
 //        model.addAttribute("applicationform", applicantFormRepo.findAll());
+//        return "redirect:/allApplicants";
+//    }
 //
-//        Optional<Applicant> applicant = applicantReadService.findById(id);
-//        applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+//    @PostMapping("/allApplicants/applicationForm")
+//    public String SubmitApplicationForm(@ModelAttribute ApplicationForm applicationForm, Model model) {
+//        model.addAttribute("applicantform", applicantFormRepo);
 //        return "redirect:/allApplicants";
 //    }
     }

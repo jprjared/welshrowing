@@ -102,6 +102,8 @@ public class Applicant {
      * The coach of the applicant.
      */
     private String coach;
+
+    private String comments;
     /**
      * Linking User Object with User Object
      * One to One Relationship

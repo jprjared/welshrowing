@@ -27,4 +27,12 @@ public class ApplicationForm {
     private String firstName;
 
     private String lastName;
+
+//    @OneToOne(cascade = {CascadeType.ALL})
+//    @JoinColumn(name = "applicantId")
+//    private Applicant applicant;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "result")
+//    private Applicant applicant1;
 }

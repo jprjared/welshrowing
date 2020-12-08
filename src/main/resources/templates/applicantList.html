@@ -27,43 +27,35 @@
         </tr>
         </thead>
         <tbody>
-<!--        /*@thymesVar id="applicationform" type="com.team1.welshrowing.domain.ApplicationForm"*/-->
-        <form action="#" method="post" th:action="@{/allApplicants/applicationForm}" th:object="${applicationform}">
+
+        <!--        /*@thymesVar id="applicationform" type="com.team1.welshrowing.domain.ApplicationForm"*/-->
+<!--        <form action="#" method="post" th:action="@{/allApplicants/applicationForm}" th:object="${applicationform}">-->
           <tr th:each="applicant : ${applicants}">
-              <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}" th:field="${applicationform.applicantId}"></a> </td>
-              <td th:text="${applicant.firstName}" th:field="${applicationform.firstName}">First Name</td>
-              <td th:text="${applicant.lastName}" th:field="${applicationform.lastName}">Last Name</td>
-              <td th:text="${applicant.dob}" th:field="${applicationform.dob}">DOB</td>
-              <td th:text="${applicant.height}" th:field="${applicationform.height}">Height</td>
-<!--              <td th:text="$"-->
-              <td><textarea rows="6" id="comments" ></textarea></td>
-              <td th:text="${applicant.application_situation}" th:field="${applicationform.result}">Result</td>
+              <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"> <!--th:field="${applicationform.applicantId}"--></a> </td>
+              <td th:text="${applicant.firstName}"><!--th:field="${applicationform.firstName}"-->First Name</td>
+              <td th:text="${applicant.lastName}"> <!--th:field="${applicationform.lastName}"-->Last Name</td>
+              <td th:text="${applicant.dob}" ><!--th:field="${applicationform.dob}"-->DOB</td>
+              <td th:text="${applicant.height}" ><!--th:field="${applicationform.height}"-->Height</td>
+              <td><textarea rows="3" th:text ="${applicant?.comments}"></textarea></td>
+              <td th:text="${applicant.application_situation}"> <!--th:field="${applicationform.result}">-->Result</td>
+
+
 
               <td>
+
                   <form action="#" method="post" th:action="@{/coach/applicant/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-success">Accept</button>
                   </form>
                   <form action="#" method="post" th:action="@{/coach/applicant/reject/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-danger">Reject</button>
                   </form>
-<!--                  <form action="#" method="post" th:action="@{/allApplicants/comments/}" th:object="${applicants}">-->
-<!--                      <button class="btn btn-danger">Comment it</button>-->
-<!--                  </form>-->
               </td>
           </tr>
         </form>
+
         </tbody>
     </table>
 </main>
 <footer th:replace="fragments/footer :: footer" ></footer>
-<script>
-    function pressed (e){
-
-        var comment = document.getElementById('comments');
-        alert(comment);
-
-    }
-
-    </script>
 </body>
 </html>
