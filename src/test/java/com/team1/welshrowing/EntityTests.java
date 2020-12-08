@@ -26,13 +26,12 @@ public class EntityTests {
     @Test
     public void CreateApplicant1() {
         Applicant newApplicant = new Applicant();
-        newApplicant.setUserName("Sotiris123");
         newApplicant.setFirstName("Sotiris");
         newApplicant.setLastName("Yiallourides");
         newApplicant.setPhoneNumber("99355349");
         newApplicant.setAddress("Agiou Genadiou");
         newApplicant.setPostcode("cf 10 3fr");
-        newApplicant.setCollege_university("Cardiff University");
+        newApplicant.setCollegeOrUniversityName("Cardiff University");
         newApplicant.setDob("03/09/1932");
         newApplicant.setHeight(1.23);
         newApplicant.setGender("Male");

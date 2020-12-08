@@ -32,7 +32,7 @@ public class PhysicalTestingTests {
 //        Athlete Info
         newPhysicalTest.setNameofathlete("Jac");
         newPhysicalTest.setDOB("23/06/2001");
-        newPhysicalTest.setGender(2);
+        newPhysicalTest.setGender("Male");
         newPhysicalTest.setEmail("Jac@Test.com");
         newPhysicalTest.setHomeaddress("7 Maes Clwyd");
         newPhysicalTest.setUniversityaddress("120 Miskin Street");

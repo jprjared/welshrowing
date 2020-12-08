@@ -5,11 +5,14 @@ import com.team1.welshrowing.repository.AthleteRepoJPA;
 import com.team1.welshrowing.repository.InterviewRepoJPA;
 import com.team1.welshrowing.repository.PersonalityInterviewRepoJPA;
 import com.team1.welshrowing.repository.PhysicalTestRepoJPA;
+import com.team1.welshrowing.security.UserDetailsImpl;
 import com.team1.welshrowing.service.ApplicantCreateService;
 import com.team1.welshrowing.service.ApplicantReadService;
 import com.team1.welshrowing.service.UserCreateService;
+import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +35,9 @@ public class UserController {
 
     @Autowired
     private UserCreateService userCreateService;
+
+    @Autowired
+    private UserReadService userReadService;
 
     @Autowired
     private ApplicantCreateService applicantCreateService;
@@ -128,8 +134,14 @@ public class UserController {
      * Redirects to athlete dashboard
      */
     @PostMapping("/application/process")
-    public String ProcessApplicationForm(Applicant applicant, User user) {
-        applicant.setUser(user);
+    public String ProcessApplicationForm(Applicant applicant) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(applicant::setUser);
+        }
+
         applicantCreateService.addApplicant(applicant);
         return "redirect:/applicant/dashboard";
     }

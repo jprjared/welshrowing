@@ -29,11 +29,6 @@ public class Applicant {
     private Long applicantId;
 
     /**
-     * The user name of the applicant.
-     */
-    private String userName;
-
-    /**
      * The first name of the applicant.
      */
     private String firstName;

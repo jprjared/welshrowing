@@ -23,8 +23,6 @@ public class PersonalityInterview {
 
     //    private Long userId;
 
-    private String Name;
-
     private Integer Risktaking;
 
     private Integer Bravery;
