@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.File;
 
 @Data
 @AllArgsConstructor
@@ -22,7 +21,7 @@ public class Feedback {
 
         private long applicantId;
 
-        private String feedback;
+        private String message;
 
         private String file;
 }

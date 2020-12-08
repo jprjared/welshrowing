@@ -7,21 +7,21 @@ import com.team1.welshrowing.domain.Feedback;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.FeedbackRepoJPA;
-import com.team1.welshrowing.service.*;
+import com.team1.welshrowing.service.ApplicantEmailService;
+import com.team1.welshrowing.service.ApplicantReadService;
+import com.team1.welshrowing.service.ApplicantUpdateService;
+import com.team1.welshrowing.service.FeedbackCreateService;
+import com.team1.welshrowing.service.FeedbackReadService;
+import com.team1.welshrowing.service.UserCreateService;
+import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.MissingResourceException;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -228,7 +228,7 @@ public class CoachController {
 
         if (applicant.isPresent()) {
 
-            applicantEmailService.sendApplicantFeedback(applicant.get(),feedback.getFeedback(),feedback.getFile());
+            applicantEmailService.sendApplicantFeedback(applicant.get(),feedback.getMessage(),feedback.getFile());
 
             return "redirect:/allApplicants";
         } else {
