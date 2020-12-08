@@ -32,12 +32,16 @@
 <!--        <form action="#" method="post" th:action="@{/allApplicants/applicationForm}" th:object="${applicationform}">-->
           <tr th:each="applicant : ${applicants}">
               <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"> <!--th:field="${applicationform.applicantId}"--></a> </td>
-              <td th:text="${applicant.firstName}"><!--th:field="${applicationform.firstName}"-->First Name</td>
-              <td th:text="${applicant.lastName}"> <!--th:field="${applicationform.lastName}"-->Last Name</td>
-              <td th:text="${applicant.dob}" ><!--th:field="${applicationform.dob}"-->DOB</td>
-              <td th:text="${applicant.height}" ><!--th:field="${applicationform.height}"-->Height</td>
-              <td><textarea rows="3" th:text ="${applicant?.comments}"></textarea></td>
-              <td th:text="${applicant.application_situation}"> <!--th:field="${applicationform.result}">-->Result</td>
+              <td th:text="${applicant.firstName}">First Name</td>
+              <td th:text="${applicant.lastName}">Last Name</td>
+              <td th:text="${applicant.dob}" >DOB</td>
+              <td th:text="${applicant.height}" >Height</td>
+              <td>
+                  <form action ="#" method="post" th:action="@{/allApplicants/save-comments/{id}(id=${applicant.comments})}" th:object="${applicants}">
+                  <textarea name="coachcomment" rows="3" th:text ="${applicant?.comments}" id="coachcomment"></textarea>
+                  <p> <input name="savecomment" th:type="submit" id="savecomment" value="Save"></p></form></td>
+              <div id="commentbox"></div>
+              <td th:text="${applicant.application_situation}">Result</td>
 
 
 
@@ -57,5 +61,17 @@
     </table>
 </main>
 <footer th:replace="fragments/footer :: footer" ></footer>
+<script>
+    $(function() {
+        $("#coachcomment").keypress(function (e) {
+            if(e.which == 13) {
+                //submit form via ajax, this is not JS but server side scripting so not showing here
+                $("#commentbox").append($(this).val() + "<br/>");
+                $(this).val("");
+                e.preventDefault();
+            }
+        });
+    });</script>
+
 </body>
 </html>

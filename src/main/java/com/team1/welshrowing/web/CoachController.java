@@ -3,12 +3,10 @@ package com.team1.welshrowing.web;
 import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
-import com.team1.welshrowing.domain.ApplicationForm;
 import com.team1.welshrowing.domain.Interview;
 import com.team1.welshrowing.domain.PersonalityInterview;
 import com.team1.welshrowing.domain.PhysicalTest;
 import com.team1.welshrowing.domain.User;
-import com.team1.welshrowing.repository.ApplicantFormRepoJPA;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +14,15 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ResponseStatusException;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.MissingResourceException;
-
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -39,15 +41,12 @@ public class CoachController {
 
     @Autowired
     private UserReadService userReadService;
-    
+
     @Autowired
     public ApplicantRepoJPA applicantRepo;
 
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
-
-    @Autowired
-    private ApplicantFormRepoJPA applicantFormRepo;
 
     @Autowired
     private InterviewReadService interviewReadService;
@@ -126,70 +125,62 @@ public class CoachController {
         userCreateService.addUser(user);
         return "coach/add-coach";
     }
-    
+
     @GetMapping("/allApplicants")
     public String getApplicant(Model model){
 
         model.addAttribute("applicants", applicantRepo.findAll());
+        System.out.println(applicantRepo.findAll());
         return "applicantList";
     }
 
     @PostMapping("coach/applicant/accept/{id}")
     public String AcceptAnApplicant(@PathVariable Long id, Model model) {
 
+
         Optional<Applicant> applicant = applicantReadService.findById(id);
-        applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
-//        return "redirect:/allApplicants";
-        {
 
-            if (applicant.isPresent()) {
 
-                model.addAttribute("applicant", applicant.get());
-                model.addAttribute("user", applicant.get().getUser().getEmail());
 
-                applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
-                applicantEmailService.sendApplicantEmailStatus(applicant.get());
+        if (applicant.isPresent()) {
 
-                return "redirect:/allApplicants";
-            } else {
+            model.addAttribute("applicant", applicant.get());
+            model.addAttribute("user", applicant.get().getUser().getEmail());
 
-                throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
-            }
+            applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
+            applicantEmailService.sendApplicantEmailStatus(applicant.get());
+
+            return "redirect:/allApplicants";
+        } else {
+
+            throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
         }
     }
 
-        @PostMapping("/coach/applicant/reject/{id}")
-        public String RejectAnApplicant (@PathVariable Long id, Model model){
+    @PostMapping("/coach/applicant/reject/{id}")
+    public String RejectAnApplicant(@PathVariable Long id,Model model) {
 
-            Optional<Applicant> applicant = applicantReadService.findById(id);
+        Optional<Applicant> applicant = applicantReadService.findById(id);
 
-            if (applicant.isPresent()) {
+        if (applicant.isPresent()) {
 
-                model.addAttribute("applicant", applicant.get());
-                model.addAttribute("user", applicant.get().getUser().getEmail());
+            model.addAttribute("applicant", applicant.get());
+            model.addAttribute("user", applicant.get().getUser().getEmail());
 
-                applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
-                applicantEmailService.sendApplicantEmailStatus(applicant.get());
+            applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
+            applicantEmailService.sendApplicantEmailStatus(applicant.get());
 
-                return "redirect:/allApplicants";
-            } else {
+            return "redirect:/allApplicants";
+        } else {
 
-                throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
-            }
+            throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
         }
-
-
-//      @PostMapping("/allApplicants/save-coomes")
-
-//    @GetMapping("/allApplicants/applicationForm")
-//    public String getApplicationForm(Model model) {
-//        model.addAttribute("applicationform", applicantFormRepo.findAll());
-//        return "redirect:/allApplicants";
-//    }
-//
-//    @PostMapping("/allApplicants/applicationForm")
-//    public String SubmitApplicationForm(@ModelAttribute ApplicationForm applicationForm, Model model) {
-//        model.addAttribute("applicantform", applicantFormRepo);
-//        return "redirect:/allApplicants";
-//    }
     }
+
+    @PostMapping("allApplicants/save-comments")
+    public String SaveComment(@PathVariable String comment, Model model) {
+
+        return "redirect:/allApplicants";
+    }
+
+}
