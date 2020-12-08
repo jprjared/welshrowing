@@ -9,6 +9,7 @@
 <main class="container">
 
     <link th:href="@{/css/interviewform.css}" rel="stylesheet" />
+    <script th:src="@{/js/interviewforms.js}"></script>
 
     <h1>Personality Interview Form</h1>
     <form action="#" method="post" th:action="@{/personality-interview/process}" th:object="${personalityinterview}">
@@ -23,8 +24,9 @@
         <br>
 <!--        Sliders adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_rangeslider-->
         <div class="form-group">
-            <label th:for="Risktaking">Risktaking</label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="Risktaking">Risktaking</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{risktaking}" type="range" min="0" max="100" value="50" class="slider" id="Value">
             <p class="displayvalue" > Value: <span class="SelectedValue">50</span> </p>
         </div>
@@ -33,80 +35,90 @@
 
         <br>
         <div class="form-group">
-            <label th:for="Bravery">Bravery</label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="Bravery">Bravery</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{bravery}" type="range" min="0" max="100" value="50" class="slider">
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-            <label th:for="Resilience">Resilience </label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="Resilience">Resilience </label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{resilience}" type="range" min="0" max="100" value="50" class="slider">
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-            <label th:for="Hardworking">Hardworking</label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="Hardworking">Hardworking</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{hardworking}" type="range" min="0" max="100" value="50" class="slider">
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-            <label th:for="Confidence">Confidence</label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="Confidence">Confidence</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{confidence}" type="range" min="0" max="100" value="50" class="slider"></input>
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-            <label th:for="OpenMindedness">OpenMindedness</label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="OpenMindedness">OpenMindedness</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{openMindedness}" type="range" min="0" max="100" value="50" class="slider"></input>
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-            <label th:for="Onoffswitch">Onoffswitch</label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="Onoffswitch">Onoffswitch</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{onoffswitch}" type="range" min="0" max="100" value="50" class="slider"></input>
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-        <label th:for="Lightheartedness">Lightheartedness</label>
-            <pre>Low                                                                                        High</pre>
+        <label th:for="Lightheartedness">Lightheartedness</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{lightheartedness}" type="range" min="0" max="100" value="50" class="slider"></input>
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-        <label th:for="Selfdiscipline">Selfdiscipline</label>
-            <pre>Low                                                                                        High</pre>
+        <label th:for="Selfdiscipline">Selfdiscipline</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{selfdiscipline}" type="range" min="0" max="100" value="50" class="slider"></input>
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-        <label th:for="Abilitytoworkwithothers">Abilitytoworkwithothers</label>
-            <pre>Low                                                                                        High</pre>
+        <label th:for="Abilitytoworkwithothers">Abilitytoworkwithothers</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{abilitytoworkwithothers}" type="range" min="0" max="100" value="50" class="slider"></input>
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
 
         <br>
         <div class="form-group">
-            <label th:for="Competitiveness">Competitiveness</label>
-            <pre>Low                                                                                        High</pre>
+            <label th:for="Competitiveness">Competitiveness</label><br>
+            <div class="Low">Low</div>
+            <div class="High">High</div>
             <input th:field="*{competitiveness}" type="range" min="0" max="100" value="50" class="slider"></input>
             <p class="displayvalue"> Value: <span class="SelectedValue">50</span> </p>
         </div>
