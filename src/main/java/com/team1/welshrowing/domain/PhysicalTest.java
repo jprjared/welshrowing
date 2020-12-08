@@ -36,22 +36,6 @@ public class PhysicalTest {
 
     private String Nameofathlete;
 
-    private String DOB;
-
-    private String Gender;
-
-    private String Email;
-
-    private String Homeaddress;
-
-    private String Homepostcode;
-
-    private String Universityaddress;
-
-    private String Universitypostcode;
-
-    private String Mobilephonenumber;
-
     private String Homephonenumber;
 
 //    School/Club/University
