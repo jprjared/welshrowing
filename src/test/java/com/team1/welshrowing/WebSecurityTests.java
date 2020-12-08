@@ -92,4 +92,19 @@ public class WebSecurityTests {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @WithUserDetails("coach")
+    public void coachAllApplicantsIsOkWhenAccessedByCoach() throws Exception {
+        this.mockMvc
+                .perform(get("/allApplicants"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithUserDetails("coach")
+    public void coachAcceptedApplicantsIsOkWhenAccessedByCoach() throws Exception {
+        this.mockMvc
+                .perform(get("/application/status"))
+                .andExpect(status().isOk());
+    }
 }
