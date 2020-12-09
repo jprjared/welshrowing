@@ -1,13 +1,11 @@
 package com.team1.welshrowing.repository;
 
-import ch.qos.logback.core.joran.conditional.ThenAction;
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import java.io.File;
 import java.util.List;
@@ -26,6 +24,11 @@ public class ApplicantRepoImpl implements ApplicantRepo {
 
     public Optional<Applicant> findById(Long id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public Optional<Applicant> findByUser(User user) {
+        return repository.findByUser(user);
     }
 
     @Override

@@ -14,6 +14,7 @@ public interface ApplicantRepo {
     void ApplicantUpdateByStatus(String newStatus,String oldStatus, Long applicantID);
     List<Applicant> ApplicantFindByStatus(String application_situation);
     Optional<Applicant> findById(Long Id);
+    Optional<Applicant> findByUser(User user);
     void sendEmailStatus(Applicant applicant);
 
     void sendEmailPassFail(Applicant applicant);

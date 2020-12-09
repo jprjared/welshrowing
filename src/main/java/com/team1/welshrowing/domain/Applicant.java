@@ -106,7 +106,7 @@ public class Applicant {
      * Linking User Object with User Object
      * One to One Relationship
      */
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "userId")
     private User user;
 

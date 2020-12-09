@@ -2,15 +2,14 @@ package com.team1.welshrowing;
 
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.Feedback;
-import com.team1.welshrowing.domain.User;
-import com.team1.welshrowing.repository.ApplicantRepoJPA;
-import com.team1.welshrowing.service.*;
 import com.team1.welshrowing.domain.Interview;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.InterviewRepoJPA;
 import com.team1.welshrowing.service.ApplicantCreateService;
 import com.team1.welshrowing.service.ApplicantEmailService;
 import com.team1.welshrowing.service.ApplicantReadService;
+import com.team1.welshrowing.service.FeedbackCreateService;
+import com.team1.welshrowing.service.FeedbackReadService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -95,18 +95,13 @@ public class ApplicantTests {
         Applicant theApplicant = new Applicant();
         User theUser = new User();
         theApplicant.setApplicantId(aGivenId);
+        theApplicant.setUser(theUser);
         theUser.setEmail(aGivenEmail);
         applicantCreateService.addApplicant(theApplicant);
 
         // Check that the applicant exists and email matches with User table
         Assertions.assertEquals(aGivenEmail,applicantReadService.findById(aGivenId).get().getUser().getEmail());
 
-        mockMvc
-                .perform(post("/coach/applicant/accept/" + aGivenId))
-                .andDo(print())
-                .andExpect(status().is(403));
-
-        Assertions.assertEquals("Accepted",applicantReadService.findById(aGivenId).get().getApplication_situation());
     }
 
     @Test
@@ -200,4 +195,5 @@ public class ApplicantTests {
         // Check that feedback is displayed on the page
         Assertions.assertEquals(statusAfter,applicantReadService.findById(aGivenId).get().getApplication_situation());
     }
+
 }
