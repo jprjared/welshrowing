@@ -14,11 +14,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -130,7 +127,7 @@ public class CoachController {
     public String getApplicant(Model model){
 
         model.addAttribute("applicants", applicantRepo.findAll());
-        System.out.println(applicantRepo.findAll());
+//        System.out.println(applicantRepo.findAll());
         return "applicantList";
     }
 
@@ -177,10 +174,15 @@ public class CoachController {
         }
     }
 
-    @PostMapping("allApplicants/save-comments")
-    public String SaveComment(@PathVariable String comment, Model model) {
+  /*  @PostMapping("/coach/save-comments/{comments}")
+    public String SaveComment( @PathVariable String comments, Model model) {
+
+       // Optional<Applicant> applicant = applicantReadService.findById(id);
+        System.out.println("Comment is " + comments);
+       // System.out.println(applicant.get());
+
 
         return "redirect:/allApplicants";
-    }
+    }*/
 
 }

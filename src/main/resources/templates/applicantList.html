@@ -37,10 +37,16 @@
               <td th:text="${applicant.dob}" >DOB</td>
               <td th:text="${applicant.height}" >Height</td>
               <td>
-                  <form action ="#" method="post" th:action="@{/allApplicants/save-comments/{id}(id=${applicant.comments})}" th:object="${applicants}">
-                  <textarea name="coachcomment" rows="3" th:text ="${applicant?.comments}" id="coachcomment"></textarea>
-                  <p> <input name="savecomment" th:type="submit" id="savecomment" value="Save"></p></form></td>
-              <div id="commentbox"></div>
+
+                  <form action ="#" method="post" th:action="" th:object="${applicants}">
+                  <textarea name="coachcomment" rows="3" th:text="${applicant.comments}" id="comment">  </textarea>
+                      <button >Save</button>
+
+                   </form>
+
+
+              </td>
+              <p><div id="display_comment"></div></p>
               <td th:text="${applicant.application_situation}">Result</td>
 
 
@@ -61,17 +67,32 @@
     </table>
 </main>
 <footer th:replace="fragments/footer :: footer" ></footer>
-<script>
-    $(function() {
-        $("#coachcomment").keypress(function (e) {
-            if(e.which == 13) {
-                //submit form via ajax, this is not JS but server side scripting so not showing here
-                $("#commentbox").append($(this).val() + "<br/>");
-                $(this).val("");
-                e.preventDefault();
-            }
-        });
-    });</script>
+
+<script language="JavaScript">
+    function showComment(){
+        document.getElementById('display_comment').innerHTML =
+            document.getElementById("comment").value;
+    }
+</script>
+
+
+<!--<script type="text/JavaScript">-->
+<!--    function showComment(){-->
+<!--        var comment = document.getElementById("comment").value;-->
+<!--        display_comment.innerHTML= comment;-->
+<!--    }-->
+<!--</script>-->
+<!--<script>-->
+<!--    $(function() {-->
+<!--        $("#coachcomment").keypress(function (e) {-->
+<!--            if(e.which == 13) {-->
+<!--                //submit form via ajax, this is not JS but server side scripting so not showing here-->
+<!--                $("#commentbox").append($(this).val() + "<br/>");-->
+<!--                $(this).val("");-->
+<!--                e.preventDefault();-->
+<!--            }-->
+<!--        });-->
+<!--    });</script>-->
 
 </body>
 </html>
