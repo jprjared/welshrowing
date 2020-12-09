@@ -38,3 +38,4 @@ out/
 .vscode/
 *.properties
 !**/src/test/resources/application.properties
+!application-example.properties
