@@ -14,7 +14,7 @@ public class AthleteController {
     @GetMapping("/athlete/morning-monitoring")
     public String morningMonitoring(Model model) {
         model.addAttribute("morningMonitoring", new MorningMonitoring());
-        return "morning-monitoring";
+        return "athlete/morning-monitoring";
     }
 
 }

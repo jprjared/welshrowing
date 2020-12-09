@@ -13,8 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -32,7 +34,8 @@ public class MorningMonitoring {
     private User userId;
 
     @CreationTimestamp
-    private Timestamp dateTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
 
     private Integer wakingHeartRate;
 
