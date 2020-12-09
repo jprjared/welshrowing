@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 ;
 
@@ -27,18 +29,17 @@ public class MorningMonitoringReadService {
         // Get today's date
         Date today = new Date();
 
-        // Get all user forms for this user
+        // Get all morning monitoring forms for this user
         List<MorningMonitoring> userForms = repository.findByUser(user);
 
-        for (MorningMonitoring form : userForms) {
-            // Was this form completed today?
-            boolean isOnSameDay = DateUtils.isSameDay(form.getDateTime(), today);
-            if (isOnSameDay) {
-                return true;
-            }
-        }
+        Predicate<MorningMonitoring> aPredicate = form -> DateUtils.isSameDay(form.getDateTime(), today);
+        // Filter by forms that were completed today
+        List<MorningMonitoring> todaysForms = userForms.stream()
+                .filter(aPredicate)
+                .collect(Collectors.toList());
 
-        return false;
+        // True if there were forms completed today
+        return todaysForms.size() > 0;
 
     }
 

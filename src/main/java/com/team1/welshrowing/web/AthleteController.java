@@ -1,8 +1,10 @@
 package com.team1.welshrowing.web;
 
+import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.MorningMonitoring;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.security.UserDetailsImpl;
+import com.team1.welshrowing.service.ApplicantReadService;
 import com.team1.welshrowing.service.MorningMonitoringCreateService;
 import com.team1.welshrowing.service.MorningMonitoringReadService;
 import com.team1.welshrowing.service.UserReadService;
@@ -27,6 +29,9 @@ public class AthleteController {
     @Autowired
     UserReadService userReadService;
 
+    @Autowired
+    ApplicantReadService applicantReadService;
+
     /**
      * GETs the athlete dashboard.
      */
@@ -39,10 +44,11 @@ public class AthleteController {
 
             if (theUser.isPresent()) {
 
+                Optional<Applicant> theApplicant = applicantReadService.findByUser(theUser.get());
+                theApplicant.ifPresent(applicant -> model.addAttribute("applicant", applicant));
+
                 // Has this user completed their daily morning monitoring?
                 boolean hasCompletedMorningMonitoring = morningMonitoringReadService.hasCompletedMorningMonitoringToday(theUser.get());
-
-                model.addAttribute("user", theUser.get());
                 model.addAttribute("hasCompletedMorningMonitoring", hasCompletedMorningMonitoring);
             }
         }
