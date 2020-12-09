@@ -17,14 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
@@ -56,8 +55,6 @@ public class UserController {
 
     @Autowired
     private PhysicalTestRepoJPA physicalTestRepo;
-
-
 
     /**
      * GETs the user sign-up form.
@@ -92,7 +89,7 @@ public class UserController {
      * Catches any errors and returns to the previous form
      */
     @PostMapping("/register/process")
-    public String ProcessRegisterForm(HttpServletRequest request, User user, BindingResult bindings){
+    public String ProcessRegisterForm(HttpServletRequest request, @Valid User user, BindingResult bindings){
 
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
@@ -134,7 +131,7 @@ public class UserController {
      * Redirects to athlete dashboard
      */
     @PostMapping("/application/process")
-    public String ProcessApplicationForm(Applicant applicant) {
+    public String ProcessApplicationForm(@Valid Applicant applicant) {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetailsImpl) {
