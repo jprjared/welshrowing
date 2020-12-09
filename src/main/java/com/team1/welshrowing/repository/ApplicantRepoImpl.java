@@ -57,8 +57,11 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String lastName = applicant.getLastName();
         String emailTo = applicant.getUser().getEmail();
         String status = applicant.getApplication_situation();
-        String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase();
-        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase();
+        String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase() + "."
+                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase() + "."
+                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+
         String mailSubject = " Welsh Rowing - Application Status";
 
         //Create an email message
@@ -120,7 +123,9 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String status = applicant.getApplication_situation();
         String document = file;
         String mailSubject = " Welsh Rowing - Feedback";
-        String msg = feedback;
+        String msg = "Hello " + firstName + "," + "\n" + "\n" + feedback
+                     + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+
 
         //Create an email message
         SimpleMailMessage message = new SimpleMailMessage();
