@@ -31,7 +31,7 @@ public class MorningMonitoring {
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "userId")
-    private User userId;
+    private User user;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

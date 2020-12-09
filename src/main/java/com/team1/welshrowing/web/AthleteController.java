@@ -4,6 +4,7 @@ import com.team1.welshrowing.domain.MorningMonitoring;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.security.UserDetailsImpl;
 import com.team1.welshrowing.service.MorningMonitoringCreateService;
+import com.team1.welshrowing.service.MorningMonitoringReadService;
 import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +22,33 @@ public class AthleteController {
     MorningMonitoringCreateService morningMonitoringCreateService;
 
     @Autowired
+    MorningMonitoringReadService morningMonitoringReadService;
+
+    @Autowired
     UserReadService userReadService;
+
+    /**
+     * GETs the athlete dashboard.
+     */
+    @GetMapping("/athlete/dashboard")
+    public String athleteDashboard(Model model) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+
+            if (theUser.isPresent()) {
+
+                // Has this user completed their daily morning monitoring?
+                boolean hasCompletedMorningMonitoring = morningMonitoringReadService.hasCompletedMorningMonitoringToday(theUser.get());
+
+                model.addAttribute("user", theUser.get());
+                model.addAttribute("hasCompletedMorningMonitoring", hasCompletedMorningMonitoring);
+            }
+        }
+        return "athlete-dashboard";
+
+    }
 
     /**
      * GETs the athlete morning monitoring form.
@@ -43,7 +70,7 @@ public class AthleteController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetailsImpl) {
             Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
-            theUser.ifPresent(form::setUserId);
+            theUser.ifPresent(form::setUser);
         }
 
         morningMonitoringCreateService.addMorningMonitoring(form);
