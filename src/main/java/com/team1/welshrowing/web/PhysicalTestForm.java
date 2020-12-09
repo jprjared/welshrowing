@@ -40,7 +40,11 @@ public class PhysicalTestForm {
 
     private Long Homeaddress;
 
-    private Long Universityaddress;
+    private String Homepostcode;
+
+    private String Universityaddress;
+
+    private String Universitypostcode;
 
     private Integer Mobilephonenumber;
 
