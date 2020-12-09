@@ -141,6 +141,15 @@ public class UserController {
     }
 
     /**
+     * GETs the passed applicant list
+     */
+    @GetMapping("/coach/applicant/pass/list")
+    public String PassedApplicants(Model model) {
+        model.addAttribute("applicants", applicantReadService.findByStatus("Passed"));
+        return "applicant-passed-list";
+    }
+
+    /**
      * GETs the interview form.
      */
     @GetMapping("/interview/{id}")
