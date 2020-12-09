@@ -1,11 +1,10 @@
 package com.team1.welshrowing;
 
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.Feedback;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
-import com.team1.welshrowing.service.ApplicantCreateService;
-import com.team1.welshrowing.service.ApplicantEmailService;
-import com.team1.welshrowing.service.ApplicantReadService;
+import com.team1.welshrowing.service.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +40,12 @@ public class ApplicantTests {
 
     @Autowired
     private ApplicantEmailService applicantEmailService;
+
+    @Autowired
+    private FeedbackCreateService feedbackCreateService;
+
+    @Autowired
+    private FeedbackReadService feedbackReadService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -90,5 +95,97 @@ public class ApplicantTests {
                 .andExpect(status().is(403));
 
         Assertions.assertEquals("Accepted",applicantReadService.findById(aGivenId).get().getApplication_situation());
+    }
+
+    @Test
+    @WithUserDetails("coach")
+    public void create_feedback_for_applicant() throws Exception {
+
+        Long aGivenId = 1L;
+        String aFeedback = "This is the reason";
+        String aFile = "file.txt";
+
+        Feedback theFeedback = new Feedback();
+        Applicant theApplicant = new Applicant();
+
+        theApplicant.setApplicantId(aGivenId);
+        theFeedback.setFeedbackId(aGivenId);
+        theFeedback.setMessage(aFeedback);
+        theFeedback.setFile(aFile);
+
+        applicantCreateService.addApplicant(theApplicant);
+        feedbackCreateService.addFeedback(theFeedback);
+
+
+        // Check that the feedback exists
+        Assertions.assertEquals(aFeedback,feedbackReadService.findById(aGivenId).get().getMessage());
+
+        mockMvc
+                .perform(post("/coach/applicant/feedback/" + aGivenId))
+                .andDo(print())
+                .andExpect(status().is(403));
+
+        // Check that feedback is displayed on the page
+        Assertions.assertEquals(aFile,feedbackReadService.findById(aGivenId).get().getFile());
+    }
+
+    @Test
+    @WithUserDetails("coach")
+    public void create_an_applicant_and_pass() throws Exception {
+
+        Long aGivenId = 1L;
+        String aStatusBefore = "Accepted";
+        String aStatusAfter = "Passed";
+
+        Applicant theApplicant = new Applicant();
+
+        theApplicant.setApplicantId(aGivenId);
+        theApplicant.setApplication_situation("Accepted");
+
+        applicantCreateService.addApplicant(theApplicant);
+
+
+
+        // Check that the feedback exists
+        Assertions.assertEquals(aStatusBefore,applicantReadService.findById(aGivenId).get().getApplication_situation());
+
+        mockMvc
+                .perform(post("/coach/applicant/pass/" + aGivenId))
+                .andDo(print())
+                .andExpect(status().is(403));
+
+        String statusAfter = theApplicant.getApplication_situation();
+        // Check that feedback is displayed on the page
+        Assertions.assertEquals(statusAfter,applicantReadService.findById(aGivenId).get().getApplication_situation());
+    }
+
+    @Test
+    @WithUserDetails("coach")
+    public void create_an_applicant_and_fail() throws Exception {
+
+        Long aGivenId = 1L;
+        String aStatusBefore = "Accepted";
+        String aStatusAfter = "Failed";
+
+        Applicant theApplicant = new Applicant();
+
+        theApplicant.setApplicantId(aGivenId);
+        theApplicant.setApplication_situation("Accepted");
+
+        applicantCreateService.addApplicant(theApplicant);
+
+
+
+        // Check that the feedback exists
+        Assertions.assertEquals(aStatusBefore,applicantReadService.findById(aGivenId).get().getApplication_situation());
+
+        mockMvc
+                .perform(post("/coach/applicant/fail/" + aGivenId))
+                .andDo(print())
+                .andExpect(status().is(403));
+
+        String statusAfter = theApplicant.getApplication_situation();
+        // Check that feedback is displayed on the page
+        Assertions.assertEquals(statusAfter,applicantReadService.findById(aGivenId).get().getApplication_situation());
     }
 }
