@@ -47,7 +47,7 @@ public class MorningMonitoring {
     @Size(min = 1, max = 10, message = "Perceived mental state must be between 1 and 10")
     private Integer perceivedMentalState;
 
-    private Integer sleepQuantity;
+    private Double sleepQuantity;
 
     @Size(min = 1, max = 10, message = "Sleep quality must be between 1 and 10")
     private Integer sleepQuality;
