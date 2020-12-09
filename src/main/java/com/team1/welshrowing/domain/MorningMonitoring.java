@@ -29,7 +29,7 @@ public class MorningMonitoring {
     @OrderBy
     private Long morningMonitoringId;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "userId")
     private User user;
 
