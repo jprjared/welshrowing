@@ -7,9 +7,13 @@ $width: 800px;
 Bootstrap blue
  */
 $blue: #007bff;
+/**
+Background grey
+ */
+$background: #eaeaea;
 
 body {
-    background: #eaeaea;
+    background: $background;
 }
 
 .container {
@@ -71,4 +75,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .table .btn {
     margin-bottom: 5px;
+}
+
+pre {
+    border: 2px solid #eee;
+    border-radius: 1em;
+    padding: 1em;
+    font-size: 70%;
 }

@@ -4,16 +4,13 @@ import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.Feedback;
+import com.team1.welshrowing.domain.Interview;
+import com.team1.welshrowing.domain.PersonalityInterview;
+import com.team1.welshrowing.domain.PhysicalTest;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.FeedbackRepoJPA;
-import com.team1.welshrowing.service.ApplicantEmailService;
-import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.ApplicantUpdateService;
-import com.team1.welshrowing.service.FeedbackCreateService;
-import com.team1.welshrowing.service.FeedbackReadService;
-import com.team1.welshrowing.service.UserCreateService;
-import com.team1.welshrowing.service.UserReadService;
+import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,6 +53,15 @@ public class CoachController {
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
 
+    @Autowired
+    private InterviewReadService interviewReadService;
+
+    @Autowired
+    private PersonalityInterviewReadService personalityInterviewReadService;
+
+    @Autowired
+    private PhysicalTestReadService physicalTestReadService;
+
     /**
      * GETs the coach dashboard
      */
@@ -78,6 +84,17 @@ public class CoachController {
         if (applicant.isPresent()) {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser());
+
+            // Find interview and physical testing forms
+            Optional<Interview> interview = interviewReadService.findByApplicantId(applicant.get().getApplicantId());
+            interview.ifPresent(value -> model.addAttribute("interview", value));
+
+            Optional<PersonalityInterview> personalityInterview = personalityInterviewReadService.findByApplicantId(applicant.get().getApplicantId());
+            personalityInterview.ifPresent(value -> model.addAttribute("personalityInterview", value));
+
+            Optional<PhysicalTest> physicalTest = physicalTestReadService.findByApplicantId(applicant.get().getApplicantId());
+            physicalTest.ifPresent(value -> model.addAttribute("physicalTest", value));
+
             return "coach/view-details";
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");

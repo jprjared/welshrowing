@@ -26,7 +26,6 @@ public class InterviewTests {
     @Test
     public void Createinterviewresults1() {
         Interview newInterview = new Interview();
-        newInterview.setName("Jac");
         newInterview.setElitesportdeff("A sport at the highest level");
         newInterview.setSportexp("Have been rowing for years");
         newInterview.setAspirations("Olympic Medalist");
