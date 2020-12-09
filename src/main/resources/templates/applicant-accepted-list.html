@@ -27,6 +27,7 @@
         <td>Gender</td>
         <td>Previously Tested</td>
         <td>Actions</td>
+        <td></td>
     </tr>
     </thead>
 
@@ -43,7 +44,15 @@
         <td th:text="${applicant.height}"></td>
         <td th:text="${applicant.gender}"></td>
         <td th:text="${applicant.isPreviouslyTested}"></td>
-        <td><a th:href="@{/interview/{id}(id=${applicant.applicantId})}" class="btn btn-primary">Interview</a> <a th:href="@{/physical-test/{id}(id=${applicant.applicantId})}" class="btn btn-secondary">Testing</a></td>
+        <td><a th:href="@{/interview/{id}(id=${applicant.applicantId})}" class="btn btn-primary">Interview</a> <a th:href="@{/physical-test/{id}(id=${applicant.applicantId})}" class="btn btn-secondary">Testing</a>
+        <td>
+            <form action="#" method="post" th:action="@{/coach/applicant/pass/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                <button class="btn btn-success" >Accept</button>
+            </form>
+            <form action="#" method="post" th:action="@{/coach/applicant/fail/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
+                <button class="btn btn-danger" >Decline</button>
+             </form>
+        </td>
     </tr>
     </tbody>
 </table>
