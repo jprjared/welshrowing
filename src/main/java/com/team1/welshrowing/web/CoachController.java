@@ -64,7 +64,8 @@ public class CoachController {
 
     /**
      * GETs an applicant by their ID
-     * @param id - the ID of the applicant
+     *
+     * @param id    - the ID of the applicant
      * @param model - the Model object
      * @return - the view-details template
      */
@@ -124,7 +125,7 @@ public class CoachController {
     }
 
     @GetMapping("/allApplicants")
-    public String getApplicant(Model model){
+    public String getApplicant(Model model) {
 
         model.addAttribute("applicants", applicantRepo.findAll());
 //        System.out.println(applicantRepo.findAll());
@@ -136,7 +137,6 @@ public class CoachController {
 
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
-
 
 
         if (applicant.isPresent()) {
@@ -155,7 +155,7 @@ public class CoachController {
     }
 
     @PostMapping("/coach/applicant/reject/{id}")
-    public String RejectAnApplicant(@PathVariable Long id,Model model) {
+    public String RejectAnApplicant(@PathVariable Long id, Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
 
@@ -174,15 +174,24 @@ public class CoachController {
         }
     }
 
-  /*  @PostMapping("/coach/save-comments/{comments}")
-    public String SaveComment( @PathVariable String comments, Model model) {
 
-       // Optional<Applicant> applicant = applicantReadService.findById(id);
+    @PostMapping("/coach/applicant/save-comment/{id}")
+    public String SaveComment(@PathVariable Long id, String comments, Model model) {
+
+        Optional<Applicant> applicant = applicantReadService.findById(id);
+
         System.out.println("Comment is " + comments);
-       // System.out.println(applicant.get());
 
+        if (applicant.isPresent()) {
 
-        return "redirect:/allApplicants";
-    }*/
+            model.addAttribute("applicant", applicant.get());
+            applicantUpdateService.updateApplicantStatus(applicant.get(), comments);
+            // System.out.println(applicant.get());
 
+            return "redirect:/allApplicants";
+        } else {
+
+            throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
+        }
+    }
 }
