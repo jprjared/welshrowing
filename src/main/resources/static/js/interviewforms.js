@@ -5,3 +5,4 @@ $(document).ready()
         $(this).closest(".form-group").find('.SelectedValue').text(event.target.value);
     });
 }
+
