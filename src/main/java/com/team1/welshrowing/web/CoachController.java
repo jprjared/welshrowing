@@ -128,7 +128,6 @@ public class CoachController {
     public String getApplicant(Model model) {
 
         model.addAttribute("applicants", applicantRepo.findAll());
-//        System.out.println(applicantRepo.findAll());
         return "applicantList";
     }
 
@@ -175,23 +174,21 @@ public class CoachController {
     }
 
 
-    @PostMapping("/coach/applicant/save-comment/{id}")
-    public String SaveComment(@PathVariable Long id, String comments, Model model) {
+    @PostMapping("/coach/applicant/save-comments/{id}/{comments}")
+    public String SaveComment(@PathVariable Long id, @PathVariable String comments, Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
-
-        System.out.println("Comment is " + comments);
 
         if (applicant.isPresent()) {
 
             model.addAttribute("applicant", applicant.get());
-            applicantUpdateService.updateApplicantStatus(applicant.get(), comments);
-            // System.out.println(applicant.get());
+            applicantUpdateService.updateApplicantComments(applicant.get(), comments);
 
             return "redirect:/allApplicants";
         } else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
         }
+
     }
 }

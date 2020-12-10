@@ -31,22 +31,22 @@
         <!--        /*@thymesVar id="applicationform" type="com.team1.welshrowing.domain.ApplicationForm"*/-->
 <!--        <form action="#" method="post" th:action="@{/allApplicants/applicationForm}" th:object="${applicationform}">-->
           <tr th:each="applicant : ${applicants}">
-              <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"> <!--th:field="${applicationform.applicantId}"--></a> </td>
+              <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a> </td>
               <td th:text="${applicant.firstName}">First Name</td>
               <td th:text="${applicant.lastName}">Last Name</td>
               <td th:text="${applicant.dob}" >DOB</td>
               <td th:text="${applicant.height}" >Height</td>
               <td>
-
-                  <form action ="#" method="post" th:action="@{/coach/applicant/save-comment/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
-                  <textarea name="coachcomment" rows="3" th:text="${applicant.comments}" id="comment"> </textarea>
-                      <input th:type="Submit" onclick="saveComment()" th:value="Save">
-
-                  </form>
-                  <p><div id="display_comment"></div></p> </td>
+                  <form action ="#" method="post" th:action="@{/coach/applicant/save-comments/{id}/{comments} (id=${applicant.applicantId}, comments=${applicant.comments})}" th:object="${applicants}">
+                      <textarea rows="3" th:value="${applicant.comments}" id="coachComment" name="coachComment"></textarea>
+                      <!--                          th:value="${client.name}" id="clientName" name="clientName" />-->
+                      <!--                          <p>Message: <input type="text" th:field="${applicant.comments}" /></p>-->
+                      <button>Save</button>
+                  </form></td>
               <td th:text="${applicant.application_situation}">Result</td>
 
               <td>
+
 
                   <form action="#" method="post" th:action="@{/coach/applicant/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-success">Accept</button>
@@ -63,12 +63,12 @@
 </main>
 <footer th:replace="fragments/footer :: footer" ></footer>
 
-<script language="JavaScript">
-    function saveComment(){
-        document.getElementById('display_comment').innerHTML =
-            document.getElementById("comment").value;
-    }
-</script>
+<!--<script language="JavaScript">-->
+<!--    function saveComment(){-->
+<!--        document.getElementById('display_comment').innerHTML =-->
+<!--            document.getElementById("comment").value;-->
+<!--    }-->
+<!--</script>-->
 
 
 <!--<script type="text/JavaScript">-->

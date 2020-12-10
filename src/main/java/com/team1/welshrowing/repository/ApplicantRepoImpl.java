@@ -40,9 +40,22 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
+    public void updateApplicantComments(Applicant applicant, String comments) {
+        Applicant applicant1 = repository.getOne(applicant.getApplicantId());
+        applicant1.setComments(comments);
+        repository.save(applicant1);
+    }
+
+    @Override
     public void ApplicantUpdateByStatus(String newStatus, String oldStatus, Long applicantID) {
         repository.updateStatus(newStatus, oldStatus, applicantID);
     }
+
+    @Override
+    public void ApplicantUpdateByComments(String newComments, String oldComments, Long applicantID) {
+        repository.updateStatus(newComments, oldComments, applicantID);
+    }
+
 
     @Override
     public List<Applicant> ApplicantFindByStatus(String aStatus) {
