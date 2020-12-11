@@ -1,3 +1,6 @@
+/**
+ * Adapted from code examples at https://www.chartjs.org/samples/latest/charts/line/basic.html [Accessed: 11 December 2020]
+ */
 $(document).ready(function() {
 
     $.getJSON("/api/morning-monitoring/" + user, function (json) {
@@ -10,8 +13,8 @@ $(document).ready(function() {
                 }),
                 datasets: [{
                     label: 'Waking Heart Rate',
-                    backgroundColor: '#A44B5E',
-                    borderColor: '#A44B5E',
+                    backgroundColor: '#c64947',
+                    borderColor: '#c64947',
                     data: json.map(function(item) {
                         return item.wakingHeartRate;
                     }),
@@ -42,8 +45,8 @@ $(document).ready(function() {
                     fill: false,
                 }, {
                     label: 'Sleep Quantity',
-                    backgroundColor: '#CE4454',
-                    borderColor: '#CE4454',
+                    backgroundColor: '#e66c7d',
+                    borderColor: '#e66c7d',
                     data: json.map(function(item) {
                         return item.sleepQuantity;
                     }),
