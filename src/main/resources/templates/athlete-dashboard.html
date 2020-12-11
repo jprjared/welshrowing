@@ -28,9 +28,21 @@
         </li>
     </ul>
 
+    <br>
+    <h4>Morning Monitoring</h4>
+    <br>
+
+    <canvas id="chart" width="100%" height="80"></canvas>
+
 </main>
 
-<footer th:replace="fragments/footer :: footer" ></footer>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const user = /*[[${applicant.getUser().userId}]]*/ '0';
+    /*]]>*/
+</script>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 
 </body>
 </html>
