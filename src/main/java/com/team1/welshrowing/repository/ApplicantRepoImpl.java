@@ -53,7 +53,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
 
     @Override
     public void ApplicantUpdateByComments(String newComments, String oldComments, Long applicantID) {
-        repository.updateStatus(newComments, oldComments, applicantID);
+        repository.updateComments(newComments, oldComments, applicantID);
     }
 
 
