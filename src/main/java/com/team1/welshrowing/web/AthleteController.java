@@ -2,18 +2,20 @@ package com.team1.welshrowing.web;
 
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.MorningMonitoring;
+import com.team1.welshrowing.domain.RPE;
 import com.team1.welshrowing.domain.User;
+import com.team1.welshrowing.repository.InterviewRepoJPA;
+import com.team1.welshrowing.repository.RPERepo;
+import com.team1.welshrowing.repository.RPERepoJPA;
 import com.team1.welshrowing.security.UserDetailsImpl;
-import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.MorningMonitoringCreateService;
-import com.team1.welshrowing.service.MorningMonitoringReadService;
-import com.team1.welshrowing.service.UserReadService;
+import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -25,6 +27,12 @@ public class AthleteController {
 
     @Autowired
     MorningMonitoringReadService morningMonitoringReadService;
+
+    @Autowired
+    private RPERepoJPA rpeRepo;
+
+    @Autowired
+    RPEReadService rpeReadService;
 
     @Autowired
     UserReadService userReadService;
@@ -80,6 +88,31 @@ public class AthleteController {
         }
 
         morningMonitoringCreateService.addMorningMonitoring(form);
+        return "redirect:/athlete/dashboard";
+    }
+
+    @GetMapping ("/athlete/RPE-form")
+    public String rpeform(Model model) {
+        model.addAttribute("RPE", new RPEForm());
+        return "athlete/RPE-form";
+    }
+
+    /**
+     * POSTs the athlete morning monitoring form.
+     * @param rpeform - a morningMonitoring object
+     * @return redirect to the dashboard
+     */
+    @PostMapping("/athlete/RPE-form")
+    public String ProcessRPE(RPE rpeform) {
+//        Ryans Code
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(rpeform::setUser);
+        }
+//
+
+        rpeRepo.save(rpeform);
         return "redirect:/athlete/dashboard";
     }
 
