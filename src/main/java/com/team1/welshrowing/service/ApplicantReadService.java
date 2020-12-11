@@ -1,6 +1,7 @@
 package com.team1.welshrowing.service;
 
 import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.ApplicantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,7 @@ public class ApplicantReadService {
     }
 
     public Optional<Applicant> findById(Long id) { return repository.findById(id); }
+
+    public Optional<Applicant> findByUser(User user) { return repository.findByUser(user); }
 
 }

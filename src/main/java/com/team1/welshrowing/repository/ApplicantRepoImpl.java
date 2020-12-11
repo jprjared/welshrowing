@@ -1,14 +1,13 @@
 package com.team1.welshrowing.repository;
 
-import ch.qos.logback.core.joran.conditional.ThenAction;
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +24,11 @@ public class ApplicantRepoImpl implements ApplicantRepo {
 
     public Optional<Applicant> findById(Long id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public Optional<Applicant> findByUser(User user) {
+        return repository.findByUser(user);
     }
 
     @Override
@@ -56,8 +60,11 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String lastName = applicant.getLastName();
         String emailTo = applicant.getUser().getEmail();
         String status = applicant.getApplication_situation();
-        String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase();
-        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase();
+        String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase() + "."
+                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase() + "."
+                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+
         String mailSubject = " Welsh Rowing - Application Status";
 
         //Create an email message
@@ -75,6 +82,64 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         //Send mail
         mailSender.send(message);
     }
+
+    @Override
+    public void sendEmailPassFail(Applicant applicant) {
+
+        String firstName = applicant.getFirstName();
+        String lastName = applicant.getLastName();
+        String emailTo = applicant.getUser().getEmail();
+        String status = applicant.getApplication_situation();
+
+        String passed = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that you have " + status.toLowerCase() + " the tests."
+                        + "\n" + "We look forward to following up with you about the 8 Week Programme" + "\n" + "and we will contact you very soon." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+
+        String failed = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that you have " + status.toLowerCase() + " the tests."
+                        + "\n" + "Thank you for taking part. We wish you all the best." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+
+        String mailSubject = " Welsh Rowing - Test Results";
+
+        //Create an email message
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(emailTo);
+        message.setSubject(mailSubject);
+
+        if (applicant.getApplication_situation()=="Passed") {
+            message.setText(passed);
+
+        } else {
+            message.setText(failed);
+        }
+
+        //Send mail
+        mailSender.send(message);
+
+    }
+
+
+    @Override
+    public void sendEmailFeedback(Applicant applicant, String feedback, String file) {
+
+        String firstName = applicant.getFirstName();
+        String lastName = applicant.getLastName();
+        String emailTo = applicant.getUser().getEmail();
+        String status = applicant.getApplication_situation();
+        String document = file;
+        String mailSubject = " Welsh Rowing - Feedback";
+        String msg = "Hello " + firstName + "," + "\n" + "\n" + feedback
+                     + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+
+
+        //Create an email message
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(emailTo);
+        message.setSubject(mailSubject);
+        message.setText(msg);
+
+    //Send mail
+        mailSender.send(message);
+    }
+
 }
 
 
