@@ -25,10 +25,7 @@ public class ApplicantUpdateService {
     public void updateApplicantComments(Applicant applicant, String comments) {
         repository.updateApplicantComments(applicant, comments);
     }
-    public void updateByComments(String newComments, String oldComments, Long applicantID) {
-        repository.ApplicantUpdateByStatus(newComments, oldComments, applicantID);
-    }
-
+    
     public void updateByStatus(String newStatus, String oldStatus, Long applicantID) {
         repository.ApplicantUpdateByStatus(newStatus, oldStatus, applicantID);
     }

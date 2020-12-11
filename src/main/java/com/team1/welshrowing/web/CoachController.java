@@ -260,8 +260,8 @@ public class CoachController {
     }
 
 
-    @PostMapping("/coach/applicant/save-comments/{id}/{comments}")
-    public String SaveComment(@PathVariable Long id, @PathVariable String comments, Model model) {
+    @PostMapping("/coach/applicant/save-comments/{id}")
+    public String SaveComment(@PathVariable Long id, String comments, Model model) {
 
 //        System.out.println(comments);
         Optional<Applicant> applicant = applicantReadService.findById(id);

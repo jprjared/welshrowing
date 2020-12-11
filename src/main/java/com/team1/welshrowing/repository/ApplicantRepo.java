@@ -13,7 +13,6 @@ public interface ApplicantRepo {
     void updateApplicantStatus(Applicant applicant, String status);
     void updateApplicantComments(Applicant applicant, String comments);
     void ApplicantUpdateByStatus(String newStatus,String oldStatus, Long applicantID);
-    void ApplicantUpdateByComments(String newComments,String oldComments, Long applicantID);
     List<Applicant> ApplicantFindByStatus(String application_situation);
     Optional<Applicant> findById(Long Id);
     Optional<Applicant> findByUser(User user);

@@ -55,11 +55,6 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         repository.updateStatus(newStatus, oldStatus, applicantID);
     }
 
-    @Override
-    public void ApplicantUpdateByComments(String newComments, String oldComments, Long applicantID) {
-        repository.updateComments(newComments, oldComments, applicantID);
-    }
-
 
     @Override
     public List<Applicant> ApplicantFindByStatus(String aStatus) {

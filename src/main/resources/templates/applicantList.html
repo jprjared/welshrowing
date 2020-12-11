@@ -28,8 +28,8 @@
         </thead>
         <tbody>
 
-        <!--        /*@thymesVar id="applicationform" type="com.team1.welshrowing.domain.ApplicationForm"*/-->
-<!--        <form action="#" method="post" th:action="@{/allApplicants/applicationForm}" th:object="${applicationform}">-->
+
+<!--        <form action="#" method="post" th:action="@{/allApplicants/applicationForm}" th:object="${applicant}">-->
           <tr th:each="applicant : ${applicants}">
               <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a> </td>
               <td th:text="${applicant.firstName}">First Name</td>
@@ -37,18 +37,26 @@
               <td th:text="${applicant.dob} " >DOB</td>
               <td th:text="${applicant.height}" >Height</td>
               <td>
-                  <form method="post" th:action="@{/coach/applcant/save-comments/{id}/{comments} (id=${applicant.applicantId}, comments=${applicant.comments})}" th:object="${applicants}">
-                      <textarea rows = "3" name ="comment" th:text="${applicant.comments}"></textarea>
-                      <button type = "submit">save</button>
+                  <!--        /*@thymesVar id="applicant" type="com.team1.welshrowing.domain.Applicant"*/-->
+<!--                  <form action ="#" method="post" th:action="@{/coach/applicant/save-comments/{id}(id=${applicant.applicantId})}">-->
+<!--                      <input th:field="${applicant.comments}"></input>-->
+
+                      <form th:action="@{/coach/applicant/save-comments/{id}(id=${applicant.applicantId})}" method="post" th:object="${applicant}">
+                          <input type="text" th:value="*{comments}" id="comments" name="comments"/>
+                      </form>
+                      <button>Save</button>
                   </form>
-<!--                  <form action ="#" method="post" th:action="@{/coach/applicant/save-comments/{id}/{comments} (id=${applicant.applicantId}, comments=${applicant.comments})}" th:object="${applicants}">-->
-<!--                      <textarea name="coachComment"rows="3" th:text="${applicant.comments}"></textarea>-->
-<!--                      <button>Save</button>-->
-<!--                  </form>-->
               </td>
               <td th:text="${applicant.application_situation}">Result</td>
 
               <td>
+
+
+                  <!--                  <form method="post" th:action="@{/coach/applicant/save-comments/{id}/{comments} (id=${applicant.applicantId},-->
+                  <!--                   comments=${applicant.comments})}" th:object="${applicants}">-->
+                  <!--                      <textarea rows = "3" name ="comment" th:text="${applicant.comments}"></textarea>-->
+                  <!--                      <button type = "submit">save</button>-->
+                  <!--                  </form>-->
 
 
                   <form action="#" method="post" th:action="@{/coach/applicant/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
