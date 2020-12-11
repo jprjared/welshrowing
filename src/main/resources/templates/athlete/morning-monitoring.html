@@ -1,0 +1,103 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>Morning Monitoring</h1>
+    <br>
+
+    <form action="#" th:action="@{/athlete/morning-monitoring}" th:object="${morningMonitoring}" method="post">
+
+        <div class="form-group">
+            <label for="wakingHeartRate">
+                Waking Heart Rate
+                <br>
+                <small class="text-muted">Enter numbers only.</small>
+            </label>
+            <input th:field="*{wakingHeartRate}" type="number" class="form-control" placeholder="Waking Heart Rate"
+                   required pattern="^[0-9]*$" min="0" />
+        </div>
+
+        <div class="form-group">
+            <label for="standingHeartRate">
+                Standing Heart Rate
+                <br>
+                <small class="text-muted">Enter numbers only.</small>
+            </label>
+            <input th:field="*{standingHeartRate}" type="number" class="form-control" placeholder="Standing Heart Rate"
+                   required pattern="^[0-9]*$" min="0" />
+        </div>
+
+        <div class="form-group">
+            <label for="perceivedShape">
+                Perceived Shape
+                <br>
+                <small class="text-muted">1 being completely fatigued and unable to train, 10 being peak physical and health state.</small>
+            </label>
+            <div class="labels">
+                <div class="Low">Low</div>
+                <div class="High">High</div>
+            </div>
+            <input th:field="*{perceivedShape}" type="range" min="0" max="10" value="5" class="slider" />
+            <p class="displayvalue">
+                <span class="SelectedValue">5</span>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="perceivedMentalState">
+                Perceived Mental State
+                <br>
+                <small class="text-muted">1 being emotionally and mentally low, unable to focus, 10 being emotionally and mentally strong, fully motivated and positive.</small>
+            </label>
+            <div class="labels">
+                <div class="Low">Low</div>
+                <div class="High">High</div>
+            </div>
+            <input th:field="*{perceivedMentalState}" type="range" min="0" max="10" value="5" class="slider" />
+            <p class="displayvalue">
+                <span class="SelectedValue">5</span>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="sleepQuantity">
+                Sleep Quantity
+                <br>
+                <small class="text-muted">Number of hours sleeping. Please log 30 minutes as 0.5 e.g. 7 hours 30 minutes would be noted as 7.5</small>
+            </label>
+            <input th:field="*{sleepQuantity}" type="number" class="form-control" placeholder="Sleep Quantity"
+                   required step="0.1" min="0" />
+        </div>
+
+        <div class="form-group">
+            <label for="sleepQuality">
+                Sleep Quality
+                <br>
+                <small class="text-muted">1 being broken, restless worst quality sleep. 10 being great, deep, uninterrupted sleep</small>
+            </label>
+            <div class="labels">
+                <div class="Low">Low</div>
+                <div class="High">High</div>
+            </div>
+            <input th:field="*{sleepQuality}" type="range" min="0" max="10" value="5" class="slider" />
+            <p class="displayvalue">
+                <span class="SelectedValue">5</span>
+            </p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>

@@ -33,5 +33,7 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
     void updateComments(String newComments, String oldComments, Long applicantID);
 
     Optional<Applicant> findById(Long id);
+    
+    Optional<Applicant> findByUser(User user);
 
 }
