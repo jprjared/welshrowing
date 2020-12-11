@@ -20,7 +20,6 @@
             <th>DOB</th>
             <th>Height</th>
             <th>Comments</th>
-<!--            <th>Application Date</th>-->
             <th>Result</th>
             <th>Actions</th>
 
@@ -28,8 +27,6 @@
         </thead>
         <tbody>
 
-
-<!--        <form action="#" method="post" th:action="@{/allApplicants/applicationForm}" th:object="${applicant}">-->
           <tr th:each="applicant : ${applicants}">
               <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a> </td>
               <td th:text="${applicant.firstName}">First Name</td>
@@ -38,8 +35,6 @@
               <td th:text="${applicant.height}" >Height</td>
               <td>
                   <!--        /*@thymesVar id="applicant" type="com.team1.welshrowing.domain.Applicant"*/-->
-<!--                  <form action ="#" method="post" th:action="@{/coach/applicant/save-comments/{id}(id=${applicant.applicantId})}">-->
-<!--                      <input th:field="${applicant.comments}"></input>-->
 
                       <form th:action="@{/coach/applicant/save-comments/{id}(id=${applicant.applicantId})}" method="post" th:object="${applicant}">
                           <input type="text" th:value="*{comments}" id="comments" name="comments"/>
@@ -50,14 +45,6 @@
               <td th:text="${applicant.application_situation}">Result</td>
 
               <td>
-
-
-                  <!--                  <form method="post" th:action="@{/coach/applicant/save-comments/{id}/{comments} (id=${applicant.applicantId},-->
-                  <!--                   comments=${applicant.comments})}" th:object="${applicants}">-->
-                  <!--                      <textarea rows = "3" name ="comment" th:text="${applicant.comments}"></textarea>-->
-                  <!--                      <button type = "submit">save</button>-->
-                  <!--                  </form>-->
-
 
                   <form action="#" method="post" th:action="@{/coach/applicant/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-success">Accept</button>
@@ -73,32 +60,6 @@
     </table>
 </main>
 <footer th:replace="fragments/footer :: footer" ></footer>
-
-<!--<script language="JavaScript">-->
-<!--    function saveComment(){-->
-<!--        document.getElementById('display_comment').innerHTML =-->
-<!--            document.getElementById("comment").value;-->
-<!--    }-->
-<!--</script>-->
-
-
-<!--<script type="text/JavaScript">-->
-<!--    function saveComment(){-->
-<!--        var comment = document.getElementById("comment").value;-->
-<!--        display_comment.innerHTML= comment;-->
-<!--    }-->
-<!--</script>-->
-<!--<script>-->
-<!--    $(function() {-->
-<!--        $("#coachcomment").keypress(function (e) {-->
-<!--            if(e.which == 13) {-->
-<!--                //submit form via ajax, this is not JS but server side scripting so not showing here-->
-<!--                $("#commentbox").append($(this).val() + "<br/>");-->
-<!--                $(this).val("");-->
-<!--                e.preventDefault();-->
-<!--            }-->
-<!--        });-->
-<!--    });</script>-->
 
 </body>
 </html>

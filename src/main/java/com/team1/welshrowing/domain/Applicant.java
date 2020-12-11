@@ -103,11 +103,16 @@ public class Applicant {
      */
     private String coach;
 
+    /**
+     * The comments inputted by the coach.
+     */
+
     private String comments;
     /**
      * Linking User Object with User Object
      * One to One Relationship
      */
+
     @OneToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "userId")
     private User user;
