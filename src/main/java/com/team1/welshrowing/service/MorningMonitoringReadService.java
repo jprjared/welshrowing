@@ -24,6 +24,10 @@ public class MorningMonitoringReadService {
         this.repository = repository;
     }
 
+    public List<MorningMonitoring> findByUser(User user) {
+        return repository.findByUser(user);
+    }
+
     public boolean hasCompletedMorningMonitoringToday(User user) {
 
         // Get today's date
