@@ -14,6 +14,12 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Date;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class MorningMonitoringTests {
@@ -64,6 +70,31 @@ public class MorningMonitoringTests {
 
         // Check if this user has completed morning monitoring today
         Assertions.assertFalse(morningMonitoringReadService.hasCompletedMorningMonitoringToday(newUser));
+
+    }
+
+    @Test
+    public void api_returns_morning_monitoring_response() throws Exception {
+
+        User newUser = new User();
+        newUser.setUserName("Ryan");
+        newUser.setRoles("ATHLETE");
+        newUser.setEmail("ryan@ryan.com");
+        newUser.setPassword("pass");
+        userCreateService.addUser(newUser);
+
+        MorningMonitoring morningMonitoring = new MorningMonitoring();
+        morningMonitoring.setUser(newUser);
+        morningMonitoring.setDateTime(new Date());
+        morningMonitoring.setPerceivedMentalState(5);
+
+        morningMonitoringCreateService.addMorningMonitoring(morningMonitoring);
+
+        mockMvc
+                .perform(get("/api/morning-monitoring/" + newUser.getUserId()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"perceivedMentalState\":5")));
 
     }
 
