@@ -5,8 +5,10 @@ import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.*;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.FeedbackRepoJPA;
+import com.team1.welshrowing.security.UserDetailsImpl;
 import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -275,6 +277,24 @@ public class CoachController {
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Athlete not found");
         }
+    }
+
+    /**
+     * GETs the XTraining list
+     */
+    @GetMapping("/coach/x-training/{id}")
+    public String XTrainingList(@PathVariable Long id, Model model, XTraining xTraining) {
+
+        Optional<User> user = userReadService.findById(id);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(xTraining::setUser);
+        }
+
+        model.addAttribute("xtrainings", xTrainingReadService.findByUser(user.get()));
+        return "athlete/xtraining-list";
     }
 
 }
