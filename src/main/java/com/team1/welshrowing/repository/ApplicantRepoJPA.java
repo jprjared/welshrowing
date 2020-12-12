@@ -28,5 +28,7 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
    void updateStatus(String newStatus, String oldStatus, Long applicantID);
 
     Optional<Applicant> findById(Long id);
+    
+    Optional<Applicant> findByUser(User user);
 
 }

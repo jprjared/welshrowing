@@ -31,12 +31,6 @@ public class PhysicalTestingTests {
 
 //        Athlete Info
         newPhysicalTest.setNameofathlete("Jac");
-        newPhysicalTest.setDOB("23/06/2001");
-        newPhysicalTest.setGender("Male");
-        newPhysicalTest.setEmail("Jac@Test.com");
-        newPhysicalTest.setHomeaddress("7 Maes Clwyd");
-        newPhysicalTest.setUniversityaddress("120 Miskin Street");
-        newPhysicalTest.setMobilephonenumber("07572382939");
         newPhysicalTest.setHomephonenumber("01492329392");
         newPhysicalTest.setSchoolorcluboruniversity("University");
 
@@ -64,18 +58,18 @@ public class PhysicalTestingTests {
         newPhysicalTest.setObservations("Very Good Candidate");
 
 //        Core and flexibility
-        newPhysicalTest.setBasicscore(50);
+        newPhysicalTest.setBasicscore("50");
         newPhysicalTest.setNotesonscore("Good Core");
-        newPhysicalTest.setFlexibility(39);
+        newPhysicalTest.setFlexibility("39");
         newPhysicalTest.setNotesonflexibility("Not so flexible");
 
 //        Training History
         newPhysicalTest.setPrevioussports("Tennis");
-        newPhysicalTest.setNummonthstraining(10);
-        newPhysicalTest.setNumofsessionperweek(3);
-        newPhysicalTest.setNumofendurancesessions(1);
-        newPhysicalTest.setNumofstrengthsessions(2);
-        newPhysicalTest.setNumofyearstraining(1);
+        newPhysicalTest.setNummonthstraining("10");
+        newPhysicalTest.setNumofsessionperweek("3");
+        newPhysicalTest.setNumofendurancesessions("1");
+        newPhysicalTest.setNumofstrengthsessions("2");
+        newPhysicalTest.setNumofyearstraining("1");
 
 //        follow up
         newPhysicalTest.setNextStage("Past with flying Colours");
