@@ -1,0 +1,73 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>Athlete Details</h1>
+    <br>
+
+    <ul class="font-weight-bold">
+        <li>
+            <a href="#x-training">X-Training</a>
+        </li>
+    </ul>
+
+    <br>
+
+    <div class="form-group" id="details">
+
+        <label class="text-muted"><small>Name:</small></label>
+        <p th:text="${applicant.firstName + ' ' + applicant.lastName}" class="font-weight-bold"></p>
+
+        <label class="text-muted"><small>Email:</small></label>
+        <p th:if="${user != null}"><a th:href="'mailto:' + ${user.email}" th:text="${user.email}" class="font-weight-bold"></a></p>
+
+        <label class="text-muted"><small>Date of Birth:</small></label>
+        <p th:text="${applicant.dob}"></p>
+
+        <label class="text-muted"><small>Gender:</small></label>
+        <p th:text="${applicant.gender}"></p>
+
+        <label class="text-muted"><small>Height:</small></label>
+        <p th:text="${applicant.height}"></p>
+
+    </div>
+
+    <br>
+
+    <h3 id="xtraining">Latest X-Training</h3>
+
+    <div th:if="${xtraining == null}">
+        <p class="text-muted mt-3">
+            This athlete has not completed an x-training yet.
+        </p>
+    </div>
+    <div th:if="${xtraining != null}">
+
+        <br>
+
+        <label class="text-muted"><small>X-Training Date:</small></label>
+        <p th:text="${xtraining.dateOfTraining}"></p>
+
+        <label class="text-muted"><small>X-Training Type:</small></label>
+        <p th:text="${xtraining.typeOfTraining}"></p>
+
+        <label class="text-muted"><small>X-Training Total Time:</small></label>
+        <p th:text="${xtraining.totalTimeOfTraining}"></p>
+
+        <label class="text-muted"><small>X-Training Total Distance</small></label>
+        <p th:text="${xtraining.totalDistanceOfTraining}"></p>
+
+    </div>
+
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>
