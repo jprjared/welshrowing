@@ -6,6 +6,7 @@ import com.team1.welshrowing.repository.XTrainingRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class XTrainingReadService {
@@ -20,4 +21,7 @@ public class XTrainingReadService {
         return repository.findByUser(user);
     }
 
+    public Optional<XTraining> getLastXTraining(User user) {
+        return repository.findLatestXTraining(user);
+    }
 }
