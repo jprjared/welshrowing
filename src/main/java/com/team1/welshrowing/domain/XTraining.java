@@ -28,7 +28,7 @@ public class XTraining {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
-    private Date dateOfTraining;
+    private String dateOfTraining;
 
     private String typeOfTraining;
 
