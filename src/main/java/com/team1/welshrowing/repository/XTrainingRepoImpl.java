@@ -23,7 +23,7 @@ public class XTrainingRepoImpl implements XTrainingRepo {
 
     @Override
     public List<XTraining> findByUser(User user) {
-        return repository.findByUser(user);
+        return repository.findByUserOrderByDateOfTrainingDesc(user);
     }
 
     @Override

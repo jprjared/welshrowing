@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface XTrainingRepoJPA extends JpaRepository<XTraining, Long> {
-    List<XTraining> findByUser(User user);
+    List<XTraining> findByUserOrderByDateOfTrainingDesc(User user);
 
     Optional<XTraining> findTopByUserOrderByDateOfTrainingDesc (User user);
 }
