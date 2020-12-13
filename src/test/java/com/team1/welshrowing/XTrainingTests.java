@@ -94,6 +94,5 @@ public class XTrainingTests {
         xTrainingCreateService.addXTraining(newXTraining1);
 
         Assertions.assertEquals("Concept II / Watt Bike",xTrainingReadService.getLastXTraining(newUser).get().getTypeOfTraining());
-
     }
 }
