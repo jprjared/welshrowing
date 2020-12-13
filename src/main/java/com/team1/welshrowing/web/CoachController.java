@@ -14,9 +14,13 @@ import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.MissingResourceException;
@@ -46,7 +50,7 @@ public class CoachController {
 
     @Autowired
     private UserReadService userReadService;
-    
+
     @Autowired
     public ApplicantRepoJPA applicantRepo;
 
@@ -75,7 +79,8 @@ public class CoachController {
 
     /**
      * GETs an applicant by their ID
-     * @param id - the ID of the applicant
+     *
+     * @param id    - the ID of the applicant
      * @param model - the Model object
      * @return - the view-details template
      */
@@ -132,12 +137,13 @@ public class CoachController {
         userCreateService.addUser(user);
         return "coach/add-coach";
     }
-    
+
     @GetMapping("/allApplicants")
-    public String getApplicant(Model model){
+    public String getApplicant(Model model) {
 
         model.addAttribute("applicants", applicantRepo.findAll());
         return "applicant-list";
+
     }
 
     @PostMapping("coach/applicant/accept/{id}")
@@ -161,7 +167,8 @@ public class CoachController {
     }
 
     @PostMapping("/coach/applicant/reject/{id}")
-    public String RejectApplication(@PathVariable Long id,Model model) {
+    public String RejectAnApplicant(@PathVariable Long id, Model model) {
+
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
 
@@ -256,4 +263,22 @@ public class CoachController {
         }
     }
 
+
+    @PostMapping("/coach/applicant/save-comments/{id}")
+    public String SaveComment(@PathVariable Long id, String comments, Model model) {
+
+        Optional<Applicant> applicant = applicantReadService.findById(id);
+
+        if (applicant.isPresent()) {
+
+            model.addAttribute("applicant", applicant.get());
+            applicantUpdateService.updateApplicantComments(applicant.get(), comments);
+
+            return "redirect:/allApplicants";
+        } else {
+
+            throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
+        }
+
+    }
 }

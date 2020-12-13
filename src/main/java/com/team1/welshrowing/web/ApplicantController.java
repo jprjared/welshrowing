@@ -21,9 +21,9 @@ public class ApplicantController {
         return "applicant-dashboard";
     }
 
-    @PostMapping("/application/dashboard/status")
-    public String getStatus() {
-
-
-    }
+//    @PostMapping("/application/dashboard/status")
+//    public String getStatus() {
+//
+//
+//    }
 }
