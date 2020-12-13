@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class MorningMonitoringRepoImpl implements MorningMonitoringRepo {
@@ -15,7 +16,6 @@ public class MorningMonitoringRepoImpl implements MorningMonitoringRepo {
     @Autowired
     public MorningMonitoringRepoImpl(MorningMonitoringRepoJPA repository) { this.repository = repository; }
 
-
     @Override
     public void saveMorningMonitoring(MorningMonitoring morningMonitoring) {
         repository.save(morningMonitoring);
@@ -24,6 +24,11 @@ public class MorningMonitoringRepoImpl implements MorningMonitoringRepo {
     @Override
     public List<MorningMonitoring> findByUser(User user) {
         return repository.findByUser(user);
+    }
+
+    @Override
+    public Optional<MorningMonitoring> findLatestByUser(User user) {
+        return repository.findFirstByUserOrderByMorningMonitoringIdDesc(user);
     }
 
 
