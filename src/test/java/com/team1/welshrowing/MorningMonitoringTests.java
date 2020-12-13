@@ -98,4 +98,36 @@ public class MorningMonitoringTests {
 
     }
 
+    @Test
+    public void api_returns_latest_morning_monitoring_response() throws Exception {
+
+        User newUser = new User();
+        newUser.setUserName("Ryan");
+        newUser.setRoles("ATHLETE");
+        newUser.setEmail("ryan@ryan.com");
+        newUser.setPassword("pass");
+        userCreateService.addUser(newUser);
+
+        MorningMonitoring morningMonitoring = new MorningMonitoring();
+        morningMonitoring.setUser(newUser);
+        morningMonitoring.setDateTime(new Date());
+        morningMonitoring.setPerceivedMentalState(5);
+
+        morningMonitoringCreateService.addMorningMonitoring(morningMonitoring);
+
+        MorningMonitoring morningMonitoring2 = new MorningMonitoring();
+        morningMonitoring2.setUser(newUser);
+        morningMonitoring2.setDateTime(new Date());
+        morningMonitoring2.setPerceivedMentalState(10);
+
+        morningMonitoringCreateService.addMorningMonitoring(morningMonitoring2);
+
+        mockMvc
+                .perform(get("/api/morning-monitoring/latest/" + newUser.getUserId()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"perceivedMentalState\":10")));
+
+    }
+
 }

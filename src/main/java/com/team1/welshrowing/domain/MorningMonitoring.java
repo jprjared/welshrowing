@@ -59,7 +59,11 @@ public class MorningMonitoring {
 
     @PrePersist
     protected void calculateOsmoticHR() {
-        osmoticHeartRate = standingHeartRate - wakingHeartRate;
+        try {
+            osmoticHeartRate = standingHeartRate - wakingHeartRate;
+        } catch (NullPointerException e) { // heart rate values do not exist
+            osmoticHeartRate = 0;
+        }
     }
 
 }
