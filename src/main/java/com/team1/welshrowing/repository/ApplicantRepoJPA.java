@@ -27,6 +27,7 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
     @Query("UPDATE #{#entityName} SET application_situation=?1 WHERE application_situation=?2 AND applicantID=?3")
    void updateStatus(String newStatus, String oldStatus, Long applicantID);
 
+
     Optional<Applicant> findById(Long id);
     
     Optional<Applicant> findByUser(User user);
