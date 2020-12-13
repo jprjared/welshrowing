@@ -1,0 +1,69 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <link th:href="@{/css/interviewform.css}" rel="stylesheet" />
+    <script th:src="@{/js/interviewforms.js}"></script>
+
+    <h1>RPE form</h1>
+    <form action="#" method="post" th:action="@{/athlete/RPE-form}" th:object="${RPE}">
+
+        <br>
+
+<!--        Sliders adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_rangeslider-->
+            <div class="form-group">
+                <label th:for="dateofSession" >Date of Session:</label>
+                <input th:field="*{dateofTest}" type="date" class="form-control" id="timefromnow" placeholder="Enter Date of Test" required min="1920-12-11" max="2014-05-20"></input>
+            </div>
+
+            <br>
+            <div class="form-group">
+            <label th:for="typeofSession">Type of Session:</label><br>
+            <select th:field="*{typeofSession}" class="form-control">
+                <option value="Circuit">Circuit</option>
+                <option value="Erg">Erg</option>
+                <option value="External">External</option>
+                <option value="S&C">S&C</option>
+                <option value="Water">Water</option>
+                <option value="X-Training">X-Training</option>
+                <option value="Yoga">Yoga</option>
+                <option value="Off">Off</option>
+            </select>
+            </div>
+        <br>
+
+        <div class="form-group">
+            <label th:for="RPE">RPE (Rate of Perceived Exertion) </label><br>
+            <div class="Low">No Effort/Exertion</div>
+            <div class="High">Maximum Effort/Exertion</div>
+            <input th:field="*{rpe}" type="range" min="0" max="10" value="5" class="slider" required></input>
+            <p class="displayvalue"> Value: <span class="SelectedValue">5</span> </p>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label th:for="SessionDuration">Session Duration:</label>
+            <label th:for="SessionDuration"> Number of minutes training. e.g note `80` for a X-Training session of 80 minutes/1 hour 20 minutes</label>
+            <input th:field="*{sessionDuration}" type="number" class="form-control" placeholder="Session Duration" required min="1"></input>
+        </div>
+        <br>
+            <button id="Submit" class="btn btn-primary" name="Submit" type="submit">Submit</button>
+        <br>
+
+    </form>
+
+
+
+
+ </main>
+
+    <footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>

@@ -1,11 +1,7 @@
 package com.team1.welshrowing;
 
-import com.team1.welshrowing.domain.MorningMonitoring;
-import com.team1.welshrowing.domain.PersonalityInterview;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.domain.XTraining;
-import com.team1.welshrowing.repository.PersonalityInterviewRepoJPA;
-import com.team1.welshrowing.repository.XTrainingRepoJPA;
 import com.team1.welshrowing.service.UserCreateService;
 import com.team1.welshrowing.service.UserReadService;
 import com.team1.welshrowing.service.XTrainingCreateService;
