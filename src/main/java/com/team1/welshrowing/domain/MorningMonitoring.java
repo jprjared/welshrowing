@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -53,5 +54,12 @@ public class MorningMonitoring {
 
     @Size(min = 1, max = 10, message = "Sleep quality must be between 1 and 10")
     private Integer sleepQuality;
+
+    private Integer osmoticHeartRate;
+
+    @PrePersist
+    protected void calculateOsmoticHR() {
+        osmoticHeartRate = standingHeartRate - wakingHeartRate;
+    }
 
 }
