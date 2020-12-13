@@ -7,17 +7,24 @@ import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.repository.InterviewRepoJPA;
 import com.team1.welshrowing.repository.RPERepo;
 import com.team1.welshrowing.repository.RPERepoJPA;
+import com.team1.welshrowing.domain.XTraining;
 import com.team1.welshrowing.security.UserDetailsImpl;
 import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.*;
 import java.util.Optional;
+import java.util.Set;
+import java.util.logging.ErrorManager;
 
 @Controller
 public class AthleteController {
@@ -33,6 +40,10 @@ public class AthleteController {
 
     @Autowired
     RPEReadService rpeReadService;
+    XTrainingCreateService xtrainingCreateService;
+
+    @Autowired
+    XTrainingReadService xtrainingReadService;
 
     @Autowired
     UserReadService userReadService;
@@ -114,6 +125,49 @@ public class AthleteController {
 
         rpeRepo.save(rpeform);
         return "redirect:/athlete/dashboard";
+    }
+
+    /**
+     * GETs the athlete XTraining form.
+     */
+    @GetMapping("/athlete/x-training")
+    public String XTraining(Model model) {
+        model.addAttribute("XTraining", new XTraining());
+        return "athlete/xtraining-form";
+    }
+
+    /**
+     * POSTs the athlete XTraining form.
+     * @param xTraining - a XTraining object
+     * @return redirect to the dashboard
+     */
+    @PostMapping("/athlete/x-training")
+    public String ProcessXTrainingForm(XTraining xTraining) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(xTraining::setUser);
+        }
+
+        xtrainingCreateService.addXTraining(xTraining);
+        return "redirect:/athlete/dashboard";
+    }
+
+    /**
+     * GETs the XTraining list
+     */
+    @GetMapping("/athlete/x-training/list")
+    public String XTrainingList(Model model, XTraining xTraining) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(xTraining::setUser);
+        }
+
+        model.addAttribute("xtrainings", xtrainingReadService.findByUser(xTraining.getUser()));
+        return "athlete/xtraining-list";
     }
 
 }
