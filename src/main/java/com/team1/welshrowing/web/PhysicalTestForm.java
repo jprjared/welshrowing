@@ -17,44 +17,6 @@ public class PhysicalTestForm {
 
     private Long applicantId;
 
-    //    private Long userId;
-
-    //    private Long coachId;
-
-    private String Coachtesting;
-
-    private Date Dateoftest;
-
-
-
-
-//  Athlete Information
-
-    private String Nameofathlete;
-
-    private Date DOB;
-
-    private String Gender;
-
-    private Long Email;
-
-    private Long Homeaddress;
-
-    private String Homepostcode;
-
-    private String Universityaddress;
-
-    private String Universitypostcode;
-
-    private Integer Mobilephonenumber;
-
-    private Integer Homephonenumber;
-
-    //    School/Club/University
-    private Long Schoolorcluboruniversity;
-
-
-
 
     //    Parent/Guardian Details
     private String Nameofparent;
