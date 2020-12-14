@@ -146,5 +146,18 @@ Added Jac's slider CSS to main CSS file
     font-size: 110%;
 }
 
+.gauge-text {
+    display: block;
+    text-align: center;
+    font-size: 180%;
+    font-weight: 700;
+}
+
+.gauge-label {
+    font-size: 80%;
+    display: block;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
 
 
