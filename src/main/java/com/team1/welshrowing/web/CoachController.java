@@ -2,23 +2,25 @@ package com.team1.welshrowing.web;
 
 import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
-import com.team1.welshrowing.domain.Applicant;
-import com.team1.welshrowing.domain.Feedback;
-import com.team1.welshrowing.domain.Interview;
-import com.team1.welshrowing.domain.PersonalityInterview;
-import com.team1.welshrowing.domain.PhysicalTest;
-import com.team1.welshrowing.domain.User;
+import com.team1.welshrowing.domain.*;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.FeedbackRepoJPA;
+import com.team1.welshrowing.security.UserDetailsImpl;
 import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -43,7 +45,7 @@ public class CoachController {
 
     @Autowired
     private UserReadService userReadService;
-    
+
     @Autowired
     public ApplicantRepoJPA applicantRepo;
 
@@ -62,6 +64,9 @@ public class CoachController {
     @Autowired
     private PhysicalTestReadService physicalTestReadService;
 
+    @Autowired
+    private XTrainingReadService xTrainingReadService;
+
     /**
      * GETs the coach dashboard
      */
@@ -72,7 +77,8 @@ public class CoachController {
 
     /**
      * GETs an applicant by their ID
-     * @param id - the ID of the applicant
+     *
+     * @param id    - the ID of the applicant
      * @param model - the Model object
      * @return - the view-details template
      */
@@ -129,12 +135,11 @@ public class CoachController {
         userCreateService.addUser(user);
         return "coach/add-coach";
     }
-    
+
     @GetMapping("/allApplicants")
-    public String getApplicant(Model model){
+    public String getApplicant(Model model) {
 
         model.addAttribute("applicants", applicantRepo.findAll());
-        System.out.println(applicantRepo.findAll());
         return "applicantList";
     }
 
@@ -159,7 +164,8 @@ public class CoachController {
     }
 
     @PostMapping("/coach/applicant/reject/{id}")
-    public String RejectApplication(@PathVariable Long id,Model model) {
+    public String RejectAnApplicant(@PathVariable Long id, Model model) {
+
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
 
@@ -253,5 +259,65 @@ public class CoachController {
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
         }
     }
+    /**
+     * GETs an applicant by their ID
+     * @param id - the ID of the applicant
+     * @param model - the Model object
+     * @return - the view-details template
+     */
+    @GetMapping(path = "/coach/athlete/{id}")
+    public String getAthleteDetails(@PathVariable Long id, Model model) {
 
+        Optional<Applicant> applicant = applicantReadService.findById(id);
+
+        if (applicant.isPresent()) {
+            model.addAttribute("applicant", applicant.get());
+            model.addAttribute("user", applicant.get().getUser());
+
+            // Find interview and physical testing forms
+            Optional<XTraining> xtraining = xTrainingReadService.getLastXTraining(applicant.get().getUser());
+            xtraining.ifPresent(value -> model.addAttribute("xtraining", value));
+
+            return "coach/view-details-athlete";
+        } else {
+            throw new ResponseStatusException(NOT_FOUND, "Athlete not found");
+        }
+    }
+
+    /**
+     * GETs the XTraining list
+     */
+    @GetMapping("/coach/x-training/{id}")
+    public String XTrainingList(@PathVariable Long id, Model model, XTraining xTraining) {
+
+        Optional<User> user = userReadService.findById(id);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(xTraining::setUser);
+        }
+
+        model.addAttribute("xtrainings", xTrainingReadService.findByUser(user.get()));
+        return "athlete/xtraining-list";
+    }
+
+
+    @PostMapping("/coach/applicant/save-comments/{id}")
+    public String SaveComment(@PathVariable Long id, String comments, Model model) {
+
+        Optional<Applicant> applicant = applicantReadService.findById(id);
+
+        if (applicant.isPresent()) {
+
+            model.addAttribute("applicant", applicant.get());
+            applicantUpdateService.updateApplicantComments(applicant.get(), comments);
+
+            return "redirect:/allApplicants";
+        } else {
+
+            throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
+        }
+
+    }
 }
