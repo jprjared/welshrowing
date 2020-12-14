@@ -20,6 +20,7 @@
             <div class="form-group">
                 <label th:for="dateofSession" >Date of Session:</label>
                 <input th:field="*{dateofTest}" type="date" class="form-control" id="timefromnow" placeholder="Enter Date of Test" required min="1920-12-11" max="2014-05-20"></input>
+                <span th:errors="*{dateofTest}" class="error"></span>
             </div>
 
             <br>
@@ -43,6 +44,7 @@
             <div class="Low">No Effort/Exertion</div>
             <div class="High">Maximum Effort/Exertion</div>
             <input th:field="*{rpe}" type="range" min="0" max="10" value="5" class="slider" required></input>
+            <span th:errors="*{rpe}" class="error"></span>
             <p class="displayvalue"> Value: <span class="SelectedValue">5</span> </p>
         </div>
         <br>
@@ -51,6 +53,7 @@
             <label th:for="SessionDuration">Session Duration:</label>
             <label th:for="SessionDuration"> Number of minutes training. e.g note `80` for a X-Training session of 80 minutes/1 hour 20 minutes</label>
             <input th:field="*{sessionDuration}" type="number" class="form-control" placeholder="Session Duration" required min="1"></input>
+            <span th:errors="*{sessionDuration}" class="error"></span>
         </div>
         <br>
             <button id="Submit" class="btn btn-primary" name="Submit" type="submit">Submit</button>

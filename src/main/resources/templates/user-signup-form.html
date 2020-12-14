@@ -15,20 +15,20 @@
 
     <div class="form-group">
         <label th:for="userName">Username:</label>
-        <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter Username" required></input>
+        <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter Username" required/>
         <span th:errors="*{userName}"></span>
     </div>
 
     <div class="form-group">
         <label th:for="email">Email:</label>
         <!--            pattern taken from https://www.w3schools.com/tags/att_input_pattern.asp-->
-        <input th:field="*{email}" type="email" class="form-control" placeholder="Enter Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></input>
+        <input th:field="*{email}" type="email" class="form-control" placeholder="Enter Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
         <span th:errors="*{email}"></span>
     </div>
 
     <div class="form-group">
         <label th:for="password">Password:</label>
-        <input th:field="*{password}" type="password" class="form-control" placeholder="Enter Password" required></input>
+        <input th:field="*{password}" type="password" class="form-control" placeholder="Enter Password" required/>
         <span th:errors="*{password}"></span>
     </div>
 
