@@ -23,6 +23,7 @@ public class ApplicantReadService {
         return repository.ApplicantFindByStatus(aStatus);
     }
 
+
     public Optional<Applicant> findById(Long id) { return repository.findById(id); }
 
     public Optional<Applicant> findByUser(User user) { return repository.findByUser(user); }

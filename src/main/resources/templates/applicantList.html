@@ -20,22 +20,31 @@
             <th>DOB</th>
             <th>Height</th>
             <th>Comments</th>
-<!--            <th>Application Date</th>-->
             <th>Result</th>
             <th>Actions</th>
 
         </tr>
         </thead>
         <tbody>
+
           <tr th:each="applicant : ${applicants}">
-              <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a></td>
+              <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a> </td>
               <td th:text="${applicant.firstName}">First Name</td>
               <td th:text="${applicant.lastName}">Last Name</td>
-              <td th:text="${applicant.dob}">DOB</td>
-              <td th:text="${applicant.height}">Height</td>
-              <td></td>
-              <td th:text="${applicant.application_situation}">Result</td>
+              <td th:text="${applicant.dob} " >DOB</td>
+              <td th:text="${applicant.height}" >Height</td>
               <td>
+                  <!--        /*@thymesVar id="applicant" type="com.team1.welshrowing.domain.Applicant"*/-->
+
+                      <form th:action="@{/coach/applicant/save-comments/{id}(id=${applicant.applicantId})}" method="post" th:object="${applicant}">
+                          <input type="text" th:value="*{comments}" id="comments" name="comments"/>
+                      <button class="btn btn-primary mt-1">Save</button>
+                  </form>
+              </td>
+              <td th:text="${applicant.application_situation}">Result</td>
+
+              <td>
+
                   <form action="#" method="post" th:action="@{/coach/applicant/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-success">Accept</button>
                   </form>
@@ -44,6 +53,8 @@
                   </form>
               </td>
           </tr>
+        </form>
+
         </tbody>
     </table>
 </main>
