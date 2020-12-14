@@ -21,11 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import javax.validation.*;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.util.Optional;
@@ -151,31 +147,26 @@ public class XTrainingTests {
 
     }
 
-//    @Test
-//    public void testEmail(){
-//        User newUser = new User();
-//        newUser.setUserId(1L);
-//        newUser.setUserName("Ryan");
-//        newUser.setRoles("ATHLETE");
-//        newUser.setEmail("ryan@ryan.com");
-//        newUser.setPassword("pass");
-//        userCreateService.addUser(newUser);
-//
-//        XTraining xtraining = new XTraining();
-//        xtraining.setUser(newUser);
-//        xtraining.setDateOfTraining(null);
-//        xtraining.setTypeOfTraining("Swimming");
-//        xtraining.setTotalDistanceOfTraining(1500);
-//        xtraining.setXTrainingId(2L);
-//        xtraining.setTotalTimeOfTraining(1600);
-//        xTrainingCreateService.addXTraining(xtraining);
-//
-//        Set<ConstraintViolation<XTraining>> violations = validator.validate(xtraining);
-//
-//        assertEquals(violations.size(),1);
-//
-//        ConstraintViolation<XTraining> violation = violations.iterator().next();
-//        assertEquals("This field should not be null", violation.getMessage());
-//
-//    }
+   @Test
+    public void getsConstraintViolationExceptionAsDateOfTrainingIsNull(){
+        User newUser = new User();
+        newUser.setUserId(1L);
+        newUser.setUserName("Ryan");
+        newUser.setRoles("ATHLETE");
+        newUser.setEmail("ryan@ryan.com");
+        newUser.setPassword("pass");
+        userCreateService.addUser(newUser);
+
+       Assertions.assertThrows(ConstraintViolationException.class, () -> {
+           XTraining xtraining = new XTraining();
+           xtraining.setUser(newUser);
+           xtraining.setDateOfTraining(null);
+           xtraining.setTypeOfTraining("Swimming");
+           xtraining.setTotalDistanceOfTraining(1500);
+           xtraining.setXTrainingId(2L);
+           xtraining.setTotalTimeOfTraining(1600);
+           xTrainingCreateService.addXTraining(xtraining);
+       });
+
+    }
 }
