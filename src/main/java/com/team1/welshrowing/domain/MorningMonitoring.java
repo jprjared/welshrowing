@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
@@ -62,5 +63,16 @@ public class MorningMonitoring {
     @Min(0)
     @Max(10)
     private Integer sleepQuality;
+
+    private Integer osmoticHeartRate;
+
+    @PrePersist
+    protected void calculateOsmoticHR() {
+        try {
+            osmoticHeartRate = standingHeartRate - wakingHeartRate;
+        } catch (NullPointerException e) { // heart rate values do not exist
+            osmoticHeartRate = 0;
+        }
+    }
 
 }

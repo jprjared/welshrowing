@@ -4,12 +4,12 @@ INSERT INTO USER VALUES(3, 'coach@test.com', TRUE, '$2a$10$SrjqKixCIbBg1Yyo2Sc1I
 INSERT INTO APPLICANT VALUES(1, 'Cardiff', 'Pending', 'Emily', 'Cardiff University', 'Not trying enough', '15/04/1996', 'Ryan', 'MALE', 156, FALSE, 'Davies', 'parent@example.com', '242424', '07111111111', 'CF24 3FG', 'Friends', 1);
 INSERT INTO APPLICANT VALUES(2, 'Cardiff', 'Accepted', 'Emily', 'Cardiff University', 'Very Positive', '15/04/1996', 'John', 'MALE', 150, FALSE, 'Smith', 'parent@example.com', '242424', '07111111111', 'CF24 3DF', 'Friends', 2);
 INSERT INTO FEEDBACK VALUES(1, 1, 'MESSAFEEAD','file.txt');
-INSERT INTO morning_monitoring VALUES(1, '2020-12-11 12:00:00', 5, 6, 10, 9, 50, 70, 2);
-INSERT INTO morning_monitoring VALUES(2, '2020-12-10 12:00:00', 7, 7, 10, 9, 58, 66, 2);
-INSERT INTO morning_monitoring VALUES(3, '2020-12-9 12:00:00', 8, 7, 9, 9, 68, 59, 2);
-INSERT INTO morning_monitoring VALUES(4, '2020-12-8 12:00:00', 9, 8, 9, 9, 80, 75, 2);
-INSERT INTO morning_monitoring VALUES(5, '2020-12-7 12:00:00', 7, 8, 8, 9, 72, 68, 2);
-INSERT INTO morning_monitoring VALUES(6, '2020-12-6 12:00:00', 10, 4, 9, 9, 83, 67, 2);
+INSERT INTO morning_monitoring VALUES(1, '2020-12-11 12:00:00', 10, 5, 6, 10, 9, 70, 60, 2);
+INSERT INTO morning_monitoring VALUES(2, '2020-12-10 12:00:00', 20, 7, 7, 10, 9, 30, 50, 2);
+INSERT INTO morning_monitoring VALUES(3, '2020-12-9 12:00:00', 15, 8, 7, 9, 9, 35, 50, 2);
+INSERT INTO morning_monitoring VALUES(4, '2020-12-8 12:00:00', 6, 9, 8, 9, 9, 37, 43, 2);
+INSERT INTO morning_monitoring VALUES(5, '2020-12-7 12:00:00', 9, 7, 8, 8, 9, 40, 49, 2);
+INSERT INTO morning_monitoring VALUES(6, '2020-12-6 12:00:00', 7, 10, 4, 9, 9, 41, 48, 2);
 INSERT INTO xtraining VALUES(1, '2020-12-6', '2020-12-6 12:00:00', 10, 100, 'Outdoor Run', 3);
 INSERT INTO xtraining VALUES(2, '2020-12-10', '2020-12-10 12:00:00', 20, 200, 'Road Cycle', 3);
 INSERT INTO xtraining VALUES(3, '2020-12-11', '2020-12-11 12:00:00', 30, 300, 'Concept II / Watt Bike', 3);

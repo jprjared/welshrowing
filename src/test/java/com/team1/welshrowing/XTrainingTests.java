@@ -151,31 +151,31 @@ public class XTrainingTests {
 
     }
 
-    @Test
-    public void testEmail(){
-        User newUser = new User();
-        newUser.setUserId(1L);
-        newUser.setUserName("Ryan");
-        newUser.setRoles("ATHLETE");
-        newUser.setEmail("ryan@ryan.com");
-        newUser.setPassword("pass");
-        userCreateService.addUser(newUser);
-
-        XTraining xtraining = new XTraining();
-        xtraining.setUser(newUser);
-        xtraining.setDateOfTraining(null);
-        xtraining.setTypeOfTraining("Swimming");
-        xtraining.setTotalDistanceOfTraining(1500);
-        xtraining.setXTrainingId(2L);
-        xtraining.setTotalTimeOfTraining(1600);
-        xTrainingCreateService.addXTraining(xtraining);
-
-        Set<ConstraintViolation<XTraining>> violations = validator.validate(xtraining);
-
-        assertEquals(violations.size(),1);
-
-        ConstraintViolation<XTraining> violation = violations.iterator().next();
-        assertEquals("This field should not be null", violation.getMessage());
-
-    }
+//    @Test
+//    public void testEmail(){
+//        User newUser = new User();
+//        newUser.setUserId(1L);
+//        newUser.setUserName("Ryan");
+//        newUser.setRoles("ATHLETE");
+//        newUser.setEmail("ryan@ryan.com");
+//        newUser.setPassword("pass");
+//        userCreateService.addUser(newUser);
+//
+//        XTraining xtraining = new XTraining();
+//        xtraining.setUser(newUser);
+//        xtraining.setDateOfTraining(null);
+//        xtraining.setTypeOfTraining("Swimming");
+//        xtraining.setTotalDistanceOfTraining(1500);
+//        xtraining.setXTrainingId(2L);
+//        xtraining.setTotalTimeOfTraining(1600);
+//        xTrainingCreateService.addXTraining(xtraining);
+//
+//        Set<ConstraintViolation<XTraining>> violations = validator.validate(xtraining);
+//
+//        assertEquals(violations.size(),1);
+//
+//        ConstraintViolation<XTraining> violation = violations.iterator().next();
+//        assertEquals("This field should not be null", violation.getMessage());
+//
+//    }
 }
