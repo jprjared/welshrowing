@@ -4,27 +4,24 @@ import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.MorningMonitoring;
 import com.team1.welshrowing.domain.RPE;
 import com.team1.welshrowing.domain.User;
-import com.team1.welshrowing.repository.InterviewRepoJPA;
-import com.team1.welshrowing.repository.RPERepo;
-import com.team1.welshrowing.repository.RPERepoJPA;
 import com.team1.welshrowing.domain.XTraining;
+import com.team1.welshrowing.repository.RPERepoJPA;
 import com.team1.welshrowing.security.UserDetailsImpl;
-import com.team1.welshrowing.service.*;
+import com.team1.welshrowing.service.ApplicantReadService;
+import com.team1.welshrowing.service.MorningMonitoringCreateService;
+import com.team1.welshrowing.service.MorningMonitoringReadService;
+import com.team1.welshrowing.service.RPEReadService;
+import com.team1.welshrowing.service.UserReadService;
+import com.team1.welshrowing.service.XTrainingCreateService;
+import com.team1.welshrowing.service.XTrainingReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.*;
 import java.util.Optional;
-import java.util.Set;
-import java.util.logging.ErrorManager;
 
 @Controller
 public class AthleteController {
@@ -40,6 +37,8 @@ public class AthleteController {
 
     @Autowired
     RPEReadService rpeReadService;
+
+    @Autowired
     XTrainingCreateService xtrainingCreateService;
 
     @Autowired
@@ -149,7 +148,6 @@ public class AthleteController {
             Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
             theUser.ifPresent(xTraining::setUser);
         }
-
         xtrainingCreateService.addXTraining(xTraining);
         return "redirect:/athlete/dashboard";
     }

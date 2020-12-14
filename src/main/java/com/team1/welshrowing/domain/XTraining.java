@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -28,7 +29,9 @@ public class XTraining {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
-    private String dateOfTraining;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    private Date dateOfTraining;
 
     private String typeOfTraining;
 
