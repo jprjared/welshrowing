@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
@@ -31,23 +28,20 @@ public class User {
     /**
      * The user name of the user.
      */
-    @NotNull(message = "Username cannot be empty")
+    @NotBlank(message = "Username cannot be empty")
     private String userName;
 
     /**
      * The email of the user.
      */
-    @NotNull(message = "Email cannot be empty")
-    @Email
-    @Pattern(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$", message = "Please enter a valid email")
-    //Adopted pattern from https://www.w3schools.com/tags/att_input_pattern.asp [Accessed: 9 December 2020]
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Please enter a valid email")
     private String email;
 
     /**
      * The password of the user.
      */
-    @NotNull(message = "Password cannot be empty")
-//    @Pattern(regexp = "[a-zA-Z\\d]{8,}", message="Must be at least 8 alphanumeric characters")
+    @NotBlank(message = "Password cannot be empty")
     private String password;
 
     /**

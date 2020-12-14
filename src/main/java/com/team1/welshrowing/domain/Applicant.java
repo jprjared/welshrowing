@@ -33,15 +33,13 @@ public class Applicant {
     /**
      * The first name of the applicant.
      */
-    @NotNull(message = "First name cannot be null")
-    @Pattern(regexp = "[A-Za-z]", message = "It must not contain any numbers or special characters")
+    @NotBlank(message = "Last name cannot be null")
     private String firstName;
 
     /**
      * The last name of the applicant.
      */
-    @NotNull(message = "Last name cannot be null")
-    @Pattern(regexp = "[A-Za-z]", message = "It must not contain any numbers or special characters")
+    @NotBlank(message = "Last name cannot be null")
     private String lastName;
 
     /**

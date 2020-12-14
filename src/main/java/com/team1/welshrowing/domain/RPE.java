@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
 
 @Data
@@ -28,11 +30,15 @@ public class RPE {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
+    @NotNull(message = "This field cannot be null")
     private String dateofTest;
 
+    @NotNull(message = "This field cannot be null")
     private String typeofSession;
 
+    @NotNull(message = "This field cannot be null")
     private Integer rpe;
 
+    @NotNull(message = "This field cannot be null")
     private Integer sessionDuration;
 }

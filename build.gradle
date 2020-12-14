@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.session:spring-session-core'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     runtime 'com.h2database:h2'
     runtime 'org.mariadb.jdbc:mariadb-java-client:2.7.0'
     compileOnly 'org.projectlombok:lombok'
