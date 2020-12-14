@@ -16,9 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Data
@@ -48,15 +46,21 @@ public class MorningMonitoring {
     private Integer standingHeartRate;
 
     @NotNull(message = "This field cannot be null")
+    @Min(0)
+    @Max(10)
     private Integer perceivedShape;
 
     @NotNull(message = "This field cannot be null")
+    @Min(0)
+    @Max(10)
     private Integer perceivedMentalState;
 
     @NotNull(message = "This field cannot be null")
     private Double sleepQuantity;
 
     @NotNull(message = "This field cannot be null")
+    @Min(0)
+    @Max(10)
     private Integer sleepQuality;
 
 }
