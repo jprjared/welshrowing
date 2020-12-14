@@ -15,35 +15,33 @@
 
         <thead>
         <tr>
-            <td>ID</td>
+            <td></td>
             <td>First Name</td>
             <td>Last Name</td>
-            <td>Phone Number</td>
-            <td>Address</td>
             <td>Postcode</td>
-            <td>College/University</td>
             <td>Date of Birth</td>
             <td>Height</td>
             <td>Gender</td>
-            <td>Previously Tested</td>
+            <td>X-Training</td>
             <td>Actions</td>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="applicant : ${applicants}">
-            <td><a th:href="@{/coach/applicant/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a></td>
+            <td><a th:href="@{/coach/athlete/{id}(id=${applicant.applicantId})}" class="fa fa-user-circle" style='font-size:24px'></a></td>
             <td th:text="${applicant.firstName}"></td>
             <td th:text="${applicant.lastName}"></td>
-            <td th:text="${applicant.phoneNumber}"></td>
-            <td th:text="${applicant.address}"></td>
             <td th:text="${applicant.postcode}"></td>
-            <td th:text="${applicant.collegeOrUniversityName}"></td>
             <td th:text="${applicant.dob}"></td>
             <td th:text="${applicant.height}"></td>
             <td th:text="${applicant.gender}"></td>
-            <td th:text="${applicant.isPreviouslyTested}"></td>
-            <td><a th:href="@{/coach/applicant/feedback/{id}(id=${applicant.applicantId})}" class="far fa-envelope" style='font-size:24px'></a>
+            <td>
+                <a th:href="@{/coach/x-training/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">X-Training</a>
+            </td>
+            <td>
+                <a th:href="@{/coach/applicant/feedback/{id}(id=${applicant.applicantId})}" class="far fa-envelope" style='font-size:24px'></a>
+            </td>
         </tbody>
     </table>
 </main>

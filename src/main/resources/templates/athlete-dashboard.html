@@ -8,29 +8,44 @@
 
 <main class="container">
 
-    <div class="alert alert-success" role="alert" th:if="${hasCompletedMorningMonitoring == true}">
-        Thanks for completing your daily morning monitoring form, <span th:text="${applicant.firstName}"></span>!
-    </div>
     <div class="alert alert-info" role="alert" th:unless="${hasCompletedMorningMonitoring == true}">
         Hi <span th:text="${applicant.firstName}">there</span>! You haven't completed your daily morning monitoring form yet.
         <strong>
             <a href="/athlete/morning-monitoring">Do it now!</a>
         </strong>
+        <br>
     </div>
-    <br>
 
     <h1>Dashboard</h1>
     <br>
 
     <ul class="font-weight-bold">
+        <li><a href="/athlete/morning-monitoring">Complete Morning Monitoring</a></li>
+
+        <li><a href="/athlete/RPE-form">Complete RPE Form</a></li>
         <li>
-            <a href="/athlete/morning-monitoring">Complete Morning Monitoring</a>
+            <a href="/athlete/x-training">Complete X-Training</a>
+        </li>
+        <li>
+            <a href="/athlete/x-training/list">View your X-Training</a>
         </li>
     </ul>
 
+    <br>
+    <h4>Morning Monitoring</h4>
+    <br>
+
+    <canvas id="chart" width="100%" height="80"></canvas>
+
 </main>
 
-<footer th:replace="fragments/footer :: footer" ></footer>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const user = /*[[${applicant.getUser().userId}]]*/ '0';
+    /*]]>*/
+</script>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 
 </body>
 </html>

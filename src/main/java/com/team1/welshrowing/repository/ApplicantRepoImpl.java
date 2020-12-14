@@ -69,11 +69,16 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String emailTo = applicant.getUser().getEmail();
         String status = applicant.getApplication_situation();
         String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase() + "."
-                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
-        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase() + "."
-                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team" + "\n" + "\n" + "-------------------------------------------------------------------------------------------------" + "\n"
+                        + "Llongyfarchiadau " + firstName + ", " + "\n" + "\n" + "Mae Tîm Rhwyfo Cymru yn gyffrous i ddatgan bod eich cais wedi bod yn llwyddianus " + status.toLowerCase() + "."
+                        + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
 
-        String mailSubject = " Welsh Rowing - Application Status";
+        String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase() + "."
+                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team" + "\n" + "-------------------------------------------------------------------------------------------------" + "\n"
+                        + "Helo " + firstName + ", " + "\n" + "\n" + "Mae`n ddrwg iawn gennym ni i ddatgan wrthoch fod eich cais yn aflwyddianus " + status.toLowerCase() + "."
+                        + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
+
+        String mailSubject = " Welsh Rowing - Application Status / Rhwyfo Cymru - Sefyllfa eich Cais";
 
         //Create an email message
         SimpleMailMessage message = new SimpleMailMessage();
@@ -100,12 +105,18 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String status = applicant.getApplication_situation();
 
         String passed = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that you have " + status.toLowerCase() + " the tests."
-                        + "\n" + "We look forward to following up with you about the 8 Week Programme" + "\n" + "and we will contact you very soon." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+                        + "\n" + "We look forward to following up with you about the 8 Week Programme" + "\n" + "and we will contact you very soon." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team"
+                        + "\n" + "----------------------------------------------------------------------------------------------" + "\n"
+                        + "Llongyfarchiadau " + firstName + ", " + "\n" + "\n" + "Mae Tîm Rhwyfo Cymru yn gyffrous i ddatgan eich bod wedi " + status.toLowerCase() + " Y profion."
+                        + "\n" + "Rydym ni`n edrych ymlaen i ddilyn fyny hefo chi amdan y rhaglen 8 wythnos ni" + "\n" + "Mi fyddyn ni`n cysylltu hefo chi yn fuan iawn." + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
 
-        String failed = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that you have " + status.toLowerCase() + " the tests."
-                        + "\n" + "Thank you for taking part. We wish you all the best." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+          String failed = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that you have " + status.toLowerCase() + " the tests."
+                        + "\n" + "Thank you for taking part. We wish you all the best." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team"
+                        + "\n" + "----------------------------------------------------------------------------------------------" + "\n"
+                        +  "Helo " + firstName + ", " + "\n" + "\n" + "Mae`n ddrwg iawn gennym ni i ddatgan wrthoch fod chi wedi " + status.toLowerCase() + " Y profion."
+                        + "\n" + "Diolch yn fawr iawn am cymryd rhan. Mi rydym ni`n dymuno`r gorau i chi." + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
 
-        String mailSubject = " Welsh Rowing - Test Results";
+        String mailSubject = " Welsh Rowing - Test Results / Tîm Rhwyfo Cymru - Canlyniadau eich prawf";
 
         //Create an email message
         SimpleMailMessage message = new SimpleMailMessage();

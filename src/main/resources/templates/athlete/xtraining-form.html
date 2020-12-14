@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="container">
+
+    <h1>X-Training</h1>
+    <br>
+    <form action="#" method="post" th:action="@{/athlete/x-training}" th:object="${XTraining}">
+
+        <div class="form-group">
+            <label th:for="dateOfTraining">Training Date:</label>
+            <input th:field="*{dateOfTraining}" type="date" class="form-control" placeholder="Date of training"></input>
+        </div>
+
+        <div class="form-group">
+            <label th:for="typeOfTraining">Training Type:</label>
+            <select th:field="*{typeOfTraining}" type="text" class="form-control" size="6" multiple>
+                <option value="Outdoor Run">Outdoor Run</option>
+                <option value="Road Cycle">Road Cycle</option>
+                <option value="Concept II / Watt Bike">Concept II/Watt Bike</option>
+                <option value="Walk">Walk</option>
+                <option value="Treadmill">Treadmill</option>
+                <option value="Swimming">Swimming</option>
+            </select>
+            <span th:errors="*{typeOfTraining}" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:for="totalTimeOfTraining">Total time of training:
+                <br>
+                <small class="text-muted">Time to be logged in whole numbers as minutes. e.g 1 hour 20 minutes to be logged as 80.</small>
+            </label>
+            <input th:field="*{totalTimeOfTraining}" type="text" class="form-control" placeholder="Total time of training" required min="0"></input>
+            <span th:errors="*{totalTimeOfTraining}" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:for="totalDistanceOfTraining">Total distance of training:
+                <br>
+                <small class="text-muted">Distance to be logged in whole numbers as metres. e.g 1.3 kilometres to be logged as 1300 kilometres .</small>
+            </label>
+            <input th:field="*{totalDistanceOfTraining}" type="text" class="form-control" placeholder="Total distance of training" required min="0"></input>
+            <span th:errors="*{totalDistanceOfTraining}" class="error"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+</main>
+</body>
+<footer th:replace="fragments/footer :: footer" ></footer>
+</html>
