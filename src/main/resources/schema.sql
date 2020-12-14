@@ -74,11 +74,11 @@ CREATE TABLE IF NOT EXISTS `morning_monitoring` (
                                       `sleep_quantity` double DEFAULT NULL,
                                       `standing_heart_rate` int(11) DEFAULT NULL,
                                       `waking_heart_rate` int(11) DEFAULT NULL,
+                                      `osmotic_heart_rate` int(11) DEFAULT NULL,
                                       `user_id` bigint(20) DEFAULT NULL,
                                       PRIMARY KEY (`morning_monitoring_id`),
                                       CONSTRAINT `FKjv0wycdewcilctlyxm1q9vnai` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 );
-
 
 CREATE TABLE IF NOT EXISTS `personality_interview` (
                                          `interview_id` int(11) NOT NULL,
