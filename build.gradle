@@ -40,6 +40,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.assertj/assertj-core
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.18.1'
 
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.13.1'
+
     // https://mvnrepository.com/artifact/io.github.cemiltokatli.passwordgenerator/password-generator
     compile group: 'io.github.cemiltokatli.passwordgenerator', name: 'password-generator', version: '1.0'
 
