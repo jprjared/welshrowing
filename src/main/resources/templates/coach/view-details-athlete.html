@@ -13,6 +13,12 @@
 
     <ul class="font-weight-bold">
         <li>
+            <a href="#morning-monitoring">Latest Morning Monitoring</a>
+        </li>
+        <li>
+            <a th:href="@{/coach/morning-monitoring/{id}(id=${applicant.getUser().userId})}">All Morning Monitoring</a>
+        </li>
+        <li>
             <a href="#xtraining">Latest X-Training</a>
         </li>
     </ul>
@@ -30,12 +36,35 @@
         <label class="text-muted"><small>Date of Birth:</small></label>
         <p th:text="${applicant.dob}"></p>
 
-        <label class="text-muted"><small>Gender:</small></label>
-        <p th:text="${applicant.gender}"></p>
+        <p>
+            <a th:href="@{/coach/applicant/{id}(id=${applicant.getUser().userId})}" class="font-weight-bold">View all details...</a>
+        </p>
 
-        <label class="text-muted"><small>Height:</small></label>
-        <p th:text="${applicant.height}"></p>
+    </div>
 
+    <br>
+
+    <h3 id="morning-monitoring">Morning Monitoring</h3>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm text-center">
+            <span id="ohr-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Osmotic Heart Rate</span>
+            <canvas id="ohr-gauge" width="200"></canvas>
+        </div>
+
+        <div class="col-sm text-center">
+            <span id="whr-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Waking Heart Rate</span>
+            <canvas id="whr-gauge" width="200"></canvas>
+        </div>
+        <div class="col-sm text-center">
+            <span id="shape-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Shape</span>
+            <canvas id="shape-gauge" width="200"></canvas>
+        </div>
     </div>
 
     <br>
@@ -66,6 +95,12 @@
     </div>
 
 </main>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const user = /*[[${applicant.getUser().userId}]]*/ '0';
+    /*]]>*/
+</script>
 
 <footer th:replace="fragments/footer :: footer" ></footer>
 
