@@ -122,7 +122,7 @@ h1 {
     transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.slideshow-container .active, .dot:hover {
     background-color: #717171;
 }
 
@@ -135,10 +135,6 @@ h1 {
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-    background-color: #717171;
 }
 
 .line {
