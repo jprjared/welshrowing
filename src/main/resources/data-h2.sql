@@ -14,3 +14,4 @@ INSERT INTO xtraining VALUES(1, '2020-12-6', '2020-12-6 12:00:00', 10, 100, 'Out
 INSERT INTO xtraining VALUES(2, '2020-12-10', '2020-12-10 12:00:00', 20, 200, 'Road Cycle', 3);
 INSERT INTO xtraining VALUES(3, '2020-12-11', '2020-12-11 12:00:00', 30, 300, 'Concept II / Watt Bike', 3);
 INSERT INTO xtraining VALUES(4, '2020-12-12', '2020-12-12 12:00:00', 40, 400, 'Swimming', 3);
+INSERT INTO rpe VALUES (4 , '2020-12-14 19:32:40.957000','2020-12-03',5,100,'Water',2 )
