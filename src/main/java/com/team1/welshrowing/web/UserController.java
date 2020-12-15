@@ -128,7 +128,7 @@ public class UserController {
         }
 
         applicantCreateService.addApplicant(applicant);
-        return "redirect:/applicant/dashboard";
+        return "redirect:/athlete/dashboard";
     }
 
     /**

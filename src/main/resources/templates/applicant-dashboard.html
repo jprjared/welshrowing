@@ -6,16 +6,33 @@
 
 <header th:replace="fragments/header :: header"></header>
 
-<main class = "container">
-    <h1>Welcome applicant</h1>
+    <main class="container">
+        <h1>Dashboard</h1>
 
-    <tbody>
+        <div class="alert alert-info" role="alert" >
+            Hi <span th:text="${applicant.firstName}"></span>!
+        </div>
 
-    <tr> </tr>
+        <p>The current status of your application is: </p>
+        <div th:action="@{/applicant/dashboard}" th:object="${status}" method="get">
+            <p th:text="${status}"> </p>
+<!--            <script>-->
+<!--                function displayStatus() {-->
+<!--                    var text;-->
+<!--                    // var status = document.getElementById("myInput")-->
+<!--                    if (status === "Pending") {-->
+<!--                        text = "blah"-->
 
-    </tbody>
+<!--                    } else if (status === "Accepted") {-->
 
-    <p>Application status: </p>
+<!--                    } else if (status === "Rejected") {-->
+
+<!--                    } else {print("uh oh")}-->
+<!--                }-->
+
+<!--            </script>-->
+            </div>
+
 
 </main>
 

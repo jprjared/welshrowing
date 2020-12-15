@@ -33,6 +33,10 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
     void save(Applicant applicant, String comments);
 
 
+
+//    @Query(value= "SELECT ")
+
+
     Optional<Applicant> findById(Long id);
     
     Optional<Applicant> findByUser(User user);

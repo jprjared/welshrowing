@@ -55,6 +55,11 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         repository.updateStatus(newStatus, oldStatus, applicantID);
     }
 
+//    @Override
+//    public void getStatus(String currentStatus) {
+//        repository.save1(currentStatus);
+//    }
+
 
     @Override
     public List<Applicant> ApplicantFindByStatus(String aStatus) {
