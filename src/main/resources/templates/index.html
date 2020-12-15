@@ -6,8 +6,15 @@
     <header th:replace="fragments/header :: header"></header>
 
     <main class="container">
-        <h1>Page Title</h1>
-        <p>Homepage content goes here...</p>
+        <h1>Welsh Rowing</h1>
+        <br>
+        <p>Welsh Rowing is the National Governing Body for rowing <em>(on rivers, the sea and indoors)</em> in Wales.</p>
+        <p>Welsh Rowing works with Sport Wales to raise the awareness of, and participation, in rowing within Wales, as well as aiming to develop athletes for GB squads. We run a GB Start centre out of our base in Cardiff.</p>
+
+        <br>
+        <h4>Getting Started</h4>
+        <br>
+        <p><a th:href="@{/register}" class="font-weight-bold">Apply now</a> to get started with the application process.</p>
     </main>
 
     <footer th:replace="fragments/footer :: footer"></footer>
