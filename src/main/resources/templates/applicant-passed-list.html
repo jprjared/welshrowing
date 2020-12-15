@@ -20,10 +20,8 @@
             <td>Last Name</td>
             <td>Postcode</td>
             <td>Date of Birth</td>
-            <td>Height</td>
-            <td>Gender</td>
-            <td>X-Training</td>
             <td>Actions</td>
+            <td></td>
         </tr>
         </thead>
 
@@ -34,12 +32,8 @@
             <td th:text="${applicant.lastName}"></td>
             <td th:text="${applicant.postcode}"></td>
             <td th:text="${applicant.dob}"></td>
-            <td th:text="${applicant.height}"></td>
-            <td th:text="${applicant.gender}"></td>
             <td>
                 <a th:href="@{/coach/x-training/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">X-Training</a>
-            </td>
-            <td>
                 <a th:href="@{/coach/morning-monitoring/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">Morning Monitoring</a>
             </td>
             <td>
