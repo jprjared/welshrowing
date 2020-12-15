@@ -37,5 +37,9 @@ public class RPEReadService {
         return repository.findLastRPEsession(user);
     }
 
+    public Optional<RPE> findLatestRPEByUser(User user) {
+        return repository.findLastRPEsession(user);
+    }
+
 
 }
