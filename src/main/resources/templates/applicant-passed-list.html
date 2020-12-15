@@ -23,6 +23,7 @@
             <td>Height</td>
             <td>Gender</td>
             <td>X-Training</td>
+            <td>RPE</td>
             <td>Actions</td>
         </tr>
         </thead>
@@ -38,6 +39,9 @@
             <td th:text="${applicant.gender}"></td>
             <td>
                 <a th:href="@{/coach/x-training/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">X-Training</a>
+            </td>
+            <td>
+                <a th:href="@{/coach/RPE-form/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">RPE</a>
             </td>
             <td>
                 <a th:href="@{/coach/applicant/feedback/{id}(id=${applicant.applicantId})}" class="far fa-envelope" style='font-size:24px'></a>

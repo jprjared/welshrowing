@@ -9,6 +9,7 @@ import com.team1.welshrowing.security.UserDetailsImpl;
 import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -66,6 +67,9 @@ public class CoachController {
 
     @Autowired
     private XTrainingReadService xTrainingReadService;
+
+    @Autowired
+    private RPEReadService rpeReadService;
 
     /**
      * GETs the coach dashboard
@@ -277,6 +281,8 @@ public class CoachController {
             // Find interview and physical testing forms
             Optional<XTraining> xtraining = xTrainingReadService.getLastXTraining(applicant.get().getUser());
             xtraining.ifPresent(value -> model.addAttribute("xtraining", value));
+          Optional<RPE> rpe = rpeReadService.getLastRPE(applicant.get().getUser());
+          rpe.ifPresent(value -> model.addAttribute("rpes", value));
 
             return "coach/view-details-athlete";
         } else {
@@ -300,6 +306,20 @@ public class CoachController {
 
         model.addAttribute("xtrainings", xTrainingReadService.findByUser(user.get()));
         return "athlete/xtraining-list";
+    }
+
+    @GetMapping("/coach/RPE-form/{id}")
+    public String RPEList(@PathVariable Long id, Model model, RPE rpe) {
+
+        Optional<User> user = userReadService.findById(id);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(rpe::setUser);
+        }
+        model.addAttribute("rpes", rpeReadService.findByUser(user.get()));
+        return "athlete/RPE-form-list";
     }
 
 
