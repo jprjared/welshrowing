@@ -208,7 +208,7 @@ public class CoachController {
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Passed");
             applicantEmailService.sendApplicantEmailPassFail(applicant.get());
 
-            return "redirect:/allApplicants";
+            return "redirect:/application/status";
         } else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
