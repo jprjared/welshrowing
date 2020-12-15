@@ -5,9 +5,87 @@
 
     <header th:replace="fragments/header :: header"></header>
 
+    <link th:href="@{/css/interviewform.css}" rel="stylesheet" />
+    <script th:src="@{/js/interviewforms.js}"></script>
+
     <main class="container">
-        <h1>Page Title</h1>
-        <p>Homepage content goes here...</p>
+        <h1>Welcome To Welsh Rowing</h1>
+        <div class = "line"></div>
+            <br>
+
+        <h3>About Us</h3>
+
+        <p>Welsh Rowing is the National Governing Body for rowing (on rivers, the sea and indoors)
+            in Wales. Welsh Rowing works with Sport Wales to raise the awareness of, and participation,
+            in rowing within Wales, as well as aiming to develop athletes for GB squads. We run a GB Start
+            centre out of our base in Cardiff. Welsh Rowing is self-governing for rowing in Wales, but
+            values a close working relationship with the Welsh Sea Rowing Association, Scottish Rowing
+            and British Rowing. Our Strategic Plan can be found
+            <a href="https://www.welshrowing.com/boathouse/docs/96/2/3724-WR-StrategyDiagram-D2JW.jpg">here</a> </p>
+        <br>
+        <br>
+        <h3>Our Commitment to Good Governance</h3>
+        <p>We are always looking to improve our governance in order to be a sustainable high
+            performing governing body of sport. Ensuring we are well run and fit for purpose as a
+            modern Governing Body is vital to ensuring continued public funding and to generate additional private revenue.</p>
+            <br>
+
+        <p>Welsh Rowing is committed to both equality and inclusion throughout all its practices.
+            Welsh Rowing has acheived the Preliminary level of Equality Standard and Level 2 of the
+            Safeguarding Standards. They have also received Disability Sport Wales' Insport
+            accreditation Ribbon Award in November 2017, Bronze in November 2019 and are now working
+            towards achieving the Silver Award.</p>
+            <br>
+
+        <p>For more information click one of the slides below or visit
+            <a href ="https://www.welshrowing.com/">here </a>
+            to go to the official web page</p>
+        <br>
+
+        <br>
+<!--        Adapted from https://www.w3schools.com/howto/howto_js_slideshow.asp-->
+        <div class="slideshow-container">
+
+            <div class="mySlides">
+                <div class="numbertext">1 / 4</div>
+                <p><a href = "https://www.welshrowing.com/river_rowing.php">
+                <img src="../static/images/riverrowing.jpg" style="width:100%;"  th:src="@{images/riverrowing.jpg}"/>
+                </a></p>
+                <div class="text">RiverRowing</div>
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">2 / 4</div>
+                <p><a href = "https://www.welshrowing.com/indoor_rowing.php">
+                <img src="../static/images/indoorrowing.jpg" style="width:100%;" th:src="@{images/indoorrowing.jpg}"/>
+                </a></p>
+                <div class="text">Indoor Rowing</div>
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">3 / 4</div>
+                <p><a href = "https://www.welshrowing.com/coastal_rowing.php">
+                <img src="../static/images/searowing.jpg" style="width:100%;" th:src="@{images/searowing.jpg}"/>
+                </a></p>
+                <div class="text">Sea Rowing</div>
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">4 / 4</div>
+                <p><a href = "https://www.welshrowing.com/calendar.php">
+                    <img src="../static/images/events.jpg" style="width:100%;" th:src="@{images/events.jpg}"/>
+                </a></p>
+                <div class="text">Events</div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+
+
+
+
     </main>
 
     <footer th:replace="fragments/footer :: footer"></footer>
