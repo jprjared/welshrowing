@@ -5,6 +5,7 @@ import com.cemiltokatli.passwordgenerate.PasswordType;
 import com.team1.welshrowing.domain.Applicant;
 import com.team1.welshrowing.domain.Feedback;
 import com.team1.welshrowing.domain.Interview;
+import com.team1.welshrowing.domain.MorningMonitoring;
 import com.team1.welshrowing.domain.PersonalityInterview;
 import com.team1.welshrowing.domain.PhysicalTest;
 import com.team1.welshrowing.domain.User;
@@ -18,6 +19,7 @@ import com.team1.welshrowing.service.ApplicantUpdateService;
 import com.team1.welshrowing.service.FeedbackCreateService;
 import com.team1.welshrowing.service.FeedbackReadService;
 import com.team1.welshrowing.service.InterviewReadService;
+import com.team1.welshrowing.service.MorningMonitoringReadService;
 import com.team1.welshrowing.service.PersonalityInterviewReadService;
 import com.team1.welshrowing.service.PhysicalTestReadService;
 import com.team1.welshrowing.service.UserCreateService;
@@ -77,6 +79,9 @@ public class CoachController {
 
     @Autowired
     private XTrainingReadService xTrainingReadService;
+
+    @Autowired
+    private MorningMonitoringReadService morningMonitoringReadService;
 
     /**
      * GETs the coach dashboard
@@ -274,7 +279,7 @@ public class CoachController {
      * GETs an applicant by their ID
      * @param id - the ID of the applicant
      * @param model - the Model object
-     * @return - the view-details template
+     * @return - the view-details-athlete template
      */
     @GetMapping(path = "/coach/athlete/{id}")
     public String getAthleteDetails(@PathVariable Long id, Model model) {
@@ -285,9 +290,13 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser());
 
-            // Find interview and physical testing forms
+            // Find X training
             Optional<XTraining> xtraining = xTrainingReadService.getLastXTraining(applicant.get().getUser());
             xtraining.ifPresent(value -> model.addAttribute("xtraining", value));
+
+            // Find morning monitoring
+            Optional<MorningMonitoring> morningMonitoring = morningMonitoringReadService.findLatestByUser(applicant.get().getUser());
+            morningMonitoring.ifPresent(value -> model.addAttribute("morningMonitoring", value));
 
             return "coach/view-details-athlete";
         } else {

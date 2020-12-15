@@ -46,24 +46,30 @@
 
     <h3 id="morning-monitoring">Morning Monitoring</h3>
 
-    <br>
+    <div th:if="${morningMonitoring == null}">
+        <p class="text-muted mt-3">
+            This athlete has not completed a morning monitoring form yet.
+        </p>
+    </div>
+    <div th:if="${morningMonitoring != null}">
+        <br>
+        <div class="row">
+            <div class="col-sm text-center">
+                <span id="ohr-text" class="gauge-text"></span>
+                <span class="gauge-label text-muted">Osmotic Heart Rate</span>
+                <canvas id="ohr-gauge" width="200"></canvas>
+            </div>
 
-    <div class="row">
-        <div class="col-sm text-center">
-            <span id="ohr-text" class="gauge-text"></span>
-            <span class="gauge-label text-muted">Osmotic Heart Rate</span>
-            <canvas id="ohr-gauge" width="200"></canvas>
-        </div>
-
-        <div class="col-sm text-center">
-            <span id="whr-text" class="gauge-text"></span>
-            <span class="gauge-label text-muted">Waking Heart Rate</span>
-            <canvas id="whr-gauge" width="200"></canvas>
-        </div>
-        <div class="col-sm text-center">
-            <span id="shape-text" class="gauge-text"></span>
-            <span class="gauge-label text-muted">Shape</span>
-            <canvas id="shape-gauge" width="200"></canvas>
+            <div class="col-sm text-center">
+                <span id="whr-text" class="gauge-text"></span>
+                <span class="gauge-label text-muted">Waking Heart Rate</span>
+                <canvas id="whr-gauge" width="200"></canvas>
+            </div>
+            <div class="col-sm text-center">
+                <span id="shape-text" class="gauge-text"></span>
+                <span class="gauge-label text-muted">Shape</span>
+                <canvas id="shape-gauge" width="200"></canvas>
+            </div>
         </div>
     </div>
 
