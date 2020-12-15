@@ -17,7 +17,7 @@ public class RPE {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @OrderBy
-    private Long RPEformId;
+    private Long RPEId;
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "userId")

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class RPERepoImpl implements RPERepo {
@@ -21,5 +22,9 @@ public class RPERepoImpl implements RPERepo {
     @Override
     public List<RPE> findByUser(User user) {return repository.findByUser(user);}
 
+    @Override
+    public Optional<RPE> findLatestByUser(User user) {
+        return repository.findFirstByUserOrderByRPEIdDesc(user);
+    }
 
 }

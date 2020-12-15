@@ -39,6 +39,20 @@ $(document).ready(function() {
         );
 
     });
+    $.getJSON("/api/RPE-form/latest/" + user, function (json) {
+        console.log(json);
+        createGauge(
+            "RPE-gauge",
+            "RPE-text",
+            json.rpe,
+            0,
+            20,
+            20,
+            30,
+            30,
+            40
+        );
+    });
 
 });
 
