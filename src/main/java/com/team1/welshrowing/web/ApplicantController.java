@@ -40,6 +40,12 @@ public class ApplicantController {
                 theApplicant.ifPresent(applicant -> model.addAttribute("status", status));
                 theApplicant.ifPresent(applicant -> model.addAttribute("applicant", applicant));
 
+                if (theApplicant.isPresent()) {
+                    if (theApplicant.get().getApplication_situation().equals("Passed")) {
+                        return "redirect:/athlete/dashboard";
+                    }
+                }
+
             }
         }
         return "applicant-dashboard";
