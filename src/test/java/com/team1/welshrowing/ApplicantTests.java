@@ -56,15 +56,6 @@ public class ApplicantTests {
 
         Applicant theApplicant = new Applicant();
         theApplicant.setFirstName(aGivenName);
-        theApplicant.setGender("Male");
-        theApplicant.setCollegeOrUniversityName("Cardiff University");
-        theApplicant.setHeight(190.0);
-        theApplicant.setAddress("Northgate");
-        theApplicant.setWhereDidHear("Facebook");
-        theApplicant.setDob("2005-05-01");
-        theApplicant.setLastName("Davies");
-        theApplicant.setPhoneNumber("00792312341");
-        theApplicant.setPostcode("CF10 3FG");
         applicantCreateService.addApplicant(theApplicant);
 
         // Check that the applicant exists and IDs match
