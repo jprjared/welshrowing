@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface UserRepoJPA extends JpaRepository<User, Long> {
-    Optional<User> findByUserNameIgnoreCase(String userName);
+    Optional<User> findFirstByUserNameIgnoreCase(String userName);
 }

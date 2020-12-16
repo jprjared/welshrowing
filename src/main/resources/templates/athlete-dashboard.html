@@ -6,8 +6,6 @@
 
 <header th:replace="fragments/header :: header"></header>
 
-<link th:href="@{/css/interviewform.css}" rel="stylesheet" />
-
 <main class="container">
 
     <div class="alert alert-info" role="alert" th:unless="${hasCompletedMorningMonitoring == true}">
@@ -19,10 +17,8 @@
     </div>
 
     <h1>Dashboard</h1>
-    <div class = "line"></div>
     <br>
 
-    <h3>Forms</h3>
     <ul class="font-weight-bold">
         <li><a href="/athlete/morning-monitoring">Complete Morning Monitoring</a></li>
 
@@ -31,45 +27,33 @@
             <a href="/athlete/x-training">Complete X-Training</a>
         </li>
         <li>
-            <a href="/athlete/x-training/list">View your X-Training</a>
+            <a href="/athlete/x-training/list">View X-Training</a>
         </li>
         <li>
-            <a href="/athlete/RPE-form/list">View Your RPE Results</a>
+            <a href="/athlete/RPE-form/list">View RPE Results</a>
         </li>
     </ul>
 
     <br>
-
-    <div class = "line"></div>
-
-    <br>
-    <a href="https://www.yogability.fit/">
-        <img src="../static/images/yoga.jpg" width="100%"
+    <a href="https://www.yogability.fit/" target="_blank">
+        <img src="../static/images/yoga.jpg" width="150px" class="mb-3"
                th:src="@{/images/yoga.jpg}"/>
     </a>
 
-    <div id="outer">
-        <form action="https://www.yogability.fit/free-tasters">
-            <div class="taster"><input type="submit" class="btn btn-primary" value="Free Taster Sessions"></input></div>
-        </form>
-        <form action="https://www.yogability.fit/pricing">
-            <div class="signup"><input type="submit" class="btn btn-primary" value="Sign Up to Yogability"></input></div>
-        </form>
-        <form action="https://www.yogability.fit/method">
-            <div class="loginbut"><input type="submit" class="btn btn-primary" value="Log Into Yogability"></input></div>
-        </form>
-    </div>
-    <br>
-    <br>
-    <br>
-
-    <div class = "line"></div>
+    <ul class="font-weight-bold">
+        <li>
+            <a href="https://www.yogability.fit/free-tasters" target="_blank">Free Taster Sessions</a>
+        </li>
+        <li>
+            <a href="https://www.yogability.fit/pricing" target="_blank">Sign Up to Yogability</a>
+        </li>
+        <li>
+            <a href="https://www.yogability.fit/method" target="_blank">Log Into Yogability</a>
+        </li>
+    </ul>
 
     <br>
-
-
-    <br>
-    <h4>Morning Monitoring</h4>
+    <h4>Morning Monitoring & RPE</h4>
     <br>
 
     <div class="row">
@@ -78,7 +62,6 @@
             <span class="gauge-label text-muted">Osmotic Heart Rate</span>
             <canvas id="ohr-gauge" width="200"></canvas>
         </div>
-
         <div class="col-sm text-center">
             <span id="whr-text" class="gauge-text"></span>
             <span class="gauge-label text-muted">Waking Heart Rate</span>
@@ -89,25 +72,15 @@
             <span class="gauge-label text-muted">Shape</span>
             <canvas id="shape-gauge" width="200"></canvas>
         </div>
+        <div class="col-sm text-center">
+            <span id="RPE-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">RPE</span>
+            <canvas id="RPE-gauge" width="200"></canvas>
+        </div>
     </div>
 
     <br>
-    <div class = "line"></div>
-
-    <br>
-    <h4>RPE Form</h4>
-
-    <div class="col-sm text-center">
-        <span id="RPE-text" class="gauge-text"></span>
-        <span class="gauge-label text-muted">RPE</span>
-        <canvas id="RPE-gauge" width="200"></canvas>
-    </div>
-
-    <br>
-    <div class = "line"></div>
-
-    <br>
-    <h4>Morning Monitoring Graph</h4>
+    <hr>
     <br>
 
     <canvas id="chart" width="100%" height="80"></canvas>

@@ -6,7 +6,6 @@ import com.team1.welshrowing.service.UserCreateService;
 import com.team1.welshrowing.service.UserReadService;
 import com.team1.welshrowing.service.XTrainingCreateService;
 import com.team1.welshrowing.service.XTrainingReadService;
-import org.apache.commons.lang3.time.DateParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-
 import java.sql.Date;
-import java.text.DateFormat;
-import java.util.Optional;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -46,11 +42,9 @@ public class XTrainingTests {
         newUser.setRoles("ATHLETE");
         newUser.setEmail("ryan@ryan.com");
         newUser.setPassword("pass");
-        newUser.setUserId(1L);
         userCreateService.addUser(newUser);
 
         XTraining newXTraining = new XTraining();
-        newXTraining.setXTrainingId(1L);
         newXTraining.setTypeOfTraining("Concept II / Watt Bike");
         newXTraining.setTotalTimeOfTraining(80);
         newXTraining.setTotalDistanceOfTraining(1600);
@@ -72,7 +66,6 @@ public class XTrainingTests {
         userCreateService.addUser(newUser);
 
         XTraining newXTraining = new XTraining();
-        newXTraining.setXTrainingId(1L);
         newXTraining.setDateTime(Date.valueOf("2020-12-6"));
         newXTraining.setTypeOfTraining("Concept II / Watt Bike");
         newXTraining.setTotalTimeOfTraining(80);
@@ -81,7 +74,6 @@ public class XTrainingTests {
         xTrainingCreateService.addXTraining(newXTraining);
 
         XTraining newXTraining1 = new XTraining();
-        newXTraining.setXTrainingId(2L);
         newXTraining.setDateTime(Date.valueOf("2020-12-4"));
         newXTraining.setTypeOfTraining("Swimming");
         newXTraining.setTotalTimeOfTraining(80);

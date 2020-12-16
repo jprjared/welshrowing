@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `user` (
-    `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `user_id` bigint(20) AUTO_INCREMENT,
     `email` varchar(255) DEFAULT NULL,
-    `is_active` bit(1) NOT NULL,
+    `is_active` bit(1),
     `password` varchar(255) DEFAULT NULL,
     `roles` varchar(255) DEFAULT NULL,
     `user_name` varchar(255) DEFAULT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 );
 
 CREATE TABLE IF NOT EXISTS `applicant` (
-     `applicant_id` bigint(20) NOT NULL AUTO_INCREMENT,
+     `applicant_id` bigint(20) AUTO_INCREMENT,
      `address` varchar(255) DEFAULT NULL,
      `application_situation` varchar(255) DEFAULT NULL,
      `coach` varchar(255) DEFAULT NULL,
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `applicant` (
 
 
 CREATE TABLE IF NOT EXISTS `feedback` (
-                            `feedback_id` bigint(20) NOT NULL AUTO_INCREMENT,
-                            `applicant_id` bigint(20) NOT NULL,
+                            `feedback_id` bigint(20) AUTO_INCREMENT,
+                            `applicant_id` bigint(20),
                             `file` varchar(255) DEFAULT NULL,
                             `message` varchar(255) DEFAULT NULL,
                             PRIMARY KEY (`feedback_id`)
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 
 
 CREATE TABLE IF NOT EXISTS `interview` (
-                             `interview_id` bigint(20) NOT NULL,
+                             `interview_id` bigint(20) AUTO_INCREMENT,
                              `aspirations` varchar(255) DEFAULT NULL,
                              `coach_role` varchar(255) DEFAULT NULL,
                              `intrinsicorextrinsic` int(11) DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `interview` (
 
 
 CREATE TABLE IF NOT EXISTS `morning_monitoring` (
-                                      `morning_monitoring_id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                      `morning_monitoring_id` bigint(20) AUTO_INCREMENT,
                                       `date_time` datetime(6) DEFAULT NULL,
                                       `perceived_mental_state` int(11) DEFAULT NULL,
                                       `perceived_shape` int(11) DEFAULT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `morning_monitoring` (
 );
 
 CREATE TABLE IF NOT EXISTS `personality_interview` (
-                                         `interview_id` int(11) NOT NULL,
+                                         `interview_id` bigint(20) AUTO_INCREMENT,
                                          `abilitytoworkwithothers` int(11) DEFAULT NULL,
                                          `bravery` int(11) DEFAULT NULL,
                                          `competitiveness` int(11) DEFAULT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `personality_interview` (
 
 
 CREATE TABLE IF NOT EXISTS `physical_test` (
-                                 `test_id` int(11) NOT NULL,
+                                 `test_id` bigint(20) AUTO_INCREMENT,
                                  `armpress` int(11) DEFAULT NULL,
                                  `armpull` int(11) DEFAULT NULL,
                                  `armpullmax` int(11) DEFAULT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `physical_test` (
 
 
 CREATE TABLE IF NOT EXISTS `rpe` (
-                       `rpeform_id` bigint(20) NOT NULL AUTO_INCREMENT,
+                       `rpeform_id` bigint(20) AUTO_INCREMENT,
                        `date_time` datetime(6) DEFAULT NULL,
                        `dateof_test` varchar(255) DEFAULT NULL,
                        `rpe` int(11) DEFAULT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `rpe` (
 
 
 CREATE TABLE IF NOT EXISTS `xtraining` (
-                             `x_training_id` bigint(20) NOT NULL AUTO_INCREMENT,
+                             `x_training_id` bigint(20) AUTO_INCREMENT,
                              `date_of_training` date DEFAULT NULL,
                              `date_time` datetime(6) DEFAULT NULL,
                              `total_distance_of_training` int(11) DEFAULT NULL,

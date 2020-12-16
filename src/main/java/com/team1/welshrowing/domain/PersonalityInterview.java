@@ -1,13 +1,13 @@
 package com.team1.welshrowing.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Data
 @AllArgsConstructor
@@ -17,19 +17,8 @@ import java.util.Date;
 public class PersonalityInterview {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @OrderBy
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer InterviewId;
-
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "userId")
-    @JsonIgnore
-    private User user;
-
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateTime;
 
     private Long applicantId;
 
