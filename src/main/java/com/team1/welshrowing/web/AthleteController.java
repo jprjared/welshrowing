@@ -126,6 +126,18 @@ public class AthleteController {
         return "redirect:/athlete/dashboard";
     }
 
+    @GetMapping ("/athlete/RPE-form/list")
+    public String RPEList(Model model, RPE rpe) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl) principal).getUsername());
+            theUser.ifPresent(rpe::setUser);
+        }
+        model.addAttribute("rpes", rpeReadService.findByUser(rpe.getUser()));
+        return "athlete/RPE-form-list";
+    }
+
+
     /**
      * GETs the athlete XTraining form.
      */

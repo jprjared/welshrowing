@@ -3,6 +3,7 @@ package com.team1.welshrowing.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -31,36 +32,43 @@ public class Applicant {
     /**
      * The first name of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(first_name, 'J9DVC?n(') as char(255))")
     private String firstName;
 
     /**
      * The last name of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(last_name, 'J9DVC?n(') as char(255))")
     private String lastName;
 
     /**
      * The phone number of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(phone_number, 'J9DVC?n(') as char(255))")
     private String phoneNumber;
 
     /**
      * The address of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(address, 'J9DVC?n(') as char(255))")
     private String address;
 
     /**
      * The postcode of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(postcode, 'J9DVC?n(') as char(255))")
     private String postcode;
 
     /**
      * The user name of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(college_or_university_name, 'J9DVC?n(') as char(255))")
     private String collegeOrUniversityName;
 
     /**
      * The date of birth of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(dob, 'J9DVC?n(') as char(255))")
     private String dob;
 
     /**
@@ -76,11 +84,13 @@ public class Applicant {
     /**
      * The parent's email of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(parent_email, 'J9DVC?n(') as char(255))")
     private String parentEmail;
 
     /**
      * The passport of the applicant.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(passport_holder, 'J9DVC?n(') as char(255))")
     private String passportHolder;
 
     /**
@@ -106,7 +116,7 @@ public class Applicant {
     /**
      * The comments inputted by the coach.
      */
-
+    @ColumnTransformer(read = "cast(aes_decrypt(comments, 'J9DVC?n(') as char(255))")
     private String comments;
     /**
      * Linking User Object with User Object

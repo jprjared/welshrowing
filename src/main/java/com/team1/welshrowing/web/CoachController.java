@@ -8,6 +8,7 @@ import com.team1.welshrowing.domain.Interview;
 import com.team1.welshrowing.domain.MorningMonitoring;
 import com.team1.welshrowing.domain.PersonalityInterview;
 import com.team1.welshrowing.domain.PhysicalTest;
+import com.team1.welshrowing.domain.RPE;
 import com.team1.welshrowing.domain.User;
 import com.team1.welshrowing.domain.XTraining;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
@@ -22,6 +23,7 @@ import com.team1.welshrowing.service.InterviewReadService;
 import com.team1.welshrowing.service.MorningMonitoringReadService;
 import com.team1.welshrowing.service.PersonalityInterviewReadService;
 import com.team1.welshrowing.service.PhysicalTestReadService;
+import com.team1.welshrowing.service.RPEReadService;
 import com.team1.welshrowing.service.UserCreateService;
 import com.team1.welshrowing.service.UserReadService;
 import com.team1.welshrowing.service.XTrainingReadService;
@@ -82,6 +84,9 @@ public class CoachController {
 
     @Autowired
     private XTrainingReadService xTrainingReadService;
+
+    @Autowired
+    private RPEReadService rpeReadService;
 
     @Autowired
     private MorningMonitoringReadService morningMonitoringReadService;
@@ -173,8 +178,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
-            applicantEmailService.sendApplicantEmailAcceptReject(applicant.get());
+            applicantUpdateService.updateByStatus("Accepted",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailAcceptReject("Accepted", applicant.get());
 
             return "redirect:/allApplicants";
         } else {
@@ -194,8 +199,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
-            applicantEmailService.sendApplicantEmailAcceptReject(applicant.get());
+            applicantUpdateService.updateByStatus("Rejected",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailAcceptReject("Rejected",applicant.get());
 
             return "redirect:/allApplicants";
         } else {
@@ -214,8 +219,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Passed");
-            applicantEmailService.sendApplicantEmailPassFail(applicant.get());
+            applicantUpdateService.updateByStatus("Passed",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailPassFail("Passed",applicant.get());
 
             return "redirect:/application/status";
         } else {
@@ -234,8 +239,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Failed");
-            applicantEmailService.sendApplicantEmailPassFail(applicant.get());
+            applicantUpdateService.updateByStatus("Failed",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailPassFail("Failed",applicant.get());
 
             return "redirect:/coach/applicant/feedback/{id}";
         } else {
@@ -297,6 +302,8 @@ public class CoachController {
             // Find X training
             Optional<XTraining> xtraining = xTrainingReadService.getLastXTraining(applicant.get().getUser());
             xtraining.ifPresent(value -> model.addAttribute("xtraining", value));
+          Optional<RPE> rpe = rpeReadService.getLastRPE(applicant.get().getUser());
+          rpe.ifPresent(value -> model.addAttribute("rpes", value));
 
             // Find morning monitoring
             Optional<MorningMonitoring> morningMonitoring = morningMonitoringReadService.findLatestByUser(applicant.get().getUser());
@@ -343,6 +350,20 @@ public class CoachController {
 
         model.addAttribute("xtrainings", xTrainingReadService.findByUser(user.get()));
         return "athlete/xtraining-list";
+    }
+
+    @GetMapping("/coach/RPE-form/{id}")
+    public String RPEList(@PathVariable Long id, Model model, RPE rpe) {
+
+        Optional<User> user = userReadService.findById(id);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(rpe::setUser);
+        }
+        model.addAttribute("rpes", rpeReadService.findByUser(user.get()));
+        return "athlete/RPE-form-list";
     }
 
 

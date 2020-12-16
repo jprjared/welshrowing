@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `user` (
     `user_id` bigint(20) AUTO_INCREMENT,
-    `email` varchar(255) DEFAULT NULL,
+    `email` varbinary(255) DEFAULT NULL,
     `is_active` bit(1),
     `password` varchar(255) DEFAULT NULL,
     `roles` varchar(255) DEFAULT NULL,
@@ -10,21 +10,21 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 CREATE TABLE IF NOT EXISTS `applicant` (
      `applicant_id` bigint(20) AUTO_INCREMENT,
-     `address` varchar(255) DEFAULT NULL,
+     `address` varbinary(255) DEFAULT NULL,
      `application_situation` varchar(255) DEFAULT NULL,
      `coach` varchar(255) DEFAULT NULL,
-     `college_or_university_name` varchar(255) DEFAULT NULL,
-     `comments` varchar(255) DEFAULT NULL,
-     `dob` varchar(255) DEFAULT NULL,
-     `first_name` varchar(255) DEFAULT NULL,
+     `college_or_university_name` varbinary(255) DEFAULT NULL,
+     `comments` varbinary(255) DEFAULT NULL,
+     `dob` varbinary(255) DEFAULT NULL,
+     `first_name` varbinary(255) DEFAULT NULL,
      `gender` varchar(255) DEFAULT NULL,
      `height` double DEFAULT NULL,
      `is_previously_tested` bit(1) DEFAULT NULL,
-     `last_name` varchar(255) DEFAULT NULL,
-     `parent_email` varchar(255) DEFAULT NULL,
-     `passport_holder` varchar(255) DEFAULT NULL,
-     `phone_number` varchar(255) DEFAULT NULL,
-     `postcode` varchar(255) DEFAULT NULL,
+     `last_name` varbinary(255) DEFAULT NULL,
+     `parent_email` varbinary(255) DEFAULT NULL,
+     `passport_holder` varbinary(255) DEFAULT NULL,
+     `phone_number` varbinary(255) DEFAULT NULL,
+     `postcode` varbinary(255) DEFAULT NULL,
      `where_did_hear` varchar(255) DEFAULT NULL,
      `user_id` bigint(20) DEFAULT NULL,
      PRIMARY KEY (`applicant_id`),
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
                             `feedback_id` bigint(20) AUTO_INCREMENT,
                             `applicant_id` bigint(20),
                             `file` varchar(255) DEFAULT NULL,
-                            `message` varchar(255) DEFAULT NULL,
+                            `message` varbinary(255) DEFAULT NULL,
                             PRIMARY KEY (`feedback_id`)
 );
 
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `rpe` (
                        `dateof_test` varchar(255) DEFAULT NULL,
                        `rpe` int(11) DEFAULT NULL,
                        `session_duration` int(11) DEFAULT NULL,
-                       `typeof_session` varchar(255) DEFAULT NULL,
+                       `typeof_session` varbinary(255) DEFAULT NULL,
                        `user_id` bigint(20) DEFAULT NULL,
                        PRIMARY KEY (`rpeform_id`),
                        CONSTRAINT `FKhanscaigddo3x05px98k523wp` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `xtraining` (
                              `date_time` datetime(6) DEFAULT NULL,
                              `total_distance_of_training` int(11) DEFAULT NULL,
                              `total_time_of_training` int(11) DEFAULT NULL,
-                             `type_of_training` varchar(255) DEFAULT NULL,
+                             `type_of_training` varbinary(255) DEFAULT NULL,
                              `user_id` bigint(20) DEFAULT NULL,
                              PRIMARY KEY (`x_training_id`),
                              CONSTRAINT `FKdb74vuuxar81ex6o6sksjmqdc` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)

@@ -21,16 +21,16 @@ public class ApplicantEmailService {
      * Informs applicant about the status of the application, by sending an email
      * @param applicant - gets info from the applicant
      */
-    public void sendApplicantEmailAcceptReject(Applicant applicant) {
-        repository.sendEmailStatus(applicant);
+    public void sendApplicantEmailAcceptReject(String status, Applicant applicant) {
+        repository.sendEmailStatus(status, applicant);
     }
 
     /**
      * Informs applicant about the status of the application, by sending an email
      * @param applicant - gets info from the applicant
      */
-    public void sendApplicantEmailPassFail(Applicant applicant) {
-        repository.sendEmailPassFail(applicant);
+    public void sendApplicantEmailPassFail(String status, Applicant applicant) {
+        repository.sendEmailPassFail(status, applicant);
     }
 
     public void sendApplicantFeedback(Applicant applicant, String feedback, String file ) {

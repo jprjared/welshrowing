@@ -3,6 +3,7 @@ package com.team1.welshrowing.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Feedback {
 
         private long applicantId;
 
+        @ColumnTransformer(read = "cast(aes_decrypt(feedback, 'J9DVC?n(') as char(255))")
         private String message;
 
         private String file;

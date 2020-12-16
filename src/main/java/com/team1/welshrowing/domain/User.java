@@ -3,7 +3,10 @@ package com.team1.welshrowing.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnTransformer;
+
 import javax.persistence.*;
+
 
 @Data
 @AllArgsConstructor
@@ -29,6 +32,7 @@ public class User {
     /**
      * The email of the user.
      */
+    @ColumnTransformer(read = "cast(aes_decrypt(email, 'J9DVC?n(') as char(255))")
     private String email;
 
     /**

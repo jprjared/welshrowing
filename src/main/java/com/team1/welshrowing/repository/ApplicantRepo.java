@@ -12,13 +12,13 @@ public interface ApplicantRepo {
     void saveApplicant(Applicant applicant);
     void updateApplicantStatus(Applicant applicant, String status);
     void updateApplicantComments(Applicant applicant, String comments);
-    void ApplicantUpdateByStatus(String newStatus,String oldStatus, Long applicantID);
+    void ApplicantUpdateByStatus(String newStatus, Long applicantID);
     List<Applicant> ApplicantFindByStatus(String application_situation);
     Optional<Applicant> findById(Long Id);
     Optional<Applicant> findByUser(User user);
-    void sendEmailStatus(Applicant applicant);
+    void sendEmailStatus(String status, Applicant applicant);
 
-    void sendEmailPassFail(Applicant applicant);
+    void sendEmailPassFail(String status, Applicant applicant);
 
     void sendEmailFeedback(Applicant applicant, String feedback, String file);
 

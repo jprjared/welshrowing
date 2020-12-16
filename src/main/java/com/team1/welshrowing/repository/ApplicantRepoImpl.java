@@ -51,8 +51,8 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
-    public void ApplicantUpdateByStatus(String newStatus, String oldStatus, Long applicantID) {
-        repository.updateStatus(newStatus, oldStatus, applicantID);
+    public void ApplicantUpdateByStatus(String newStatus, Long applicantID) {
+        repository.updateStatus(newStatus, applicantID);
     }
 
 
@@ -62,12 +62,12 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
-    public void sendEmailStatus(Applicant applicant) {
+    public void sendEmailStatus(String status, Applicant applicant) {
 
         String firstName = applicant.getFirstName();
         String lastName = applicant.getLastName();
         String emailTo = applicant.getUser().getEmail();
-        String status = applicant.getApplication_situation();
+        String aStatus = applicant.getApplication_situation();
         String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase() + "."
                         + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team" + "\n" + "\n" + "-------------------------------------------------------------------------------------------------" + "\n"
                         + "Llongyfarchiadau " + firstName + ", " + "\n" + "\n" + "Mae Tîm Rhwyfo Cymru yn gyffrous i ddatgan bod eich cais wedi bod yn llwyddianus " + status.toLowerCase() + "."
@@ -85,7 +85,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         message.setTo(emailTo);
         message.setSubject(mailSubject);
 
-        if (applicant.getApplication_situation()=="Accepted") {
+        if (status=="Accepted") {
             message.setText(accepted);
 
         } else {
@@ -97,12 +97,12 @@ public class ApplicantRepoImpl implements ApplicantRepo {
     }
 
     @Override
-    public void sendEmailPassFail(Applicant applicant) {
+    public void sendEmailPassFail(String status, Applicant applicant) {
 
         String firstName = applicant.getFirstName();
         String lastName = applicant.getLastName();
         String emailTo = applicant.getUser().getEmail();
-        String status = applicant.getApplication_situation();
+        String aStatus = applicant.getApplication_situation();
 
         String passed = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that you have " + status.toLowerCase() + " the tests."
                         + "\n" + "We look forward to following up with you about the 8 Week Programme" + "\n" + "and we will contact you very soon." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team"
@@ -123,7 +123,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         message.setTo(emailTo);
         message.setSubject(mailSubject);
 
-        if (applicant.getApplication_situation()=="Passed") {
+        if (status=="Passed") {
             message.setText(passed);
 
         } else {

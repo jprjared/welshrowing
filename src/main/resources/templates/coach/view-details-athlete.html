@@ -21,6 +21,15 @@
         <li>
             <a href="#xtraining">Latest X-Training</a>
         </li>
+        <li>
+            <a th:href="@{/coach/x-training/{id}(id=${applicant.getUser().userId})}">All X-Training</a>
+        </li>
+        <li>
+            <a href="#rpes">Latest RPE</a>
+        </li>
+        <li>
+            <a th:href="@{/coach/RPE-form/{id}(id=${applicant.getUser().userId})}">All RPE</a>
+        </li>
     </ul>
 
     <br>
@@ -98,6 +107,27 @@
         <label class="text-muted"><small>X-Training Total Distance</small></label>
         <p th:text="${xtraining.totalDistanceOfTraining}"></p>
 
+    </div>
+
+    <h3 id="rpes">Latest RPE </h3>
+    <div th:if="${rpes == null}">
+        <p class="text-muted mt-3">
+            This athlete has not completed an rpe yet.
+        </p>
+    </div>
+    <div th:if="${rpes != null}">
+        <br>
+        <label class="text-muted"><small>Date of Test :</small></label>
+        <p th:text="${rpes.dateofTest}"></p>
+
+        <label class="text-muted"><small>X-Training Type:</small></label>
+        <p th:text="${rpes.typeofSession}"></p>
+
+        <label class="text-muted"><small>X-Training Total Time:</small></label>
+        <p th:text="${rpes.rpe}"></p>
+
+        <label class="text-muted"><small>X-Training Total Distance</small></label>
+        <p th:text="${rpes.sessionDuration}"></p>
     </div>
 
 </main>
