@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light" onload="displayStatus()">
+
+<header th:replace="fragments/header :: header"></header>
+
+    <main class="container">
+        <h1>Dashboard</h1>
+
+        <div class="alert alert-info" role="alert" >
+            Hi <span th:text="${applicant.firstName}"></span>!
+        </div>
+        <div th:action="@{/applicant/dashboard}" th:object="${status}" method="get">
+
+            <p id = "displayStatus"></p>
+            <script th:inline="javascript" >
+                function displayStatus() {
+                    var text;
+                    /*<![CDATA[*/
+
+                    var status = [[${status}]];
+
+                    /*]]>*/
+                    if (status == "Pending") {
+                        text = "Your application is currently under review, " +
+                            "in the meantime... read about Welsh Rowing"
+                    } else if (status == "Accepted") {
+                        text = "You have been accepted onto the next stage! " +
+                            "check your email! "
+                    } else if (status == "Rejected" || status == "Rejected") {
+                        text = "Unfortunately your status was unsuccessful" +
+                            "please check your email for feedback, feel free to" +
+                            "reapply next year!"
+                    } else {text = "uh oh"}
+                    document.getElementById("displayStatus").innerHTML = text;
+                }
+            </script>
+            </div>
+
+</main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>

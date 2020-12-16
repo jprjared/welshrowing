@@ -35,6 +35,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
+import javax.servlet.http.HttpServletRequest;
+import java.util.MissingResourceException;
+
 
 import java.util.Optional;
 
@@ -161,7 +164,8 @@ public class CoachController {
     public String getApplicant(Model model) {
 
         model.addAttribute("applicants", applicantRepo.findAll());
-        return "applicantList";
+        return "applicant-list";
+
     }
 
     @PostMapping("coach/applicant/accept/{id}")
