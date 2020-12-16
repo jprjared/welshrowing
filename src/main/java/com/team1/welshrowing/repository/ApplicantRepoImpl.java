@@ -28,7 +28,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
 
     @Override
     public Optional<Applicant> findByUser(User user) {
-        return repository.findByUser(user);
+        return repository.findFirstByUser(user);
     }
 
     @Override

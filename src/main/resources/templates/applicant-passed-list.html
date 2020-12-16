@@ -20,24 +20,22 @@
             <td>Last Name</td>
             <td>Postcode</td>
             <td>Date of Birth</td>
-            <td>Height</td>
-            <td>Gender</td>
-            <td>X-Training</td>
             <td>Actions</td>
+            <td></td>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="applicant : ${applicants}">
-            <td><a th:href="@{/coach/athlete/{id}(id=${applicant.applicantId})}" class="fa fa-user-circle" style='font-size:24px'></a></td>
+            <td><a th:href="@{/coach/athlete/{id}(id=${applicant.applicantId})}" th:text="${'#' + applicant.applicantId}"></a></td>
             <td th:text="${applicant.firstName}"></td>
             <td th:text="${applicant.lastName}"></td>
             <td th:text="${applicant.postcode}"></td>
             <td th:text="${applicant.dob}"></td>
-            <td th:text="${applicant.height}"></td>
-            <td th:text="${applicant.gender}"></td>
             <td>
                 <a th:href="@{/coach/x-training/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">X-Training</a>
+                <a th:href="@{/coach/morning-monitoring/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">Morning Monitoring</a>
+                <a th:href="@{/coach/RPE-form/{id}(id=${applicant.getUser().userId})}" class="btn btn-primary">RPE</a>
             </td>
             <td>
                 <a th:href="@{/coach/applicant/feedback/{id}(id=${applicant.applicantId})}" class="far fa-envelope" style='font-size:24px'></a>

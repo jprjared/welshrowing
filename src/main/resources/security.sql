@@ -32,7 +32,9 @@ ALTER TABLE user ADD CONSTRAINT IF NOT EXISTS is_bcrypt CHECK (password REGEXP '
 
 -- Ensures that the email field follows a valid email format
 -- Adapted from code examples at https://stackoverflow.com/questions/19154453/how-to-write-a-query-to-ensure-email-contains [Accessed: 15 December 2020]
-ALTER TABLE user ADD CONSTRAINT IF NOT EXISTS check_email CHECK (email LIKE '%_@__%.__%');
+# ALTER TABLE user ADD CONSTRAINT IF NOT EXISTS check_email CHECK (email LIKE '%_@__%.__%');
+
+
 
 -- SECURE STORAGE OF SENSITIVE DATA IN DB
 
@@ -161,3 +163,12 @@ FOR EACH ROW BEGIN
     END IF;
 END//
   DELIMITER ;
+
+
+
+CREATE USER IF NOT EXISTS 'athlete'@'localhost' identified BY 'welshrowing';
+GRANT UPDATE ON welshrowing.* TO 'athlete'@'localhost';
+GRANT SELECT ON welshrowing.* TO 'athlete'@'localhost';
+GRANT INSERT ON welshrowing.* TO 'athlete'@'localhost';
+GRANT CREATE ON welshrowing.* TO 'athlete'@'localhost';
+GRANT REFERENCES ON welshrowing.* TO 'athlete'@'localhost';

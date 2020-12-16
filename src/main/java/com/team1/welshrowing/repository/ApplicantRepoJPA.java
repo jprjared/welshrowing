@@ -35,6 +35,6 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
 
     Optional<Applicant> findById(Long id);
     
-    Optional<Applicant> findByUser(User user);
+    Optional<Applicant> findFirstByUser(User user);
 
 }
