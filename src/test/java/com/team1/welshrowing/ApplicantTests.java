@@ -56,6 +56,15 @@ public class ApplicantTests {
 
         Applicant theApplicant = new Applicant();
         theApplicant.setFirstName(aGivenName);
+        theApplicant.setGender("Male");
+        theApplicant.setCollegeOrUniversityName("Cardiff University");
+        theApplicant.setHeight(190.0);
+        theApplicant.setAddress("Northgate");
+        theApplicant.setWhereDidHear("Facebook");
+        theApplicant.setDob("2005-05-01");
+        theApplicant.setLastName("Davies");
+        theApplicant.setPhoneNumber("07789231231");
+        theApplicant.setPostcode("CF10 3FG");
         applicantCreateService.addApplicant(theApplicant);
 
         // Check that the applicant exists and IDs match
@@ -77,6 +86,17 @@ public class ApplicantTests {
 
         Feedback theFeedback = new Feedback();
         Applicant theApplicant = new Applicant();
+        theApplicant.setGender("Male");
+        theApplicant.setCollegeOrUniversityName("Cardiff University");
+        theApplicant.setHeight(190.0);
+        theApplicant.setAddress("Northgate");
+        theApplicant.setWhereDidHear("Facebook");
+        theApplicant.setDob("2005-05-01");
+        theApplicant.setLastName("Davies");
+        theApplicant.setFirstName("Davies");
+        theApplicant.setPhoneNumber("07892312341");
+        theApplicant.setPostcode("CF10 3FG");
+
 
         theFeedback.setMessage(aFeedback);
         theFeedback.setFile(aFile);
@@ -105,6 +125,16 @@ public class ApplicantTests {
         String aStatusAfter = "Passed";
 
         Applicant theApplicant = new Applicant();
+        theApplicant.setGender("Male");
+        theApplicant.setCollegeOrUniversityName("Cardiff University");
+        theApplicant.setHeight(190.0);
+        theApplicant.setAddress("Northgate");
+        theApplicant.setWhereDidHear("Facebook");
+        theApplicant.setDob("2005-05-01");
+        theApplicant.setLastName("Davies");
+        theApplicant.setFirstName("Ryan");
+        theApplicant.setPhoneNumber("07892312341");
+        theApplicant.setPostcode("CF10 3FG");
         theApplicant.setApplication_situation("Accepted");
         applicantCreateService.addApplicant(theApplicant);
 
@@ -131,6 +161,16 @@ public class ApplicantTests {
         String aStatusAfter = "Failed";
 
         Applicant theApplicant = new Applicant();
+        theApplicant.setGender("Male");
+        theApplicant.setCollegeOrUniversityName("Cardiff University");
+        theApplicant.setHeight(190.0);
+        theApplicant.setAddress("Northgate");
+        theApplicant.setWhereDidHear("Facebook");
+        theApplicant.setDob("2005-05-01");
+        theApplicant.setLastName("Davies");
+        theApplicant.setFirstName("Ryan");
+        theApplicant.setPhoneNumber("07892312341");
+        theApplicant.setPostcode("CF10 3FG");
         theApplicant.setApplication_situation("Accepted");
 
         applicantCreateService.addApplicant(theApplicant);
