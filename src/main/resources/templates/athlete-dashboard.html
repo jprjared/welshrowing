@@ -21,9 +21,9 @@
     <br>
 
     <ul class="font-weight-bold">
-        <li>
-            <a href="/athlete/morning-monitoring">Complete Morning Monitoring</a>
-        </li>
+        <li><a href="/athlete/morning-monitoring">Complete Morning Monitoring</a></li>
+
+        <li><a href="/athlete/RPE-form">Complete RPE Form</a></li>
         <li>
             <a href="/athlete/x-training">Complete X-Training</a>
         </li>
@@ -35,6 +35,27 @@
     <br>
     <h4>Morning Monitoring</h4>
     <br>
+
+    <div class="row">
+        <div class="col-sm text-center">
+            <span id="ohr-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Osmotic Heart Rate</span>
+            <canvas id="ohr-gauge" width="200"></canvas>
+        </div>
+
+        <div class="col-sm text-center">
+            <span id="whr-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Waking Heart Rate</span>
+            <canvas id="whr-gauge" width="200"></canvas>
+        </div>
+        <div class="col-sm text-center">
+            <span id="shape-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Shape</span>
+            <canvas id="shape-gauge" width="200"></canvas>
+        </div>
+    </div>
+
+    <hr>
 
     <canvas id="chart" width="100%" height="80"></canvas>
 

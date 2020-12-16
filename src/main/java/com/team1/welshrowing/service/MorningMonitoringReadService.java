@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,10 @@ public class MorningMonitoringReadService {
 
     public List<MorningMonitoring> findByUser(User user) {
         return repository.findByUser(user);
+    }
+
+    public Optional<MorningMonitoring> findLatestByUser(User user) {
+        return repository.findLatestByUser(user);
     }
 
     public boolean hasCompletedMorningMonitoringToday(User user) {

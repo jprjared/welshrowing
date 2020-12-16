@@ -7,7 +7,6 @@ import com.team1.welshrowing.service.UserReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +26,7 @@ public class MorningMonitoringAPI {
     UserReadService userReadService;
 
     @RequestMapping(path = "/morning-monitoring/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<MorningMonitoring>> getMorningMonitoring(@PathVariable Long id, Model model) {
+    public ResponseEntity<List<MorningMonitoring>> getMorningMonitoring(@PathVariable Long id) {
 
         Optional<User> thisUser = userReadService.findById(id);
 
@@ -38,6 +37,22 @@ public class MorningMonitoringAPI {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(listOfForms);
+
+    }
+
+    @RequestMapping(path = "/morning-monitoring/latest/{id}", method = RequestMethod.GET)
+    public ResponseEntity<MorningMonitoring> getLatestMorningMonitoring(@PathVariable Long id) {
+
+        Optional<User> thisUser = userReadService.findById(id);
+
+        if (thisUser.isPresent()) {
+            Optional<MorningMonitoring> latestForm = morningMonitoringReadService.findLatestByUser(thisUser.get());
+            if (latestForm.isPresent()) {
+                return ResponseEntity.status(HttpStatus.OK).body(latestForm.get());
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
 
     }
 

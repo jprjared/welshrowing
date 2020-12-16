@@ -51,6 +51,13 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
 
+    testCompile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.32'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.13.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version: '3.13.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.13.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.52.0'
+
 }
 
 test {
