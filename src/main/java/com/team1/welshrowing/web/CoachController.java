@@ -153,7 +153,6 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-//            applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
             applicantUpdateService.updateByStatus("Accepted",applicant.get().getApplicantId());
             applicantEmailService.sendApplicantEmailAcceptReject("Accepted", applicant.get());
 
@@ -175,7 +174,6 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-//            applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
             applicantUpdateService.updateByStatus("Rejected",applicant.get().getApplicantId());
             applicantEmailService.sendApplicantEmailAcceptReject("Rejected",applicant.get());
 
@@ -196,7 +194,6 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-//            applicantUpdateService.updateApplicantStatus(applicant.get(), "Passed");
             applicantUpdateService.updateByStatus("Passed",applicant.get().getApplicantId());
             applicantEmailService.sendApplicantEmailPassFail("Passed",applicant.get());
 
@@ -217,7 +214,6 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-//            applicantUpdateService.updateApplicantStatus(applicant.get(), "Failed");
             applicantUpdateService.updateByStatus("Failed",applicant.get().getApplicantId());
             applicantEmailService.sendApplicantEmailPassFail("Failed",applicant.get());
 
