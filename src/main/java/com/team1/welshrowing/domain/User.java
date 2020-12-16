@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import org.hibernate.annotations.ColumnTransformer;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -16,7 +18,6 @@ import javax.validation.constraints.*;
  * Represents a User.
  */
 public class User {
-
 
     /**
      * A unique suffix that will identify the user.
@@ -36,6 +37,7 @@ public class User {
      */
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Please enter a valid email")
+    @ColumnTransformer(read = "cast(aes_decrypt(email, 'J9DVC?n(') as char(255))")
     private String email;
 
     /**

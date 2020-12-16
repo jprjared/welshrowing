@@ -3,6 +3,7 @@ package com.team1.welshrowing.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,6 +37,7 @@ public class XTraining {
     private Date dateOfTraining;
 
     @NotNull(message = "This field should not be null")
+    @ColumnTransformer(read = "cast(aes_decrypt(type_of_training, 'J9DVC?n(') as char(255))")
     private String typeOfTraining;
 
     @NotNull(message = "This field should not be null")

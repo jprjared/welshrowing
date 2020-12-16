@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,6 +36,7 @@ public class RPE {
     private Date dateofTest;
 
     @NotNull(message = "This field cannot be null")
+    @ColumnTransformer(read = "cast(aes_decrypt(typeof_session, 'J9DVC?n(') as char(255))")
     private String typeofSession;
 
     @NotNull(message = "This field cannot be null")
