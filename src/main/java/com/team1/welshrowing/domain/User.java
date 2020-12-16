@@ -41,6 +41,9 @@ public class User {
     /**
      * The password of the user.
      */
+    @Pattern(regexp = ".*[a-z].*", message="Password must contain lower-case")
+    @Pattern(regexp = ".*[A-Z.].*", message="Password must contain upper-case")
+    @Pattern(regexp = ".*[\\d].*", message="Password must contain a number")
     @NotBlank(message = "Password cannot be empty")
     private String password;
 
