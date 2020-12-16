@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head th:replace="fragments/header :: head"></head>
-<body class="bg-light">
+<body class="bg-light" onload="displayStatus()">
 
 <header th:replace="fragments/header :: header"></header>
 
@@ -12,29 +12,36 @@
         <div class="alert alert-info" role="alert" >
             Hi <span th:text="${applicant.firstName}"></span>!
         </div>
-
-        <p>The current status of your application is: </p>
         <div th:action="@{/applicant/dashboard}" th:object="${status}" method="get">
-            <p th:text="${status}"> </p>
-<!--            <script>-->
-<!--                function displayStatus() {-->
-<!--                    var text;-->
-<!--                    // var status = document.getElementById("myInput")-->
-<!--                    if (status === "Pending") {-->
-<!--                        text = "blah"-->
 
-<!--                    } else if (status === "Accepted") {-->
+            <p id = "displayStatus"></p>
+            <script th:inline="javascript" >
+                function displayStatus() {
+                    var text;
+                    /*<![CDATA[*/
 
-<!--                    } else if (status === "Rejected") {-->
+                    var status = [[${status}]];
 
-<!--                    } else {print("uh oh")}-->
-<!--                }-->
-
-<!--            </script>-->
+                    /*]]>*/
+                    if (status == "Pending") {
+                        text = "Your application is currently under review, " +
+                            "in the meantime... read about Welsh Rowing"
+                    } else if (status == "Accepted") {
+                        text = "You have been accepted onto the next stage! " +
+                            "check your email! "
+                    } else if (status == "Rejected") {
+                        text = "Sorry but unfortunately you have been unsuccessful" +
+                            "if you ever want to apply again based on our feedback" +
+                            "please do!"
+                    } else {text = "uh oh"}
+                    document.getElementById("displayStatus").innerHTML = text;
+                }
+            </script>
             </div>
 
-
 </main>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
 
 </body>
 </html>
