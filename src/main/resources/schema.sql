@@ -166,5 +166,3 @@ CREATE TABLE IF NOT EXISTS `xtraining` (
                              PRIMARY KEY (`x_training_id`),
                              CONSTRAINT `FKdb74vuuxar81ex6o6sksjmqdc` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 );
-
-
