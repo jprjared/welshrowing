@@ -61,6 +61,7 @@ dependencies {
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version: '3.13.0'
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.13.0'
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.52.0'
+    implementation 'junit:junit:4.12'
 
 }
 
