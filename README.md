@@ -25,7 +25,7 @@ java -jar welsh-rowing-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 java -jar welsh-rowing-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 ```
 
-If you run the production server, please create a `WelshRowing` database first. You can optionally run the `security.sql` file (manually) from the `resources` folder to add DB security features for the Cyber Security module.
+If you run the production server, please create a `WelshRowing` database first. The schema will automatically be created when you first run the production server. You can optionally run the `security.sql` file (manually) from the `resources` folder to add DB security features for the Cyber Security module.
 
 You can also optionally run the `data-h2.sql` file if you want to add test data to the production database, but this is not required.
 
