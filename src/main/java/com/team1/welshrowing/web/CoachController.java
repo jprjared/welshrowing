@@ -2,25 +2,40 @@ package com.team1.welshrowing.web;
 
 import com.cemiltokatli.passwordgenerate.Password;
 import com.cemiltokatli.passwordgenerate.PasswordType;
-import com.team1.welshrowing.domain.*;
+import com.team1.welshrowing.domain.Applicant;
+import com.team1.welshrowing.domain.Feedback;
+import com.team1.welshrowing.domain.Interview;
+import com.team1.welshrowing.domain.MorningMonitoring;
+import com.team1.welshrowing.domain.PersonalityInterview;
+import com.team1.welshrowing.domain.PhysicalTest;
+import com.team1.welshrowing.domain.RPE;
+import com.team1.welshrowing.domain.User;
+import com.team1.welshrowing.domain.XTraining;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.FeedbackRepoJPA;
 import com.team1.welshrowing.security.UserDetailsImpl;
-import com.team1.welshrowing.service.*;
+import com.team1.welshrowing.service.ApplicantEmailService;
+import com.team1.welshrowing.service.ApplicantReadService;
+import com.team1.welshrowing.service.ApplicantUpdateService;
+import com.team1.welshrowing.service.FeedbackCreateService;
+import com.team1.welshrowing.service.FeedbackReadService;
+import com.team1.welshrowing.service.InterviewReadService;
+import com.team1.welshrowing.service.MorningMonitoringReadService;
+import com.team1.welshrowing.service.PersonalityInterviewReadService;
+import com.team1.welshrowing.service.PhysicalTestReadService;
+import com.team1.welshrowing.service.RPEReadService;
+import com.team1.welshrowing.service.UserCreateService;
+import com.team1.welshrowing.service.UserReadService;
+import com.team1.welshrowing.service.XTrainingReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -66,6 +81,12 @@ public class CoachController {
 
     @Autowired
     private XTrainingReadService xTrainingReadService;
+
+    @Autowired
+    private RPEReadService rpeReadService;
+
+    @Autowired
+    private MorningMonitoringReadService morningMonitoringReadService;
 
     /**
      * GETs the coach dashboard
@@ -197,7 +218,7 @@ public class CoachController {
             applicantUpdateService.updateApplicantStatus(applicant.get(), "Passed");
             applicantEmailService.sendApplicantEmailPassFail(applicant.get());
 
-            return "redirect:/allApplicants";
+            return "redirect:/application/status";
         } else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
@@ -263,7 +284,7 @@ public class CoachController {
      * GETs an applicant by their ID
      * @param id - the ID of the applicant
      * @param model - the Model object
-     * @return - the view-details template
+     * @return - the view-details-athlete template
      */
     @GetMapping(path = "/coach/athlete/{id}")
     public String getAthleteDetails(@PathVariable Long id, Model model) {
@@ -274,11 +295,36 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser());
 
-            // Find interview and physical testing forms
+            // Find X training
             Optional<XTraining> xtraining = xTrainingReadService.getLastXTraining(applicant.get().getUser());
             xtraining.ifPresent(value -> model.addAttribute("xtraining", value));
+          Optional<RPE> rpe = rpeReadService.getLastRPE(applicant.get().getUser());
+          rpe.ifPresent(value -> model.addAttribute("rpes", value));
+
+            // Find morning monitoring
+            Optional<MorningMonitoring> morningMonitoring = morningMonitoringReadService.findLatestByUser(applicant.get().getUser());
+            morningMonitoring.ifPresent(value -> model.addAttribute("morningMonitoring", value));
 
             return "coach/view-details-athlete";
+        } else {
+            throw new ResponseStatusException(NOT_FOUND, "Athlete not found");
+        }
+    }
+
+    /**
+     * GETs the morning monitoring form for a specific applicant
+     * @param id - the id of the applicant
+     * @param model - a Model object
+     * @return - the morning monitoring template
+     */
+    @GetMapping(path = "/coach/morning-monitoring/{id}")
+    public String getMorningMonitoring(@PathVariable Long id, Model model) {
+
+        Optional<Applicant> applicant = applicantReadService.findById(id);
+
+        if (applicant.isPresent()) {
+            model.addAttribute("applicant", applicant.get());
+            return "coach/morning-monitoring";
         } else {
             throw new ResponseStatusException(NOT_FOUND, "Athlete not found");
         }
@@ -300,6 +346,20 @@ public class CoachController {
 
         model.addAttribute("xtrainings", xTrainingReadService.findByUser(user.get()));
         return "athlete/xtraining-list";
+    }
+
+    @GetMapping("/coach/RPE-form/{id}")
+    public String RPEList(@PathVariable Long id, Model model, RPE rpe) {
+
+        Optional<User> user = userReadService.findById(id);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
+            theUser.ifPresent(rpe::setUser);
+        }
+        model.addAttribute("rpes", rpeReadService.findByUser(user.get()));
+        return "athlete/RPE-form-list";
     }
 
 
