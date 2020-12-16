@@ -1,4 +1,4 @@
-# ZC2030 Website and API
+# Welsh Rowing
 
 ## Setup Instructions
 
