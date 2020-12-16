@@ -32,7 +32,7 @@ public class User {
     /**
      * The email of the user.
      */
-    @ColumnTransformer(read = "cast(aes_decrypt(email, 'password') as char(255))")
+    @ColumnTransformer(read = "cast(aes_decrypt(email, 'J9DVC?n(') as char(255))")
     private String email;
 
     /**

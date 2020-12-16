@@ -31,7 +31,7 @@ public class RPE {
 
     private String dateofTest;
 
-    @ColumnTransformer(read = "cast(aes_decrypt(typeof_session, 'password') as char(255))")
+    @ColumnTransformer(read = "cast(aes_decrypt(typeof_session, 'J9DVC?n(') as char(255))")
     private String typeofSession;
 
     private Integer rpe;

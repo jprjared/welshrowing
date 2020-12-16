@@ -34,7 +34,7 @@ public class XTraining {
     @Temporal(TemporalType.DATE)
     private Date dateOfTraining;
 
-    @ColumnTransformer(read = "cast(aes_decrypt(type_of_training, 'password') as char(255))")
+    @ColumnTransformer(read = "cast(aes_decrypt(type_of_training, 'J9DVC?n(') as char(255))")
     private String typeOfTraining;
 
     private Integer totalTimeOfTraining;

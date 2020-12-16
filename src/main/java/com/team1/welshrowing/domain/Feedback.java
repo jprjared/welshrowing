@@ -22,7 +22,7 @@ public class Feedback {
 
         private long applicantId;
 
-        @ColumnTransformer(read = "cast(aes_decrypt(feedback, 'password') as char(255))")
+        @ColumnTransformer(read = "cast(aes_decrypt(feedback, 'J9DVC?n(') as char(255))")
         private String message;
 
         private String file;
