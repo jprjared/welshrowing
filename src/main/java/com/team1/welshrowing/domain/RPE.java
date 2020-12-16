@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class RPE {
 
     private String dateofTest;
 
+    @ColumnTransformer(read = "cast(aes_decrypt(typeof_session, 'password') as char(255))")
     private String typeofSession;
 
     private Integer rpe;
