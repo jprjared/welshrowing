@@ -21,6 +21,15 @@
         <li>
             <a href="#xtraining">Latest X-Training</a>
         </li>
+        <li>
+            <a th:href="@{/coach/x-training/{id}(id=${applicant.getUser().userId})}">All X-Training</a>
+        </li>
+        <li>
+            <a href="#rpes">Latest RPE</a>
+        </li>
+        <li>
+            <a th:href="@{/coach/RPE-form/{id}(id=${applicant.getUser().userId})}">All RPE</a>
+        </li>
     </ul>
 
     <br>
