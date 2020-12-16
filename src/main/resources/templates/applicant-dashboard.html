@@ -9,9 +9,11 @@
     <main class="container">
         <h1>Dashboard</h1>
 
-        <div class="alert alert-info" role="alert" >
+        <br>
+        <p class="font-weight-bold">
             Hi <span th:text="${applicant.firstName}"></span>!
-        </div>
+        </p>
+
         <div th:action="@{/applicant/dashboard}" th:object="${status}" method="get">
 
             <p id = "displayStatus"></p>
