@@ -25,4 +25,6 @@ java -jar welsh-rowing-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 java -jar welsh-rowing-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 ```
 
-If you run the production server, please manually run the `security.sql` file from the `resources` folder to add DB security features for the Cyber Security module. You can also optionally run the `data-h2.sql` file if you want to add test data to the production database.
+If you run the production server, please manually run the `security.sql` file from the `resources` folder to add DB security features for the Cyber Security module.
+
+You can also optionally run the `data-h2.sql` file if you want to add test data to the production database, but this is not required.
