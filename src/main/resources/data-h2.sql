@@ -14,3 +14,4 @@ INSERT INTO xtraining (date_of_training, date_time, total_distance_of_training, 
 INSERT INTO xtraining (date_of_training, date_time, total_distance_of_training, total_time_of_training, type_of_training, user_id) VALUES('2020-12-10', '2020-12-10 12:00:00', 20, 200, 'Road Cycle', 3);
 INSERT INTO xtraining (date_of_training, date_time, total_distance_of_training, total_time_of_training, type_of_training, user_id) VALUES('2020-12-11', '2020-12-11 12:00:00', 30, 300, 'Concept II / Watt Bike', 3);
 INSERT INTO xtraining (date_of_training, date_time, total_distance_of_training, total_time_of_training, type_of_training, user_id) VALUES('2020-12-12', '2020-12-12 12:00:00', 40, 400, 'Swimming', 3);
+INSERT INTO rpe (date_time, dateof_test, rpe, session_duration, typeof_session, user_id) VALUES ('2020-12-14 19:32:40.957000', '2020-12-03', 5, 100, 'Water', 2);
