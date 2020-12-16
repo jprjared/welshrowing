@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head th:replace="fragments/header :: head"></head>
+<body class="bg-light">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="table container">
+
+    <h1><span th:text="${applicant.firstName}"></span>'s Morning Monitoring</h1>
+    <br>
+
+    <div class="row">
+        <div class="col-sm text-center">
+            <span id="ohr-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Osmotic Heart Rate</span>
+            <canvas id="ohr-gauge" width="200"></canvas>
+        </div>
+
+        <div class="col-sm text-center">
+            <span id="whr-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Waking Heart Rate</span>
+            <canvas id="whr-gauge" width="200"></canvas>
+        </div>
+        <div class="col-sm text-center">
+            <span id="shape-text" class="gauge-text"></span>
+            <span class="gauge-label text-muted">Shape</span>
+            <canvas id="shape-gauge" width="200"></canvas>
+        </div>
+    </div>
+
+    <hr>
+
+    <canvas id="chart" width="100%" height="80"></canvas>
+
+</main>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const user = /*[[${applicant.getUser().userId}]]*/ '0';
+    /*]]>*/
+</script>
+
+<footer th:replace="fragments/footer :: footer" ></footer>
+
+</body>
+</html>
