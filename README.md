@@ -1,4 +1,4 @@
-# Welsh Rowing
+# Welsh Rowing (Team 1)
 
 ## Setup Instructions
 
