@@ -174,8 +174,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Accepted");
-            applicantEmailService.sendApplicantEmailAcceptReject(applicant.get());
+            applicantUpdateService.updateByStatus("Accepted",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailAcceptReject("Accepted", applicant.get());
 
             return "redirect:/allApplicants";
         } else {
@@ -195,8 +195,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Rejected");
-            applicantEmailService.sendApplicantEmailAcceptReject(applicant.get());
+            applicantUpdateService.updateByStatus("Rejected",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailAcceptReject("Rejected",applicant.get());
 
             return "redirect:/allApplicants";
         } else {
@@ -215,8 +215,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Passed");
-            applicantEmailService.sendApplicantEmailPassFail(applicant.get());
+            applicantUpdateService.updateByStatus("Passed",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailPassFail("Passed",applicant.get());
 
             return "redirect:/application/status";
         } else {
@@ -235,8 +235,8 @@ public class CoachController {
             model.addAttribute("applicant", applicant.get());
             model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            applicantUpdateService.updateApplicantStatus(applicant.get(), "Failed");
-            applicantEmailService.sendApplicantEmailPassFail(applicant.get());
+            applicantUpdateService.updateByStatus("Failed",applicant.get().getApplicantId());
+            applicantEmailService.sendApplicantEmailPassFail("Failed",applicant.get());
 
             return "redirect:/coach/applicant/feedback/{id}";
         } else {
