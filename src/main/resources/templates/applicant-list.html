@@ -36,7 +36,6 @@
               <td th:text="${applicant.height}" >Height</td>
               <td>
                   <!--        /*@thymesVar id="applicant" type="com.team1.welshrowing.domain.Applicant"*/-->
-
                       <form th:action="@{/coach/applicant/save-comments/{id}(id=${applicant.applicantId})}" method="post" th:object="${applicant}">
                           <input type="text" th:value="*{comments}" id="comments" name="comments"/>
                       <button>Save</button>
@@ -45,7 +44,6 @@
               <td th:text="${applicant.application_situation}">Result</td>
 
               <td>
-
                   <form action="#" method="post" th:action="@{/coach/applicant/accept/{id}(id=${applicant.applicantId})}" th:object="${applicants}">
                   <button class="btn btn-success">Accept</button>
                   </form>
