@@ -17,6 +17,7 @@
         <div class="form-group">
             <label th:for="dateOfTraining">Training Date:</label>
             <input th:field="*{dateOfTraining}" type="date" class="form-control" id="timefromnow" placeholder="Enter Date of Training" required min="1920-12-11" max="2014-05-20"></input>
+            <span th:errors="*{dateOfTraining}" class="error" ></span>
         </div>
 
         <div class="form-group">

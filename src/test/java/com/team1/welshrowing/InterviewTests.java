@@ -33,9 +33,9 @@ public class InterviewTests {
         newInterview.setCoachRole("Coach");
         newInterview.setPossiblebarriers("Still in University so have to balance it with uni work");
         newInterview.setProcessoroutcome(8);
-        newInterview.setIntrinsicorextrinsic(421);
+        newInterview.setIntrinsicorextrinsic(7);
         newInterview.setProcessoroutcomecomp(4);
-        newInterview.setIntrinsicorextrinsiccomp(43);
+        newInterview.setIntrinsicorextrinsiccomp(7);
         newInterview.setOpportunitymeaning("It means the world as I can achieve my dreams of being the best at the sport");
         newInterview.setRolemodels("Sir Steve Redgrave because I saw him competing and made me want to compete");
         newInterview.setYourstory("Was born in South Wales moved to North wales ..... ");

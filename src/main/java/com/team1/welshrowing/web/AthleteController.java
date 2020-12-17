@@ -18,9 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -89,13 +92,17 @@ public class AthleteController {
      * @return redirect to the dashboard
      */
     @PostMapping("/athlete/morning-monitoring")
-    public String ProcessPhysicalTestingForm(MorningMonitoring form) {
+    public String ProcessPhysicalTestingForm(@Valid MorningMonitoring form, BindingResult bindingResult) {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetailsImpl) {
             Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
             theUser.ifPresent(form::setUser);
         }
+        if (bindingResult.hasErrors()) {
+            return "athlete/morning-monitoring";
+        }
+
 
         morningMonitoringCreateService.addMorningMonitoring(form);
         return "redirect:/athlete/dashboard";
@@ -113,15 +120,17 @@ public class AthleteController {
      * @return redirect to the dashboard
      */
     @PostMapping("/athlete/RPE-form")
-    public String ProcessRPE(RPE rpeform) {
+    public String ProcessRPE(@Valid RPE rpeform, BindingResult bindingResult) {
 //        Ryans Code
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetailsImpl) {
             Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
             theUser.ifPresent(rpeform::setUser);
         }
+        if (bindingResult.hasErrors()) {
+            return "athlete/RPE-form";
+        }
 //
-
         rpeRepo.save(rpeform);
         return "redirect:/athlete/dashboard";
     }
@@ -153,12 +162,15 @@ public class AthleteController {
      * @return redirect to the dashboard
      */
     @PostMapping("/athlete/x-training")
-    public String ProcessXTrainingForm(XTraining xTraining) {
+    public String ProcessXTrainingForm(@Valid XTraining xTraining, BindingResult bindingResult) {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetailsImpl) {
             Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl)principal).getUsername());
             theUser.ifPresent(xTraining::setUser);
+        }
+        if (bindingResult.hasErrors()) {
+            return "athlete/xtraining-form";
         }
         xtrainingCreateService.addXTraining(xTraining);
         return "redirect:/athlete/dashboard";

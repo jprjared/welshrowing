@@ -28,12 +28,12 @@ public class EntityTests {
         Applicant newApplicant = new Applicant();
         newApplicant.setFirstName("Sotiris");
         newApplicant.setLastName("Yiallourides");
-        newApplicant.setPhoneNumber("99355349");
+        newApplicant.setPhoneNumber("07988567845");
         newApplicant.setAddress("Agiou Genadiou");
-        newApplicant.setPostcode("cf 10 3fr");
+        newApplicant.setPostcode("CF10 3FG");
         newApplicant.setCollegeOrUniversityName("Cardiff University");
         newApplicant.setDob("03/09/1932");
-        newApplicant.setHeight(1.23);
+        newApplicant.setHeight(190.0);
         newApplicant.setGender("Male");
         newApplicant.setParentEmail("dwadf@gmail.com");
         newApplicant.setPassportHolder("No");
