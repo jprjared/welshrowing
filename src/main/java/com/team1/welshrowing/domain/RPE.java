@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -34,10 +35,13 @@ public class RPE {
     @Temporal(TemporalType.DATE)
     private Date dateofTest;
 
+    @NotNull(message = "This field cannot be null")
     @ColumnTransformer(read = "cast(aes_decrypt(typeof_session, 'J9DVC?n(') as char(255))")
     private String typeofSession;
 
+    @NotNull(message = "This field cannot be null")
     private Integer rpe;
 
+    @NotNull(message = "This field cannot be null")
     private Integer sessionDuration;
 }

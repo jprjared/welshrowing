@@ -53,8 +53,14 @@ public class MorningMonitoringTests {
 
         MorningMonitoring morningMonitoring = new MorningMonitoring();
         morningMonitoring.setUser(newUser);
+        morningMonitoring.setOsmoticHeartRate(4);
+        morningMonitoring.setPerceivedShape(4);
+        morningMonitoring.setSleepQuantity(5.0);
+        morningMonitoring.setSleepQuality(5);
         morningMonitoring.setDateTime(new Date());
         morningMonitoring.setPerceivedMentalState(5);
+        morningMonitoring.setWakingHeartRate(5);
+        morningMonitoring.setStandingHeartRate(5);
 
         morningMonitoringCreateService.addMorningMonitoring(morningMonitoring);
 
@@ -90,8 +96,14 @@ public class MorningMonitoringTests {
 
         MorningMonitoring morningMonitoring = new MorningMonitoring();
         morningMonitoring.setUser(newUser);
+        morningMonitoring.setOsmoticHeartRate(4);
+        morningMonitoring.setPerceivedShape(4);
+        morningMonitoring.setSleepQuantity(5.0);
+        morningMonitoring.setSleepQuality(5);
         morningMonitoring.setDateTime(new Date());
         morningMonitoring.setPerceivedMentalState(5);
+        morningMonitoring.setWakingHeartRate(5);
+        morningMonitoring.setStandingHeartRate(5);
 
         morningMonitoringCreateService.addMorningMonitoring(morningMonitoring);
 
@@ -115,15 +127,27 @@ public class MorningMonitoringTests {
 
         MorningMonitoring morningMonitoring = new MorningMonitoring();
         morningMonitoring.setUser(newUser);
+        morningMonitoring.setOsmoticHeartRate(4);
+        morningMonitoring.setPerceivedShape(4);
+        morningMonitoring.setSleepQuantity(5.0);
+        morningMonitoring.setSleepQuality(5);
         morningMonitoring.setDateTime(new Date());
         morningMonitoring.setPerceivedMentalState(5);
+        morningMonitoring.setWakingHeartRate(5);
+        morningMonitoring.setStandingHeartRate(5);
 
         morningMonitoringCreateService.addMorningMonitoring(morningMonitoring);
 
         MorningMonitoring morningMonitoring2 = new MorningMonitoring();
         morningMonitoring2.setUser(newUser);
+        morningMonitoring2.setOsmoticHeartRate(4);
+        morningMonitoring2.setPerceivedShape(4);
+        morningMonitoring2.setSleepQuantity(5.0);
+        morningMonitoring2.setSleepQuality(5);
         morningMonitoring2.setDateTime(new Date());
         morningMonitoring2.setPerceivedMentalState(10);
+        morningMonitoring2.setWakingHeartRate(5);
+        morningMonitoring2.setStandingHeartRate(5);
 
         morningMonitoringCreateService.addMorningMonitoring(morningMonitoring2);
 

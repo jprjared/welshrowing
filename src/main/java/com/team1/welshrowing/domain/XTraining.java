@@ -30,14 +30,19 @@ public class XTraining {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
+    @Past(message = "Date should only be past")
+    @NotNull(message = "This field should not be null")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dateOfTraining;
 
+    @NotNull(message = "This field should not be null")
     @ColumnTransformer(read = "cast(aes_decrypt(type_of_training, 'J9DVC?n(') as char(255))")
     private String typeOfTraining;
 
+    @NotNull(message = "This field should not be null")
     private Integer totalTimeOfTraining;
 
+    @NotNull(message = "This field should not be null")
     private Integer totalDistanceOfTraining;
 }

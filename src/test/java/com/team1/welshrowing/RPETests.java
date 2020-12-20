@@ -57,6 +57,8 @@ public class RPETests {
         RPE rpe = new RPE();
         rpe.setUser(newUser);
         rpe.setDateTime(new Date());
+        rpe.setTypeofSession("Swimming");
+        rpe.setSessionDuration(5);
         rpe.setRpe(5);
 
         rpeRepo.save(rpe);
