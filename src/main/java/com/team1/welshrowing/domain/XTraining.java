@@ -37,7 +37,7 @@ public class XTraining {
     private Date dateOfTraining;
 
     @NotNull(message = "This field should not be null")
-    @ColumnTransformer(read = "cast(aes_decrypt(type_of_training, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(type_of_training, 'J9DVC?n(') as char(255))")
     private String typeOfTraining;
 
     @NotNull(message = "This field should not be null")

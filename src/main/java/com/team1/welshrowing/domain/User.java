@@ -6,9 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -24,6 +26,9 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(generator = "system-uuid")
+//    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+//    private String userId;
     private Long userId;
 
     /**
@@ -37,7 +42,7 @@ public class User {
      */
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Please enter a valid email")
-    @ColumnTransformer(read = "cast(aes_decrypt(email, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(email, 'J9DVC?n(') as char(255))")
     private String email;
 
     /**

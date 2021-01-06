@@ -35,14 +35,14 @@ public class Applicant {
      * The first name of the applicant.
      */
     @NotBlank(message = "Last name cannot be null")
-    @ColumnTransformer(read = "cast(aes_decrypt(first_name, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(first_name, 'J9DVC?n(') as char(255))")
     private String firstName;
 
     /**
      * The last name of the applicant.
      */
     @NotBlank(message = "Last name cannot be null")
-    @ColumnTransformer(read = "cast(aes_decrypt(last_name, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(last_name, 'J9DVC?n(') as char(255))")
     private String lastName;
 
     /**
@@ -50,14 +50,14 @@ public class Applicant {
      */
     @NotNull(message = "Phone number cannot be null")
     @Pattern(regexp = "[0][789][0-9]{9}", message = "It must not contain any letters")
-    @ColumnTransformer(read = "cast(aes_decrypt(phone_number, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(phone_number, 'J9DVC?n(') as char(255))")
     private String phoneNumber;
 
     /**
      * The address of the applicant.
      */
     @NotNull(message = "Address cannot be null")
-    @ColumnTransformer(read = "cast(aes_decrypt(address, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(address, 'J9DVC?n(') as char(255))")
     private String address;
 
     /**
@@ -65,21 +65,21 @@ public class Applicant {
      */
     @NotNull(message = "Postcode cannot be null")
     @Pattern(regexp = "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\s?[0-9][A-Za-z]{2})", message = "It must be UK eligible")
-    @ColumnTransformer(read = "cast(aes_decrypt(postcode, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(postcode, 'J9DVC?n(') as char(255))")
     private String postcode;
 
     /**
      * The user name of the applicant.
      */
     @NotNull(message = "College/University cannot be null")
-    @ColumnTransformer(read = "cast(aes_decrypt(college_or_university_name, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(college_or_university_name, 'J9DVC?n(') as char(255))")
     private String collegeOrUniversityName;
 
     /**
      * The date of birth of the applicant.
      */
     @NotNull(message = "Date of Birth cannot be null")
-    @ColumnTransformer(read = "cast(aes_decrypt(dob, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(dob, 'J9DVC?n(') as char(255))")
     private String dob;
 
     /**
@@ -99,13 +99,13 @@ public class Applicant {
     /**
      * The parent's email of the applicant.
      */
-    @ColumnTransformer(read = "cast(aes_decrypt(parent_email, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(parent_email, 'J9DVC?n(') as char(255))")
     private String parentEmail;
 
     /**
      * The passport of the applicant.
      */
-    @ColumnTransformer(read = "cast(aes_decrypt(passport_holder, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(passport_holder, 'J9DVC?n(') as char(255))")
     private String passportHolder;
 
     /**
@@ -133,7 +133,7 @@ public class Applicant {
     /**
      * The comments inputted by the coach.
      */
-    @ColumnTransformer(read = "cast(aes_decrypt(comments, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(comments, 'J9DVC?n(') as char(255))")
     private String comments;
     /**
      * Linking User Object with User Object

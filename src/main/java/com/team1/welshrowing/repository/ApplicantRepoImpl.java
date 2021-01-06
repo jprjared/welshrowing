@@ -43,12 +43,18 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         repository.save(applicantToUpdate);
     }
 
+//    @Override
+//    public void updateApplicantComments(Applicant applicant, String comments) {
+//        Applicant applicant1 = repository.getOne(applicant.getApplicantId());
+//        applicant1.setComments(comments);
+//        repository.save(applicant1);
+//    }
+
     @Override
-    public void updateApplicantComments(Applicant applicant, String comments) {
-        Applicant applicant1 = repository.getOne(applicant.getApplicantId());
-        applicant1.setComments(comments);
-        repository.save(applicant1);
+    public void commentUpdate(String newComments, Long applicantID){
+        repository.updateComments(newComments, applicantID);
     }
+
 
     @Override
     public void ApplicantUpdateByStatus(String newStatus, Long applicantID) {
