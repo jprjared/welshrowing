@@ -37,7 +37,7 @@ public class User {
      */
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Please enter a valid email")
-    @ColumnTransformer(read = "cast(aes_decrypt(email, 'J9DVC?n(') as char(255))")
+//    @ColumnTransformer(read = "cast(aes_decrypt(email, 'J9DVC?n(') as char(255))")
     private String email;
 
     /**

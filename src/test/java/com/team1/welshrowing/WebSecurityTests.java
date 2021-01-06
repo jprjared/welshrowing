@@ -96,7 +96,7 @@ public class WebSecurityTests {
     @WithUserDetails("coach")
     public void coachAllApplicantsIsOkWhenAccessedByCoach() throws Exception {
         this.mockMvc
-                .perform(get("/allApplicants"))
+                .perform(get("/coach/allApplicants"))
                 .andExpect(status().isOk());
     }
 
