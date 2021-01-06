@@ -160,7 +160,7 @@ public class CoachController {
         return "coach/add-coach";
     }
 
-    @GetMapping("/allApplicants")
+    @GetMapping("/coach/allApplicants")
     public String getApplicant(Model model) {
 
         model.addAttribute("applicants", applicantRepo.findAll());
@@ -181,7 +181,7 @@ public class CoachController {
             applicantUpdateService.updateByStatus("Accepted",applicant.get().getApplicantId());
             applicantEmailService.sendApplicantEmailAcceptReject("Accepted", applicant.get());
 
-            return "redirect:/allApplicants";
+            return "redirect:/coach/allApplicants";
         } else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
@@ -202,7 +202,7 @@ public class CoachController {
             applicantUpdateService.updateByStatus("Rejected",applicant.get().getApplicantId());
             applicantEmailService.sendApplicantEmailAcceptReject("Rejected",applicant.get());
 
-            return "redirect:/allApplicants";
+            return "redirect:/coach/allApplicants";
         } else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
@@ -278,7 +278,7 @@ public class CoachController {
 
             applicantEmailService.sendApplicantFeedback(applicant.get(),feedback.getMessage(),feedback.getFile());
 
-            return "redirect:/allApplicants";
+            return "redirect:/coach/allApplicants";
         } else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
@@ -375,9 +375,9 @@ public class CoachController {
         if (applicant.isPresent()) {
 
             model.addAttribute("applicant", applicant.get());
-            applicantUpdateService.updateApplicantComments(applicant.get(), comments);
+            applicantUpdateService.commentUpdate(comments, applicant.get().getApplicantId());
 
-            return "redirect:/allApplicants";
+            return "redirect:/coach/allApplicants";
         } else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");

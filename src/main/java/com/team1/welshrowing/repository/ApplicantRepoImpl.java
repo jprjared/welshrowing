@@ -43,12 +43,12 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         repository.save(applicantToUpdate);
     }
 
+
     @Override
-    public void updateApplicantComments(Applicant applicant, String comments) {
-        Applicant applicant1 = repository.getOne(applicant.getApplicantId());
-        applicant1.setComments(comments);
-        repository.save(applicant1);
+    public void commentUpdate(String newComments, Long applicantID){
+        repository.updateComments(newComments, applicantID);
     }
+
 
     @Override
     public void ApplicantUpdateByStatus(String newStatus, Long applicantID) {
@@ -69,14 +69,14 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String emailTo = applicant.getUser().getEmail();
         String aStatus = applicant.getApplication_situation();
         String accepted = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that your application has been " + status.toLowerCase() + "."
-                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team" + "\n" + "\n" + "-------------------------------------------------------------------------------------------------" + "\n"
-                        + "Llongyfarchiadau " + firstName + ", " + "\n" + "\n" + "Mae Tîm Rhwyfo Cymru yn gyffrous i ddatgan bod eich cais wedi bod yn llwyddianus " + status.toLowerCase() + "."
-                        + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
+                + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team" + "\n" + "\n" + "-------------------------------------------------------------------------------------------------" + "\n"
+                + "Llongyfarchiadau " + firstName + ", " + "\n" + "\n" + "Mae Tîm Rhwyfo Cymru yn gyffrous i ddatgan bod eich cais wedi bod yn llwyddianus " + status.toLowerCase() + "."
+                + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
 
         String rejected = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that your application has been " + status.toLowerCase() + "."
-                        + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team" + "\n" + "-------------------------------------------------------------------------------------------------" + "\n"
-                        + "Helo " + firstName + ", " + "\n" + "\n" + "Mae`n ddrwg iawn gennym ni i ddatgan wrthoch fod eich cais yn aflwyddianus " + status.toLowerCase() + "."
-                        + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
+                + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team" + "\n" + "-------------------------------------------------------------------------------------------------" + "\n"
+                + "Helo " + firstName + ", " + "\n" + "\n" + "Mae`n ddrwg iawn gennym ni i ddatgan wrthoch fod eich cais yn aflwyddianus " + status.toLowerCase() + "."
+                + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
 
         String mailSubject = " Welsh Rowing - Application Status / Rhwyfo Cymru - Sefyllfa eich Cais";
 
@@ -105,16 +105,16 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String aStatus = applicant.getApplication_situation();
 
         String passed = "Congratulations " + firstName + ", " + "\n" + "\n" + "Welsh Rowing team is excited to announce that you have " + status.toLowerCase() + " the tests."
-                        + "\n" + "We look forward to following up with you about the 8 Week Programme" + "\n" + "and we will contact you very soon." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team"
-                        + "\n" + "----------------------------------------------------------------------------------------------" + "\n"
-                        + "Llongyfarchiadau " + firstName + ", " + "\n" + "\n" + "Mae Tîm Rhwyfo Cymru yn gyffrous i ddatgan eich bod wedi " + status.toLowerCase() + " Y profion."
-                        + "\n" + "Rydym ni`n edrych ymlaen i ddilyn fyny hefo chi amdan y rhaglen 8 wythnos ni" + "\n" + "Mi fyddyn ni`n cysylltu hefo chi yn fuan iawn." + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
+                + "\n" + "We look forward to following up with you about the 8 Week Programme" + "\n" + "and we will contact you very soon." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team"
+                + "\n" + "----------------------------------------------------------------------------------------------" + "\n"
+                + "Llongyfarchiadau " + firstName + ", " + "\n" + "\n" + "Mae Tîm Rhwyfo Cymru yn gyffrous i ddatgan eich bod wedi " + status.toLowerCase() + " Y profion."
+                + "\n" + "Rydym ni`n edrych ymlaen i ddilyn fyny hefo chi amdan y rhaglen 8 wythnos ni" + "\n" + "Mi fyddyn ni`n cysylltu hefo chi yn fuan iawn." + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
 
-          String failed = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that you have " + status.toLowerCase() + " the tests."
-                        + "\n" + "Thank you for taking part. We wish you all the best." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team"
-                        + "\n" + "----------------------------------------------------------------------------------------------" + "\n"
-                        +  "Helo " + firstName + ", " + "\n" + "\n" + "Mae`n ddrwg iawn gennym ni i ddatgan wrthoch fod chi wedi " + status.toLowerCase() + " Y profion."
-                        + "\n" + "Diolch yn fawr iawn am cymryd rhan. Mi rydym ni`n dymuno`r gorau i chi." + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
+        String failed = "Hello " + firstName + ", " + "\n" + "\n" + "We are sorry to inform you that you have " + status.toLowerCase() + " the tests."
+                + "\n" + "Thank you for taking part. We wish you all the best." + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team"
+                + "\n" + "----------------------------------------------------------------------------------------------" + "\n"
+                +  "Helo " + firstName + ", " + "\n" + "\n" + "Mae`n ddrwg iawn gennym ni i ddatgan wrthoch fod chi wedi " + status.toLowerCase() + " Y profion."
+                + "\n" + "Diolch yn fawr iawn am cymryd rhan. Mi rydym ni`n dymuno`r gorau i chi." + "\n" + "\n" + "Yn Gywir," + "\n" + "\n" + "Tîm Rhwyfo Cymru";
 
         String mailSubject = " Welsh Rowing - Test Results / Tîm Rhwyfo Cymru - Canlyniadau eich prawf";
 
@@ -146,7 +146,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         String document = file;
         String mailSubject = " Welsh Rowing - Feedback";
         String msg = "Hello " + firstName + "," + "\n" + "\n" + feedback
-                     + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
+                + "\n" + "\n" + "Regards," + "\n" + "\n" + "Welsh Rowing Team";
 
 
         //Create an email message
@@ -155,7 +155,7 @@ public class ApplicantRepoImpl implements ApplicantRepo {
         message.setSubject(mailSubject);
         message.setText(msg);
 
-    //Send mail
+        //Send mail
         mailSender.send(message);
     }
 
