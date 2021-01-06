@@ -82,4 +82,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new SimpleAuthenticationSuccessHandler();
     }
 
+
+
 }
