@@ -375,7 +375,9 @@ public class CoachController {
         if (applicant.isPresent()) {
 
             model.addAttribute("applicant", applicant.get());
+
 //            applicantUpdateService.updateApplicantComments(applicant.get(), comments);
+
             applicantUpdateService.commentUpdate(comments, applicant.get().getApplicantId());
 
             return "redirect:/coach/allApplicants";

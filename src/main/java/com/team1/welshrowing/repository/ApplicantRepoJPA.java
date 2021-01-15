@@ -25,7 +25,8 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE #{#entityName} SET application_situation=?1 WHERE applicantId=?2")
-   void updateStatus(String newStatus, Long applicantID);
+    void updateStatus(String newStatus, Long applicantID);
+
 
 //    @Transactional
 //    @Modifying
@@ -39,7 +40,7 @@ public interface ApplicantRepoJPA extends JpaRepository<Applicant, Long> {
 
 
     Optional<Applicant> findById(Long id);
-    
+
     Optional<Applicant> findFirstByUser(User user);
 
 }

@@ -26,6 +26,7 @@ public class ApplicantUpdateService {
 //        repository.updateApplicantComments(applicant, comments);
 //    }
 
+
     public void commentUpdate(String newComments, Long applicantID){
         repository.commentUpdate(newComments, applicantID);
     }
