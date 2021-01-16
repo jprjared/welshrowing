@@ -14,7 +14,6 @@ public class UserReadService {
     private final UserRepo repository;
 
     @Autowired
-    @Lazy
     public UserReadService(UserRepo repository) {
         this.repository = repository;
     }

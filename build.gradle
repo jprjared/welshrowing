@@ -64,6 +64,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter
     compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.3'
 
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
     testCompile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.32'
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.13.0'
