@@ -11,7 +11,6 @@ import java.util.Optional;
 public interface ApplicantRepo {
     void saveApplicant(Applicant applicant);
     void updateApplicantStatus(Applicant applicant, String status);
-//    void updateApplicantComments(Applicant applicant, String comments);
     void commentUpdate(String newComments, Long applicantID);
     void ApplicantUpdateByStatus(String newStatus, Long applicantID);
     List<Applicant> ApplicantFindByStatus(String application_situation);

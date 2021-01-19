@@ -23,6 +23,7 @@ import javax.validation.constraints.*;
  */
 public class Applicant {
 
+
     /**
      * A unique suffix that will identify the athlete.
      */
@@ -116,7 +117,7 @@ public class Applicant {
      * From where the applicant have heard about the club.
      */
     @NotNull(message = "Where did hear about cannot be null")
-    @Size(min = 1, max = 25, message = "Answer should be between 1 and 25 characters")
+    @Size (min = 1, max = 25, message = "Answer should be between 1 and 25 characters")
     private String whereDidHear;
 
     /**

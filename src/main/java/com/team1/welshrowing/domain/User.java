@@ -6,11 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import org.hibernate.annotations.ColumnTransformer;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -26,9 +24,6 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(generator = "system-uuid")
-//    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-//    private String userId;
     private Long userId;
 
     /**
