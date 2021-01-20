@@ -58,8 +58,8 @@ public class AthleteController {
 
             if (theUser.isPresent()) {
 
-                Optional<Athlete> theAthlete = athleteReadService.findByUser(theUser.get());
-                theAthlete.ifPresent(athlete -> model.addAttribute("athlete", athlete));
+                Optional<Applicant> theAthlete = applicantReadService.findByUser(theUser.get());
+                theAthlete.ifPresent(applicant -> model.addAttribute("applicant", applicant));
 
                 // Has this user completed their daily morning monitoring?
                 boolean hasCompletedMorningMonitoring = morningMonitoringReadService.hasCompletedMorningMonitoringToday(theUser.get());
