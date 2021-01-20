@@ -214,19 +214,33 @@ public class CoachController {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
 
-        if (applicant.isPresent()) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl) principal).getUsername());
 
-            model.addAttribute("applicant", applicant.get());
-            model.addAttribute("user", applicant.get().getUser().getEmail());
+            if (theUser.isPresent()) {
+                //        if (applicant.isPresent()) {
 
-            applicantUpdateService.updateByStatus("Passed",applicant.get().getApplicantId());
-            applicantEmailService.sendApplicantEmailPassFail("Passed",applicant.get());
+                model.addAttribute("applicant", applicant.get());
+                model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            return "redirect:/application/status";
-        } else {
+                applicantUpdateService.updateByStatus("Passed", applicant.get().getApplicantId());
+                applicantEmailService.sendApplicantEmailPassFail("Passed", applicant.get());
+                theUser.get().setRoles("ATHLETE");
+
+                if (theUser.isPresent()) {
+                    if (theUser.get().getRoles().equals("Passed")) {
+                        return "redirect:/athlete/dashboard";
+                    }
+                }
+            }
+        }
+
+        else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
         }
+        return "hi";
     }
 
     @PostMapping("coach/applicant/fail/{id}")

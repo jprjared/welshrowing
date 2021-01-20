@@ -1,19 +1,9 @@
 package com.team1.welshrowing.web;
 
-import com.team1.welshrowing.domain.Applicant;
-import com.team1.welshrowing.domain.MorningMonitoring;
-import com.team1.welshrowing.domain.RPE;
-import com.team1.welshrowing.domain.User;
-import com.team1.welshrowing.domain.XTraining;
+import com.team1.welshrowing.domain.*;
 import com.team1.welshrowing.repository.RPERepoJPA;
 import com.team1.welshrowing.security.UserDetailsImpl;
-import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.MorningMonitoringCreateService;
-import com.team1.welshrowing.service.MorningMonitoringReadService;
-import com.team1.welshrowing.service.RPEReadService;
-import com.team1.welshrowing.service.UserReadService;
-import com.team1.welshrowing.service.XTrainingCreateService;
-import com.team1.welshrowing.service.XTrainingReadService;
+import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -53,6 +43,9 @@ public class AthleteController {
     @Autowired
     ApplicantReadService applicantReadService;
 
+    @Autowired
+    AthleteReadService athleteReadService;
+
     /**
      * GETs the athlete dashboard.
      */
@@ -65,8 +58,8 @@ public class AthleteController {
 
             if (theUser.isPresent()) {
 
-                Optional<Applicant> theApplicant = applicantReadService.findByUser(theUser.get());
-                theApplicant.ifPresent(applicant -> model.addAttribute("applicant", applicant));
+                Optional<Athlete> theAthlete = athleteReadService.findByUser(theUser.get());
+                theAthlete.ifPresent(athlete -> model.addAttribute("athlete", athlete));
 
                 // Has this user completed their daily morning monitoring?
                 boolean hasCompletedMorningMonitoring = morningMonitoringReadService.hasCompletedMorningMonitoringToday(theUser.get());

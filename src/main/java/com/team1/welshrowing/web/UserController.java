@@ -90,7 +90,7 @@ public class UserController {
 
             String pass = user.getPassword();
 
-            user.setRoles("ATHLETE");
+            user.setRoles("APPLICANT");
             userCreateService.addUser(user);
 
             // Adapted from code examples at https://www.baeldung.com/spring-security-auto-login-user-after-registration [Accessed: 1 December 2020]

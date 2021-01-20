@@ -24,7 +24,7 @@ END;;
 DELIMITER ;
 
 -- Ensures that user roles can only be either athlete or coach, and not both
-ALTER TABLE user ADD CONSTRAINT IF NOT EXISTS valid_role CHECK (roles='ATHLETE' OR roles='COACH');
+ALTER TABLE user ADD CONSTRAINT IF NOT EXISTS valid_role CHECK (roles='ATHLETE' OR roles='COACH' OR 'APPLICANT');
 
 -- Ensures that the password is hashed using bcrypt
 -- Regex pattern adapted from https://stackoverflow.com/questions/31417387/regular-expression-to-find-bcrypt-hash [Accessed: 15 December 2020]

@@ -9,7 +9,7 @@
 <main class="container">
 
     <div class="alert alert-info" role="alert" th:unless="${hasCompletedMorningMonitoring == true}">
-        Hi <span th:text="${applicant.firstName}">there</span>! You haven't completed your daily morning monitoring form yet.
+        Hi <span th:text="${athlete.firstName}">there</span>! You haven't completed your daily morning monitoring form yet.
         <strong>
             <a href="/athlete/morning-monitoring">Do it now!</a>
         </strong>
