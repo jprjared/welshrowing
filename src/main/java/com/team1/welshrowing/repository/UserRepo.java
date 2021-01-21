@@ -9,4 +9,5 @@ public interface UserRepo {
     void saveUser(User user);
     Optional<User> findByUserName(String userName);
     Optional<User> findById(Long id);
+    void UserRoleUpdate(String newRole, Long userID);
 }

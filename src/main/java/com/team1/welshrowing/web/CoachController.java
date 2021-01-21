@@ -14,19 +14,7 @@ import com.team1.welshrowing.domain.XTraining;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.FeedbackRepoJPA;
 import com.team1.welshrowing.security.UserDetailsImpl;
-import com.team1.welshrowing.service.ApplicantEmailService;
-import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.ApplicantUpdateService;
-import com.team1.welshrowing.service.FeedbackCreateService;
-import com.team1.welshrowing.service.FeedbackReadService;
-import com.team1.welshrowing.service.InterviewReadService;
-import com.team1.welshrowing.service.MorningMonitoringReadService;
-import com.team1.welshrowing.service.PersonalityInterviewReadService;
-import com.team1.welshrowing.service.PhysicalTestReadService;
-import com.team1.welshrowing.service.RPEReadService;
-import com.team1.welshrowing.service.UserCreateService;
-import com.team1.welshrowing.service.UserReadService;
-import com.team1.welshrowing.service.XTrainingReadService;
+import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -72,6 +60,9 @@ public class CoachController {
 
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
+
+    @Autowired
+    private UserUpdateService userUpdateService;
 
     @Autowired
     private InterviewReadService interviewReadService;
@@ -213,6 +204,7 @@ public class CoachController {
     public String PassAnApplicant(@PathVariable Long id, Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
+        Optional<User> user = userReadService.findById(id);
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetailsImpl) {
@@ -226,13 +218,14 @@ public class CoachController {
 
                 applicantUpdateService.updateByStatus("Passed", applicant.get().getApplicantId());
                 applicantEmailService.sendApplicantEmailPassFail("Passed", applicant.get());
-                theUser.get().setRoles("ATHLETE");
+                userUpdateService.roleUpdate("ATHLETE", user.get().getUserId());
+                user.get().setRoles("ATHLETE");
 
-                if (theUser.isPresent()) {
-                    if (theUser.get().getRoles().equals("Passed")) {
-                        return "redirect:/athlete/dashboard";
-                    }
-                }
+//                if (theUser.isPresent()) {
+//                    if (theUser.get().getRoles().equals("COACH")) {
+//                        return "redirect:/athlete/dashboard";
+//                    }
+//                }
             }
         }
 
@@ -240,7 +233,7 @@ public class CoachController {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
         }
-        return "hi";
+        return "redirect:/coach/allApplicants";
     }
 
     @PostMapping("coach/applicant/fail/{id}")
