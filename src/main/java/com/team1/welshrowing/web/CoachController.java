@@ -219,7 +219,7 @@ public class CoachController {
                 applicantUpdateService.updateByStatus("Passed", applicant.get().getApplicantId());
                 applicantEmailService.sendApplicantEmailPassFail("Passed", applicant.get());
                 userUpdateService.roleUpdate("ATHLETE", user.get().getUserId());
-                user.get().setRoles("ATHLETE");
+//                user.get().setRoles("ATHLETE");
 
 //                if (theUser.isPresent()) {
 //                    if (theUser.get().getRoles().equals("COACH")) {
