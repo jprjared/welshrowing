@@ -16,10 +16,6 @@ import org.springframework.context.annotation.PropertySource;
 public class WelshRowingApplication {
 
     public static void main(String[] args) {
-//        SpringApplication application = new SpringApplication(WelshRowingApplication.class);
-//        application.setAdditionalProfiles("ssl");
-//        application.run(args);
-
         SpringApplication.run(WelshRowingApplication.class, args);
     }
 
@@ -40,7 +36,7 @@ public class WelshRowingApplication {
             }
         };
 
-        // Add HTTP to HTTPS redirect
+        // Add 'HTTP to HTTPS' redirect
         tomcat.addAdditionalTomcatConnectors(httpToHttpsRedirectConnector());
 
         return tomcat;
