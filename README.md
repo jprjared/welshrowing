@@ -31,4 +31,4 @@ You can optionally run the `security.sql` file (manually) from the `resources` f
 
 You can also optionally run the `data-h2.sql` file if you want to add test data to the production database, but this is not required.
 
-Once the server is running, the website can be accessed from http://localhost:8080.
+Once the server is running, the website can be accessed from https://localhost:8443
