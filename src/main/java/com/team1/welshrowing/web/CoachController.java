@@ -14,19 +14,7 @@ import com.team1.welshrowing.domain.XTraining;
 import com.team1.welshrowing.repository.ApplicantRepoJPA;
 import com.team1.welshrowing.repository.FeedbackRepoJPA;
 import com.team1.welshrowing.security.UserDetailsImpl;
-import com.team1.welshrowing.service.ApplicantEmailService;
-import com.team1.welshrowing.service.ApplicantReadService;
-import com.team1.welshrowing.service.ApplicantUpdateService;
-import com.team1.welshrowing.service.FeedbackCreateService;
-import com.team1.welshrowing.service.FeedbackReadService;
-import com.team1.welshrowing.service.InterviewReadService;
-import com.team1.welshrowing.service.MorningMonitoringReadService;
-import com.team1.welshrowing.service.PersonalityInterviewReadService;
-import com.team1.welshrowing.service.PhysicalTestReadService;
-import com.team1.welshrowing.service.RPEReadService;
-import com.team1.welshrowing.service.UserCreateService;
-import com.team1.welshrowing.service.UserReadService;
-import com.team1.welshrowing.service.XTrainingReadService;
+import com.team1.welshrowing.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -72,6 +60,9 @@ public class CoachController {
 
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
+
+    @Autowired
+    private UserUpdateService userUpdateService;
 
     @Autowired
     private InterviewReadService interviewReadService;
@@ -213,20 +204,32 @@ public class CoachController {
     public String PassAnApplicant(@PathVariable Long id, Model model) {
 
         Optional<Applicant> applicant = applicantReadService.findById(id);
+        //line added to fix the authorisation problems
+        Optional<User> user = userReadService.findById(id);
 
-        if (applicant.isPresent()) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            Optional<User> theUser = userReadService.findByUserName(((UserDetailsImpl) principal).getUsername());
 
-            model.addAttribute("applicant", applicant.get());
-            model.addAttribute("user", applicant.get().getUser().getEmail());
+            if (theUser.isPresent()) {
+                //        if (applicant.isPresent()) {
 
-            applicantUpdateService.updateByStatus("Passed",applicant.get().getApplicantId());
-            applicantEmailService.sendApplicantEmailPassFail("Passed",applicant.get());
+                model.addAttribute("applicant", applicant.get());
+                model.addAttribute("user", applicant.get().getUser().getEmail());
 
-            return "redirect:/application/status";
-        } else {
+                applicantUpdateService.updateByStatus("Passed", applicant.get().getApplicantId());
+                applicantEmailService.sendApplicantEmailPassFail("Passed", applicant.get());
+
+                //line added to fix authorisation problems
+                userUpdateService.roleUpdate("ATHLETE", user.get().getUserId());
+
+            }
+        }
+        else {
 
             throw new ResponseStatusException(NOT_FOUND, "Applicant not found");
         }
+        return "redirect:/coach/allApplicants";
     }
 
     @PostMapping("coach/applicant/fail/{id}")

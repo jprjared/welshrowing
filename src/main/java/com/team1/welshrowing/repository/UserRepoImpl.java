@@ -31,4 +31,9 @@ public class UserRepoImpl implements UserRepo {
         return repository.findById(id);
     }
 
+    @Override
+    public void UserRoleUpdate(String newRole, Long userID){
+        repository.updateRole(newRole, userID);
+    }
+
 }
