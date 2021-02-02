@@ -46,7 +46,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/coach/**").hasAuthority("COACH")
                 .antMatchers("/athlete/**").hasAuthority("ATHLETE")
-                .antMatchers("applicant/**").hasAuthority("APPLICANT")
+                .antMatchers("/applicant/**").hasAuthority("APPLICANT")
                 .antMatchers("/",
                         "/register",
                         "/css/**/*.css",

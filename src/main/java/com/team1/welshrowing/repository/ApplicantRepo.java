@@ -17,9 +17,7 @@ public interface ApplicantRepo {
     Optional<Applicant> findById(Long Id);
     Optional<Applicant> findByUser(User user);
     void sendEmailStatus(String status, Applicant applicant);
-
     void sendEmailPassFail(String status, Applicant applicant);
-
     void sendEmailFeedback(Applicant applicant, String feedback, String file);
 
 }
