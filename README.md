@@ -10,25 +10,23 @@ git clone https://git.cardiff.ac.uk/c1741189/welshrowing_team1.git
 cd welshrowing_team1
 
 # Build the server
-./gradlew build
+./gradlew build (gradlew build)
+or (gradlew assemble)
 ```
+Please create a `welshrowing` database first. The schema will automatically be created when you first run the production server.
 
-You can run a development server that runs with a H2 database and automatically loads test data, or a production-equivalent server that runs with MariaDB but does not load any test data.
-
-**Runs dev/test server with H2 Database** (with test data)
-```bash
-java -jar welsh-rowing-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
-```
-
-**Runs prod server with MariaDB**
+Then run this to execute the application and populatet tables
 ```bash
 java -jar welsh-rowing-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 ```
 
-If you run the production server, please create a `WelshRowing` database first. The schema will automatically be created when you first run the production server.
+then run the `data-h2.sql` file if you want to add test data to the production database.
 
-You can optionally run the `security.sql` file (manually) from the `resources` folder to add DB security features for the Cyber Security module.
+usernames: coach, athlete, applicant
+password: pass
 
-You can also optionally run the `data-h2.sql` file if you want to add test data to the production database, but this is not required.
+Once the server is running, the website can be accessed from https://localhost:8443 or http://localhost:8080
 
-Once the server is running, the website can be accessed from https://localhost:8443
+
+
+
